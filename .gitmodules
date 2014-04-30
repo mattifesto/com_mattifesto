@@ -1,0 +1,3 @@
+[submodule "colby"]
+	path = colby
+	url = mdgit@mattifesto.com:~/colby.git
