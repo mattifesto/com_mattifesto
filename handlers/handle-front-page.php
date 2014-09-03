@@ -1,11 +1,10 @@
 <?php
 
-include_once CBSystemDirectory . '/classes/CBHTMLOutput.php';
-
-
 CBHTMLOutput::setTitleHTML(CBSiteNameHTML);
-CBHTMLOutput::setDescriptionHTML('Mattifesto Design sells web design for Seattle, Bellevue, Kirkland, Redmond, and Western Washington');
+CBHTMLOutput::setDescriptionHTML('Mattifesto Design web design and development services for Seattle, Bellevue, Kirkland, Redmond, and Western Washington');
 CBHTMLOutput::begin();
+
+include CBSiteDirectory . '/sections/public-page-settings.php';
 
 CBHTMLOutput::addCSSURL(CBSiteURL . '/handlers/handle-front-page.css');
 
@@ -17,6 +16,9 @@ CBHTMLOutput::addCSSURL(CBSiteURL . '/handlers/handle-front-page.css');
     <a id="email" href="mailto:matt@mattifesto.com">
         <span>matt@mattifesto.com</span>
     </a>
+    <footer>
+        <a href="http://dreamhost.com/redir.cgi?target=signup&type=shared&promo=mattifesto">Dreamhost web hosting coupon</a>
+    </footer>
 </div>
 
 <?php

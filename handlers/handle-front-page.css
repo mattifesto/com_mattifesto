@@ -1,7 +1,20 @@
 body
 {
-    margin: 0px;
-    overflow: hidden;
+    color       white;
+    margin:     0;
+    overflow:   hidden;
+}
+
+body a
+{
+    color:              rgba(255, 255, 255, 0.3);
+    text-decoration:    none;
+    transition:         color 1s;
+}
+
+body a:hover
+{
+    color: white;
 }
 
 #main
@@ -50,4 +63,18 @@ body
 #email span
 {
     display: none;
+}
+
+#main > footer
+{
+    bottom:     0;
+    font-size:  12px;
+    position:   absolute;
+    width:      100%;
+}
+
+#main > footer a
+{
+    display:    block;
+    padding:    5px 10px;
 }
