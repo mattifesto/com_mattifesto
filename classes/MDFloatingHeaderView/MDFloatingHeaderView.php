@@ -10,6 +10,13 @@ final class MDFloatingHeaderView {
     }
 
     /**
+     * @return null
+     */
+    public static function renderModelAsHTML(stdClass $model) {
+        echo '<header></header>';
+    }
+
+    /**
      * @return {stdClass}
      */
     public static function specToModel(stdClass $spec) {
