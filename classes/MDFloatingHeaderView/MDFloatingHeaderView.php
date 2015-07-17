@@ -5,6 +5,13 @@ final class MDFloatingHeaderView {
     /**
      * @return [{string}]
      */
+    public static function editorURLsForCSS() {
+        return [ MDFloatingHeaderView::URL('MDFloatingHeaderViewEditor.css') ];
+    }
+
+    /**
+     * @return [{string}]
+     */
     public static function editorURLsForJavaScript() {
         return [
             CBSystemURL . '/javascript/CBStringEditorFactory.js',
