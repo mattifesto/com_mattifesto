@@ -3,6 +3,13 @@
 final class MDFloatingHeaderView {
 
     /**
+     * @return [<hex160>]
+     */
+    public static function modelToModelDependencies(stdClass $model) {
+        return [CBMainMenu::ID];
+    }
+
+    /**
      * @return {stdClass}
      */
     public static function specToModel(stdClass $spec) {
