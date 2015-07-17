@@ -3,6 +3,16 @@
 final class MDFloatingHeaderView {
 
     /**
+     * @return [{string}]
+     */
+    public static function editorURLsForJavaScript() {
+        return [
+            CBSystemURL . '/javascript/CBStringEditorFactory.js',
+            MDFloatingHeaderView::URL('MDFloatingHeaderViewEditorFactory.js')
+        ];
+    }
+
+    /**
      * @return [<hex160>]
      */
     public static function modelToModelDependencies(stdClass $model) {
@@ -25,5 +35,12 @@ final class MDFloatingHeaderView {
         $model->selectedMenuItemName    = isset($spec->selectedMenuItemName) ? trim($spec->selectedMenuItemName) : '';
 
         return $model;
+    }
+
+    /**
+     * @return string
+     */
+    public static function URL($filename) {
+        return CBSiteURL . "/classes/MDFloatingHeaderView/{$filename}";
     }
 }
