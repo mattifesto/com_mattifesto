@@ -47,7 +47,17 @@ final class MDFloatingHeaderView {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
-        echo '<header></header>';
+        CBHTMLOutput::addCSSURL(MDFloatingHeaderView::URL('MDFloatingHeaderView.css'));
+
+        $menu = CBModelCache::fetchModelByID(CBMainMenu::ID);
+
+        echo '<header class="MDFloatingHeaderView"><ul>';
+
+        array_walk($menu->items, function($item) {
+            echo "<li><a href=\"{$item->URLAsHTML}\">{$item->textAsHTML}</a></li>";
+        });
+
+        echo '</ul></header>';
     }
 
     /**
