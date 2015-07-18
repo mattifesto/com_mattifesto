@@ -20,6 +20,23 @@ final class MDFloatingHeaderView {
     }
 
     /**
+     * @return {stdClass}
+     */
+    public static function fetchMenuForAjax() {
+        $response                   = new CBAjaxResponse();
+        $response->menu             = CBModels::fetchModelByID(CBMainMenu::ID);
+        $response->wasSuccessful    = true;
+        $response->send();
+    }
+
+    /**
+     * @return {stdClass}
+     */
+    public static function fetchMenuForAjaxPermissions() {
+        return (object)['group' => 'Administrators'];
+    }
+
+    /**
      * @return [<hex160>]
      */
     public static function modelToModelDependencies(stdClass $model) {
