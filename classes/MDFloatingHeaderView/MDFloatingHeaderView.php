@@ -53,8 +53,20 @@ final class MDFloatingHeaderView {
 
         echo '<header class="MDFloatingHeaderView"><ul>';
 
-        array_walk($menu->items, function($item) {
-            echo "<li><a href=\"{$item->URLAsHTML}\">{$item->textAsHTML}</a></li>";
+        array_walk($menu->items, function($item) use ($model) {
+            if ($model->selectedMenuItemName === $item->name) {
+                $class = 'class="selected"';
+            } else {
+                $class = '';
+            }
+
+            if ($model->colorAsHTML) {
+                $style = "style=\"color: {$model->colorAsHTML}\"";
+            } else {
+                $style = '';
+            }
+
+            echo "<li {$class}><a href=\"{$item->URLAsHTML}\" {$style}>{$item->textAsHTML}</a></li>";
         });
 
         echo '</ul></header>';
@@ -66,6 +78,7 @@ final class MDFloatingHeaderView {
     public static function specToModel(stdClass $spec) {
         $model                          = CBModels::modelWithClassName(__CLASS__);
         $model->color                   = isset($spec->color) ? trim($spec->color) : '';
+        $model->colorAsHTML             = ColbyConvert::textToHTML($model->color);
         $model->selectedMenuItemName    = isset($spec->selectedMenuItemName) ? trim($spec->selectedMenuItemName) : '';
 
         return $model;
