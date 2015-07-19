@@ -24,11 +24,11 @@ final class MDFlexContainerView {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
-        echo '<div class="MDFlexContainerView">';
+        echo "<{$model->type} class=\"MDFlexContainerView\">";
 
         array_walk($model->subviews, 'CBView::renderModelAsHTML');
 
-        echo '</div>';
+        echo "</{$model->type}>";
     }
 
     /**
@@ -37,6 +37,18 @@ final class MDFlexContainerView {
     public static function specToModel(stdClass $spec) {
         $model              = CBModels::modelWithClassName(__CLASS__);
         $model->subviews    = isset($spec->subviews) ? array_map('CBView::specToModel', $spec->subviews) : [];
+        $type               = isset($spec->type) ? trim($spec->type) : "";
+
+        switch ($type) {
+            case "article":
+                $model->type = "article";
+                break;
+            case "main":
+                $model->type = "main";
+                break;
+            default:
+                $model->type = "div";
+        }
 
         return $model;
     }
