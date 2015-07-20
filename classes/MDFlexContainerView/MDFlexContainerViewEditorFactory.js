@@ -11,10 +11,18 @@ var MDFlexContainerViewEditorFactory = {
     createEditor : function(args) {
         var element         = document.createElement("div");
         element.className   = "MDFlexContainerViewEditor";
+        var container       = document.createElement("div");
+        container.className = "container";
+        var preview         = CBImageEditorFactory.createImagePreviewElement();
+        preview.img.src     = args.spec.imageURL || "";
+        var options         = document.createElement("div");
+        options.className   = "options";
         var subviews        = document.createElement("div");
         subviews.className  = "subviews";
 
-        element.appendChild(CBStringEditorFactory.createSelectEditor({
+        container.appendChild(preview.element);
+
+        options.appendChild(CBStringEditorFactory.createSelectEditor({
             data                : [
                 { textContent : "div",      value : "" },
                 { textContent : "article",  value : "article" },
@@ -26,6 +34,8 @@ var MDFlexContainerViewEditorFactory = {
             spec                : args.spec
         }));
 
+        container.appendChild(options);
+
         if (args.spec.subviews === undefined) {
             args.spec.subviews = [];
         }
@@ -36,6 +46,7 @@ var MDFlexContainerViewEditorFactory = {
             handleChanged   : args.handleSpecChanged
         }));
 
+        element.appendChild(container);
         element.appendChild(subviews);
 
         return element;

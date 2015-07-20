@@ -4,7 +4,22 @@
     padding:    10px;
 }
 
+.MDFlexContainerViewEditor > .container {
+    display:                    flex;
+    display:                    -webkit-flex;
+    justify-content:            center;
+    -webkit-justify-content:    center;
+}
+
+.MDFlexContainerViewEditor > .container > .options {
+    border-left:    1px solid hsl(0, 0%, 80%);
+    margin-left:    10px;
+    padding-left:   10px;
+    width:          400px;
+}
+
 .MDFlexContainerViewEditor > .subviews {
     background-color:   white;
     border:             1px solid hsl(0, 0%, 80%);
+    margin-top:         10px;
 }
