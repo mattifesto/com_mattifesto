@@ -24,7 +24,15 @@ final class MDFlexContainerView {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
-        echo "<{$model->type} class=\"MDFlexContainerView\">";
+        $styles = [];
+
+        if (!empty($model->imageURL)) {
+            $styles[] = "background-image: url({$model->imageURL});";
+        }
+
+        $styles = implode(' ', $styles);
+
+        echo "<{$model->type} class=\"MDFlexContainerView\" style=\"{$styles}\">";
 
         array_walk($model->subviews, 'CBView::renderModelAsHTML');
 
@@ -35,19 +43,20 @@ final class MDFlexContainerView {
      * @return {stdClass}
      */
     public static function specToModel(stdClass $spec) {
-        $model              = CBModels::modelWithClassName(__CLASS__);
-        $model->subviews    = isset($spec->subviews) ? array_map('CBView::specToModel', $spec->subviews) : [];
-        $type               = isset($spec->type) ? trim($spec->type) : "";
+        $model                  = CBModels::modelWithClassName(__CLASS__);
+        $model->imageURL        = isset($spec->imageURL) ? MDFlexContainerView::URLToCSS($spec->imageURL) : '';
+        $model->subviews        = isset($spec->subviews) ? array_map('CBView::specToModel', $spec->subviews) : [];
+        $type                   = isset($spec->type) ? trim($spec->type) : '';
 
         switch ($type) {
-            case "article":
-                $model->type = "article";
+            case 'article':
+                $model->type = 'article';
                 break;
-            case "main":
-                $model->type = "main";
+            case 'main':
+                $model->type = 'main';
                 break;
             default:
-                $model->type = "div";
+                $model->type = 'div';
         }
 
         return $model;
@@ -58,5 +67,26 @@ final class MDFlexContainerView {
      */
     public static function URL($filename) {
         return CBSiteURL . "/classes/MDFlexContainerView/{$filename}";
+    }
+
+    /**
+     * This function detects the following characters in a URL:
+     *
+     *          '  "  <  >  &  (  )
+     *
+     * If the URL contains one or more of these characters it is considered
+     * invalid for the purposes of this view due to the way it will be embedded
+     * in the style property of the element and the encertainties on how those
+     * characters should or even can be escaped propertly.  Otherise the URL is
+     * trimmed and returned.
+     *
+     * @return {string}
+     */
+    public static function URLToCSS($URL) {
+        if (preg_match('/[\'"<>&()]/', $URL)) {
+            return '';
+        } else {
+            return trim($URL);
+        }
     }
 }

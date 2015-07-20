@@ -11,6 +11,13 @@
     -webkit-justify-content:    center;
 }
 
+.MDFlexContainerViewEditor > .container .row {
+    display:                    flex;
+    display:                    -webkit-flex;
+    justify-content:            space-around;
+    -webkit-justify-content:    space-around;
+}
+
 .MDFlexContainerViewEditor > .container > .options {
     border-left:    1px solid hsl(0, 0%, 80%);
     margin-left:    10px;
@@ -19,13 +26,13 @@
 }
 
 .MDFlexContainerViewEditor > .container > .options > h2 {
-    border-top:     1px solid hsl(0, 0%, 80%);
-    color:          hsl(0, 0%, 50%);
-    font:           inherit;
-    margin-top:     10px;
-    padding-top:    0px;
-    text-align:     center;
+    border-top: 1px solid hsl(0, 0%, 80%);
+    color:      hsl(0, 0%, 50%);
+    font:       inherit;
+    margin:     10px 0 5px;
+    text-align: center;
 }
+
 
 .MDFlexContainerViewEditor > .subviews {
     background-color:   white;
