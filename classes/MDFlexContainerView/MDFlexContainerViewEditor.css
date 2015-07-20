@@ -18,6 +18,15 @@
     width:          400px;
 }
 
+.MDFlexContainerViewEditor > .container > .options > h2 {
+    border-top:     1px solid hsl(0, 0%, 80%);
+    color:          hsl(0, 0%, 50%);
+    font:           inherit;
+    margin-top:     10px;
+    padding-top:    0px;
+    text-align:     center;
+}
+
 .MDFlexContainerViewEditor > .subviews {
     background-color:   white;
     border:             1px solid hsl(0, 0%, 80%);
