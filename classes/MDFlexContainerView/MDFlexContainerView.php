@@ -140,12 +140,12 @@ final class MDFlexContainerView {
         $backgroundPositionY    = isset($spec->backgroundPositionY) ? trim($spec->backgroundPositionY) : '';
 
         switch ($backgroundPositionY) {
-            case 'top':
+            case 'center':
             case 'bottom':
                 $model->backgroundPositionY = $backgroundPositionY;
                 break;
             default:
-                $model->backgroundPositionY = 'center';
+                $model->backgroundPositionY = 'top';
         }
 
         $flexAlignItems         = isset($spec->flexAlignItems) ? trim($spec->flexAlignItems) : '';

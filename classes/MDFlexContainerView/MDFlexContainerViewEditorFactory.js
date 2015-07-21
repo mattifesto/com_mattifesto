@@ -120,8 +120,8 @@ var MDFlexContainerViewEditorFactory = {
 
         row.appendChild(CBStringEditorFactory.createSelectEditor({
             data                : [
-                { textContent : "Top",      value : "top" },
-                { textContent : "Center",   value : "" },
+                { textContent : "Top",      value : "" },
+                { textContent : "Center",   value : "center" },
                 { textContent : "Bottom",   value : "bottom" }
             ],
             handleSpecChanged   : args.handleSpecChanged,
