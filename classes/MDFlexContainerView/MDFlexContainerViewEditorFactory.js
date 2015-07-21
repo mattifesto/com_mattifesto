@@ -69,8 +69,7 @@ var MDFlexContainerViewEditorFactory = {
         row.className       = "row";
         var clear           = document.createElement("button");
         clear.textContent   = "Clear Image";
-        var size            = document.createElement("div");
-        size.className      = "size";
+        var size            = preview.size;
         var upload          = CBImageEditorFactory.createEditorUploadButton({
             handleImageUploaded     : MDFlexContainerViewEditorFactory.handleImageUploaded.bind(undefined, {
                 handleSpecChanged   : args.handleSpecChanged,
@@ -98,7 +97,6 @@ var MDFlexContainerViewEditorFactory = {
         });
 
         row.appendChild(upload);
-        row.appendChild(size);
         row.appendChild(clear);
         options.appendChild(row);
 
