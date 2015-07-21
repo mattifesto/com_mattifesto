@@ -13,8 +13,9 @@
     justify-content:            center;
     -webkit-justify-content:    center;
     -ms-flex-pack:              center;
-    margin:                     0 auto -30px;
-    width:                      960px;
+    margin:                     0 0 -30px;
+    position:                   relative;
+    z-index:                    2;
 }
 
 .MDFloatingHeaderView ul {
