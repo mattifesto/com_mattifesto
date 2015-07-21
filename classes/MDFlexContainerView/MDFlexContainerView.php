@@ -59,6 +59,10 @@ final class MDFlexContainerView {
     public static function renderModelAsHTML(stdClass $model) {
         $styles = [];
 
+        if ($model->backgroundColor !== null) {
+            $styles[] = "background-color: {$model->backgroundColor};";
+        }
+
         if ($model->width !== null) {
             $styles[] = "width: {$model->width}px;";
         }
@@ -101,6 +105,7 @@ final class MDFlexContainerView {
      */
     public static function specToModel(stdClass $spec) {
         $model                  = CBModels::modelWithClassName(__CLASS__);
+        $model->backgroundColor = isset($spec->backgroundColor) ? MDFlexContainerView::textToCSSValue($spec->backgroundColor) : null;
         $model->height          = isset($spec->height) ? MDFlexContainerView::valueToPixelExtent($spec->height) : null;
         $model->imageURL        = isset($spec->imageURL) ? MDFlexContainerView::URLToCSS($spec->imageURL) : '';
         $model->subviews        = isset($spec->subviews) ? array_map('CBView::specToModel', $spec->subviews) : [];
@@ -157,6 +162,14 @@ final class MDFlexContainerView {
         }
 
         return $model;
+    }
+
+    /**
+     * @return {string} | null
+     */
+    public static function textToCSSValue($text) {
+        $value = trim(str_replace(['<', '>', '"', '\'', ';'], '', $text));
+        return empty($value) ? null : $value;
     }
 
     /**

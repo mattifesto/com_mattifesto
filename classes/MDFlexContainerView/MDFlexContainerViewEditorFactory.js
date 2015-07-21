@@ -70,6 +70,12 @@ var MDFlexContainerViewEditorFactory = {
         var clear           = document.createElement("button");
         clear.textContent   = "Clear Image";
         var size            = preview.size;
+        var color           = CBStringEditorFactory.createSingleLineEditor({
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Color",
+            propertyName        : "backgroundColor",
+            spec                : args.spec
+        });
         var upload          = CBImageEditorFactory.createEditorUploadButton({
             handleImageUploaded     : MDFlexContainerViewEditorFactory.handleImageUploaded.bind(undefined, {
                 handleSpecChanged   : args.handleSpecChanged,
@@ -98,6 +104,7 @@ var MDFlexContainerViewEditorFactory = {
 
         row.appendChild(upload);
         row.appendChild(clear);
+        row.appendChild(color);
         options.appendChild(row);
 
         /* flexbox section */
