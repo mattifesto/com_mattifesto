@@ -59,6 +59,14 @@ final class MDFlexContainerView {
     public static function renderModelAsHTML(stdClass $model) {
         $styles = [];
 
+        if ($model->width !== null) {
+            $styles[] = "width: {$model->width}px;";
+        }
+
+        if ($model->height !== null) {
+            $styles[] = "height: {$model->height}px;";
+        }
+
         if (!empty($model->imageURL)) {
             $styles[] = "background-image: url({$model->imageURL});";
         }
@@ -93,8 +101,10 @@ final class MDFlexContainerView {
      */
     public static function specToModel(stdClass $spec) {
         $model                  = CBModels::modelWithClassName(__CLASS__);
+        $model->height          = isset($spec->height) ? MDFlexContainerView::valueToPixelExtent($spec->height) : null;
         $model->imageURL        = isset($spec->imageURL) ? MDFlexContainerView::URLToCSS($spec->imageURL) : '';
         $model->subviews        = isset($spec->subviews) ? array_map('CBView::specToModel', $spec->subviews) : [];
+        $model->width           = isset($spec->width) ? MDFlexContainerView::valueToPixelExtent($spec->width) : null;
         $type                   = isset($spec->type) ? trim($spec->type) : '';
 
         switch ($type) {
@@ -175,5 +185,19 @@ final class MDFlexContainerView {
         } else {
             return trim($URL);
         }
+    }
+
+    /**
+     * @return {int}|{float}|null
+     */
+    public static function valueToPixelExtent($value) {
+        if (is_numeric($value)) {
+            $number = $value + 0;
+            if ($number > 0) {
+                return $number;
+            }
+        }
+
+        return null;
     }
 }

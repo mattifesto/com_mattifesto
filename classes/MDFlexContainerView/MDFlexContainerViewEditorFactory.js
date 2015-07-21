@@ -25,17 +25,38 @@ var MDFlexContainerViewEditorFactory = {
 
         container.appendChild(preview.element);
 
-        options.appendChild(CBStringEditorFactory.createSelectEditor({
+        row                 = document.createElement("div");
+        row.className       = "row";
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
             data                : [
-                { textContent : "div",      value : "" },
-                { textContent : "article",  value : "article" },
-                { textContent : "main",     value : "main" }
+                { textContent : "Div",      value : "" },
+                { textContent : "Article",  value : "article" },
+                { textContent : "Main",     value : "main" }
             ],
             handleSpecChanged   : args.handleSpecChanged,
             labelText           : "Type",
             propertyName        : "type",
             spec                : args.spec
         }));
+
+        row.appendChild(CBStringEditorFactory.createSingleLineEditor({
+            className           : "pixels",
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Width",
+            propertyName        : "width",
+            spec                : args.spec
+        }));
+
+        row.appendChild(CBStringEditorFactory.createSingleLineEditor({
+            className           : "pixels",
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Height",
+            propertyName        : "height",
+            spec                : args.spec
+        }));
+
+        options.appendChild(row);
 
         /* background section */
 

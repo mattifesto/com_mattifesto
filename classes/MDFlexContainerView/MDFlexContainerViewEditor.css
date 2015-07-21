@@ -38,8 +38,17 @@
     text-align: center;
 }
 
-.MDFlexContainerViewEditor > .container > .options .CBStringEditor select {
+.MDFlexContainerViewEditor > .container > .options .CBStringEditor select,
+.MDFlexContainerViewEditor > .container > .options .CBStringEditor input {
     margin-left: 5px;
+}
+
+.MDFlexContainerViewEditor > .container > .options .CBStringEditor input {
+    padding: 4px;
+}
+
+.MDFlexContainerViewEditor > .container > .options .CBStringEditor.pixels input {
+    width: 50px;
 }
 
 .MDFlexContainerViewEditor > .subviews {
