@@ -81,12 +81,58 @@ var MDFlexContainerViewEditorFactory = {
         row.appendChild(clear);
         options.appendChild(row);
 
-
         /* flexbox section */
 
         options.appendChild(flexbox);
 
+        row                 = document.createElement("div");
+        row.className       = "row";
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "Row",      value : "" },
+                { textContent : "Row (Reverse)",  value : "row-reverse" },
+                { textContent : "Column",  value : "column" },
+                { textContent : "Column (Reverse)",     value : "column-reverse" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Direction",
+            propertyName        : "flexDirection",
+            spec                : args.spec
+        }));
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "Flex Start",       value : "" },
+                { textContent : "Flex End",         value : "flex-end" },
+                { textContent : "Center",           value : "center" },
+                { textContent : "Space Between",    value : "space-between" },
+                { textContent : "Space Around",     value : "space-around" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Justify",
+            propertyName        : "flexJustifyContent",
+            spec                : args.spec
+        }));
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "Flex Start",       value : "flex-start" },
+                { textContent : "Flex End",         value : "flex-end" },
+                { textContent : "Center",           value : "center" },
+                { textContent : "Baseline",         value : "baseline" },
+                { textContent : "Stretch",          value : "" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Align",
+            propertyName        : "flexAlignItems",
+            spec                : args.spec
+        }));
+
+        options.appendChild(row);
         container.appendChild(options);
+
+        /* subviews */
 
         if (args.spec.subviews === undefined) {
             args.spec.subviews = [];

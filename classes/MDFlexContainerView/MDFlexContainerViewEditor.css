@@ -12,10 +12,15 @@
 }
 
 .MDFlexContainerViewEditor > .container .row {
+    align-items:                center;
+    -webkit-align-items:        center;
     display:                    flex;
     display:                    -webkit-flex;
+    flex-wrap:                  wrap;
+    -webkit-flex-wrap:          wrap;
     justify-content:            space-around;
     -webkit-justify-content:    space-around;
+    line-height:                2.5;
 }
 
 .MDFlexContainerViewEditor > .container > .options {
@@ -29,10 +34,13 @@
     border-top: 1px solid hsl(0, 0%, 80%);
     color:      hsl(0, 0%, 50%);
     font:       inherit;
-    margin:     10px 0 5px;
+    margin:     10px 0 0;
     text-align: center;
 }
 
+.MDFlexContainerViewEditor > .container > .options .CBStringEditor select {
+    margin-left: 5px;
+}
 
 .MDFlexContainerViewEditor > .subviews {
     background-color:   white;

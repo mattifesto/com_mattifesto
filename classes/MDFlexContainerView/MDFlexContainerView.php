@@ -3,10 +3,28 @@
 final class MDFlexContainerView {
 
     /**
+     * @return {string}
+     */
+    public static function alignItemsToFlexAlign($flexAlignItems) {
+        $translation = [
+            'flex-start'    => 'start',
+            'flex-end'      => 'end',
+            'center'        => 'center',
+            'stretch'       => 'stretch',
+            'baseline'      => 'baseline'
+        ];
+
+        return $translation[$flexAlignItems];
+    }
+
+    /**
      * @return [{string}]
      */
     public static function editorURLsForCSS() {
-        return [ MDFlexContainerView::URL('MDFlexContainerViewEditor.css') ];
+        return [
+            CBSystemURL . '/javascript/CBImageEditorFactory.css',
+            MDFlexContainerView::URL('MDFlexContainerViewEditor.css')
+        ];
     }
 
     /**
@@ -21,6 +39,21 @@ final class MDFlexContainerView {
     }
 
     /**
+     * @return {string}
+     */
+    public static function justifyContentToFlexPack($flexJustifyContent) {
+        $translation = [
+            'flex-start'    => 'start',
+            'flex-end'      => 'end',
+            'center'        => 'center',
+            'space-around'  => 'justify',
+            'space-between' => 'justify'
+        ];
+
+        return $translation[$flexJustifyContent];
+    }
+
+    /**
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
@@ -30,7 +63,23 @@ final class MDFlexContainerView {
             $styles[] = "background-image: url({$model->imageURL});";
         }
 
-        $styles = implode(' ', $styles);
+        $flexAlign  = MDFlexContainerView::alignItemsToFlexAlign($model->flexAlignItems);
+        $styles[]   = "align-items: {$model->flexAlignItems};";
+        $styles[]   = "-ms-flex-align: {$flexAlign};";
+        $styles[]   = "-webkit-align-items: {$model->flexAlignItems};";
+
+        $styles[]   = "flex-direction: {$model->flexDirection};";
+        $styles[]   = "-ms-flex-direction: {$model->flexDirection};";
+        $styles[]   = "-webkit-flex-direction: {$model->flexDirection};";
+
+        $flexPack   = MDFlexContainerView::justifyContentToFlexPack($model->flexJustifyContent);
+        $styles[]   = "justify-content: {$model->flexJustifyContent};";
+        $styles[]   = "-ms-flex-pack: {$flexPack};";
+        $styles[]   = "-webkit-justify-content: {$model->flexJustifyContent};";
+
+        $styles     = implode(' ', $styles);
+
+        CBHTMLOutput::addCSSURL(MDFlexContainerView::URL('MDFlexContainerView.css'));
 
         echo "<{$model->type} class=\"MDFlexContainerView\" style=\"{$styles}\">";
 
@@ -57,6 +106,44 @@ final class MDFlexContainerView {
                 break;
             default:
                 $model->type = 'div';
+        }
+
+        $flexAlignItems         = isset($spec->flexAlignItems) ? trim($spec->flexAlignItems) : '';
+
+        switch ($flexAlignItems) {
+            case 'flex-start':
+            case 'flex-end':
+            case 'center':
+            case 'baseline':
+                $model->flexAlignItems = $flexAlignItems;
+                break;
+            default:
+                $model->flexAlignItems = 'stretch';
+        }
+
+        $flexDirection          = isset($spec->flexDirection) ? trim($spec->flexDirection) : '';
+
+        switch ($flexDirection) {
+            case 'row-reverse':
+            case 'column':
+            case 'column-reverse':
+                $model->flexDirection = $flexDirection;
+                break;
+            default:
+                $model->flexDirection = 'row';
+        }
+
+        $flexJustifyContent     = isset($spec->flexJustifyContent) ? trim($spec->flexJustifyContent) : '';
+
+        switch ($flexJustifyContent) {
+            case 'flex-end':
+            case 'center':
+            case 'space-between':
+            case 'space-around':
+                $model->flexJustifyContent = $flexJustifyContent;
+                break;
+            default:
+                $model->flexJustifyContent = 'flex-start';
         }
 
         return $model;
