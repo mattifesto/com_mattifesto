@@ -132,6 +132,33 @@ var MDFlexContainerViewEditorFactory = {
 
         options.appendChild(row);
 
+        row                 = document.createElement("div");
+        row.className       = "row";
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "No",   value : "" },
+                { textContent : "Yes",  value : "repeat" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Repeat X",
+            propertyName        : "backgroundRepeatX",
+            spec                : args.spec
+        }));
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "No",   value : "" },
+                { textContent : "Yes",  value : "repeat" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Repeat Y",
+            propertyName        : "backgroundRepeatY",
+            spec                : args.spec
+        }));
+
+        options.appendChild(row);
+
         /* flexbox section */
 
         options.appendChild(flexbox);

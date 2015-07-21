@@ -64,6 +64,7 @@ final class MDFlexContainerView {
         }
 
         $styles[]   = "background-position: {$model->backgroundPositionX} {$model->backgroundPositionY};";
+        $styles[]   = "background-repeat: {$model->backgroundRepeatX} {$model->backgroundRepeatY};";
 
         if ($model->width !== null) {
             $styles[] = "width: {$model->width}px;";
@@ -146,6 +147,26 @@ final class MDFlexContainerView {
                 break;
             default:
                 $model->backgroundPositionY = 'top';
+        }
+
+        $backgroundRepeatX      = isset($spec->backgroundRepeatX) ? trim($spec->backgroundRepeatX) : '';
+
+        switch ($backgroundRepeatX) {
+            case 'repeat':
+                $model->backgroundRepeatX = $backgroundRepeatX;
+                break;
+            default:
+                $model->backgroundRepeatX = 'no-repeat';
+        }
+
+        $backgroundRepeatY      = isset($spec->backgroundRepeatY) ? trim($spec->backgroundRepeatY) : '';
+
+        switch ($backgroundRepeatY) {
+            case 'repeat':
+                $model->backgroundRepeatY = $backgroundRepeatY;
+                break;
+            default:
+                $model->backgroundRepeatY = 'no-repeat';
         }
 
         $flexAlignItems         = isset($spec->flexAlignItems) ? trim($spec->flexAlignItems) : '';

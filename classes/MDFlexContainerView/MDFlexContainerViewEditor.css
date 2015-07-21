@@ -20,7 +20,7 @@
     -webkit-flex-wrap:          wrap;
     justify-content:            space-around;
     -webkit-justify-content:    space-around;
-    line-height:                2.5;
+    line-height:                2;
 }
 
 .MDFlexContainerViewEditor > .container > .options {
