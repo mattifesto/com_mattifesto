@@ -3,7 +3,3 @@
     display: -ms-flexbox;
     display: -webkit-flex;
 }
-
-body > .MDFlexContainerView {
-    margin: 0 auto;
-}
