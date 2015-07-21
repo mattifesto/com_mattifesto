@@ -105,6 +105,31 @@ var MDFlexContainerViewEditorFactory = {
         row.appendChild(upload);
         row.appendChild(clear);
         row.appendChild(color);
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "Left",     value : "left" },
+                { textContent : "Center",   value : "" },
+                { textContent : "Right",    value : "right" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Position X",
+            propertyName        : "backgroundPositionX",
+            spec                : args.spec
+        }));
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "Top",      value : "top" },
+                { textContent : "Center",   value : "" },
+                { textContent : "Bottom",   value : "bottom" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Position Y",
+            propertyName        : "backgroundPositionY",
+            spec                : args.spec
+        }));
+
         options.appendChild(row);
 
         /* flexbox section */

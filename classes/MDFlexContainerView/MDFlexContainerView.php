@@ -63,6 +63,8 @@ final class MDFlexContainerView {
             $styles[] = "background-color: {$model->backgroundColor};";
         }
 
+        $styles[]   = "background-position: {$model->backgroundPositionX} {$model->backgroundPositionY};";
+
         if ($model->width !== null) {
             $styles[] = "width: {$model->width}px;";
         }
@@ -105,7 +107,8 @@ final class MDFlexContainerView {
      */
     public static function specToModel(stdClass $spec) {
         $model                  = CBModels::modelWithClassName(__CLASS__);
-        $model->backgroundColor = isset($spec->backgroundColor) ? MDFlexContainerView::textToCSSValue($spec->backgroundColor) : null;
+        $model->backgroundColor = isset($spec->backgroundColor) ?
+                                  MDFlexContainerView::textToCSSValue($spec->backgroundColor) : null;
         $model->height          = isset($spec->height) ? MDFlexContainerView::valueToPixelExtent($spec->height) : null;
         $model->imageURL        = isset($spec->imageURL) ? MDFlexContainerView::URLToCSS($spec->imageURL) : '';
         $model->subviews        = isset($spec->subviews) ? array_map('CBView::specToModel', $spec->subviews) : [];
@@ -121,6 +124,28 @@ final class MDFlexContainerView {
                 break;
             default:
                 $model->type = 'div';
+        }
+
+        $backgroundPositionX    = isset($spec->backgroundPositionX) ? trim($spec->backgroundPositionX) : '';
+
+        switch ($backgroundPositionX) {
+            case 'left':
+            case 'right':
+                $model->backgroundPositionX = $backgroundPositionX;
+                break;
+            default:
+                $model->backgroundPositionX = 'center';
+        }
+
+        $backgroundPositionY    = isset($spec->backgroundPositionY) ? trim($spec->backgroundPositionY) : '';
+
+        switch ($backgroundPositionY) {
+            case 'top':
+            case 'bottom':
+                $model->backgroundPositionY = $backgroundPositionY;
+                break;
+            default:
+                $model->backgroundPositionY = 'center';
         }
 
         $flexAlignItems         = isset($spec->flexAlignItems) ? trim($spec->flexAlignItems) : '';
