@@ -3,21 +3,6 @@
 final class MDFlexContainerView {
 
     /**
-     * @return {string}
-     */
-    public static function alignItemsToFlexAlign($flexAlignItems) {
-        $translation = [
-            'flex-start'    => 'start',
-            'flex-end'      => 'end',
-            'center'        => 'center',
-            'stretch'       => 'stretch',
-            'baseline'      => 'baseline'
-        ];
-
-        return $translation[$flexAlignItems];
-    }
-
-    /**
      * @return [{string}]
      */
     public static function editorURLsForCSS() {
@@ -36,21 +21,6 @@ final class MDFlexContainerView {
             CBSystemURL . '/javascript/CBStringEditorFactory.js',
             MDFlexContainerView::URL('MDFlexContainerViewEditorFactory.js')
         ];
-    }
-
-    /**
-     * @return {string}
-     */
-    public static function justifyContentToFlexPack($flexJustifyContent) {
-        $translation = [
-            'flex-start'    => 'start',
-            'flex-end'      => 'end',
-            'center'        => 'center',
-            'space-around'  => 'justify',
-            'space-between' => 'justify'
-        ];
-
-        return $translation[$flexJustifyContent];
     }
 
     /**
@@ -78,7 +48,7 @@ final class MDFlexContainerView {
             $styles[] = "background-image: url({$model->imageURL});";
         }
 
-        $flexAlign  = MDFlexContainerView::alignItemsToFlexAlign($model->flexAlignItems);
+        $flexAlign  = CBIE10Flexbox::alignItemsToFlexAlign($model->flexAlignItems);
         $styles[]   = "align-items: {$model->flexAlignItems};";
         $styles[]   = "-ms-flex-align: {$flexAlign};";
         $styles[]   = "-webkit-align-items: {$model->flexAlignItems};";
@@ -87,7 +57,7 @@ final class MDFlexContainerView {
         $styles[]   = "-ms-flex-direction: {$model->flexDirection};";
         $styles[]   = "-webkit-flex-direction: {$model->flexDirection};";
 
-        $flexPack   = MDFlexContainerView::justifyContentToFlexPack($model->flexJustifyContent);
+        $flexPack   = CBIE10Flexbox::justifyContentToFlexPack($model->flexJustifyContent);
         $styles[]   = "justify-content: {$model->flexJustifyContent};";
         $styles[]   = "-ms-flex-pack: {$flexPack};";
         $styles[]   = "-webkit-justify-content: {$model->flexJustifyContent};";
