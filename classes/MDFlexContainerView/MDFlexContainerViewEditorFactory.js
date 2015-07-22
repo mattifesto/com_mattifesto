@@ -188,7 +188,7 @@ var MDFlexContainerViewEditorFactory = {
                 { textContent : "Space Around",     value : "space-around" }
             ],
             handleSpecChanged   : args.handleSpecChanged,
-            labelText           : "Justify",
+            labelText           : "Justify Content",
             propertyName        : "flexJustifyContent",
             spec                : args.spec
         }));
@@ -202,8 +202,23 @@ var MDFlexContainerViewEditorFactory = {
                 { textContent : "Stretch",          value : "" }
             ],
             handleSpecChanged   : args.handleSpecChanged,
-            labelText           : "Align",
+            labelText           : "Align Items",
             propertyName        : "flexAlignItems",
+            spec                : args.spec
+        }));
+
+        row.appendChild(CBStringEditorFactory.createSelectEditor({
+            data                : [
+                { textContent : "Auto",     value : "" },
+                { textContent : "Start",    value : "flex-start" },
+                { textContent : "End",      value : "flex-end" },
+                { textContent : "Center",   value : "center" },
+                { textContent : "Baseline", value : "baseline" },
+                { textContent : "Stretch",  value : "stretch" }
+            ],
+            handleSpecChanged   : args.handleSpecChanged,
+            labelText           : "Align Self",
+            propertyName        : "flexAlignSelf",
             spec                : args.spec
         }));
 

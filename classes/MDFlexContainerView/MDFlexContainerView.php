@@ -48,6 +48,11 @@ final class MDFlexContainerView {
             $styles[] = "background-image: url({$model->imageURL});";
         }
 
+        $flexItemAlign  = CBIE10Flexbox::alignSelfToFlexItemAlign($model->flexAlignSelf);
+        $styles[]       = "align-self: {$model->flexAlignSelf};";
+        $styles[]       = "-ms-flex-item-align: {$flexItemAlign};";
+        $styles[]       = "-webkit-align-self: {$model->flexAlignSelf};";
+
         $flexAlign  = CBIE10Flexbox::alignItemsToFlexAlign($model->flexAlignItems);
         $styles[]   = "align-items: {$model->flexAlignItems};";
         $styles[]   = "-ms-flex-align: {$flexAlign};";
@@ -150,6 +155,20 @@ final class MDFlexContainerView {
                 break;
             default:
                 $model->flexAlignItems = 'stretch';
+        }
+
+        $flexAlignSelf          = isset($spec->flexAlignSelf) ? trim($spec->flexAlignSelf) : '';
+
+        switch ($flexAlignSelf) {
+            case 'flex-start':
+            case 'flex-end':
+            case 'center':
+            case 'baseline':
+            case 'stretch':
+                $model->flexAlignSelf = $flexAlignSelf;
+                break;
+            default:
+                $model->flexAlignSelf = 'auto';
         }
 
         $flexDirection          = isset($spec->flexDirection) ? trim($spec->flexDirection) : '';
