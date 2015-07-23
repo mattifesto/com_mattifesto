@@ -8,6 +8,7 @@ final class MDFlexContainerView {
     public static function editorURLsForCSS() {
         return [
             CBSystemURL . '/javascript/CBImageEditorFactory.css',
+            CBSystemURL . '/javascript/CBSpecArrayEditor.css',
             MDFlexContainerView::URL('MDFlexContainerViewEditor.css')
         ];
     }
@@ -18,6 +19,7 @@ final class MDFlexContainerView {
     public static function editorURLsForJavaScript() {
         return [
             CBSystemURL . '/javascript/CBImageEditorFactory.js',
+            CBSystemURL . '/javascript/CBSpecArrayEditorFactory.js',
             CBSystemURL . '/javascript/CBStringEditorFactory.js',
             MDFlexContainerView::URL('MDFlexContainerViewEditorFactory.js')
         ];
