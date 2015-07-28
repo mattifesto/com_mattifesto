@@ -24,7 +24,7 @@ html
      * situations.
      */
 
-    color: #2f2f2f;
+    color: hsl(0, 0%, 20%);
 
     /**
      * The default font set by the web browser is generally Times New Roman,
