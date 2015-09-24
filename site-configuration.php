@@ -15,3 +15,7 @@
  * In this case, 'my-library' is the directory relative to COLBY_SITE_DIRECTORY
  * that contains the library.
  */
+
+class CBSiteConfiguration {
+    const defaultClassNameForPageSettings = 'CBPageSettingsForResponsivePages';
+}
