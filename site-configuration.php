@@ -17,5 +17,5 @@
  */
 
 class CBSiteConfiguration {
-    const defaultClassNameForPageSettings = 'CBPageSettingsForResponsivePages';
+    const defaultClassNameForPageSettings = 'MDPageSettingsForResponsivePages';
 }
