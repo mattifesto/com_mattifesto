@@ -1,0 +1,13 @@
+.MDBodyTextView {
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 40px 20px;
+}
+
+.MDBodyTextView > h1 {
+    margin-bottom: 1em;
+}
+
+.MDBodyTextView > div p + p {
+    margin-top: 1em;
+}
