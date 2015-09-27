@@ -1,6 +1,6 @@
 <?php
 
-class MDBodyTextView {
+final class MDBodyTextView {
 
     /**
      * @return [{string}]
@@ -27,11 +27,13 @@ class MDBodyTextView {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
-        CBHTMLOutput::addCSSURL(self::URL('MDBodyTextView.css'));
+        $className = __CLASS__;
+
+        CBHTMLOutput::addCSSURL(self::URL("{$className}.css"));
 
         ?>
 
-        <section class="MDBodyTextView">
+        <section class="<?= $className ?>">
             <h1 class="MDH1Text"><?= $model->titleAsHTML ?></h1>
             <div class="MDBodyText"><?= $model->contentAsHTML ?></div>
         </section>
