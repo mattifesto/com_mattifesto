@@ -1,0 +1,12 @@
+.MDImage400View {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+}
+
+@media not all and (min-width: 960px) {
+    .MDImage400View {
+        height: 300px;
+    }
+}
