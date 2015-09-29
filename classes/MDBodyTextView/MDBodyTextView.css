@@ -1,5 +1,7 @@
 .MDBodyTextView {
-    margin: 0 auto;
+    align-self: center;
+    -ms-flex-item-align: center;
+    -webkit-align-self: center;
     max-width: 640px;
     padding: 40px 20px;
 }
