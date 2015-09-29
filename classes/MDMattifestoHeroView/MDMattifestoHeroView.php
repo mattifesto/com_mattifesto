@@ -13,12 +13,15 @@ final class MDMattifestoHeroView {
                 background-image: radial-gradient(circle closest-side, hsl(0, 100%, 40%), hsl(0, 100%, 30%));
                 color: hsla(0, 100%, 100%, 0.5);
                 display: flex;
+                display: -ms-flexbox;
                 display: -webkit-flex;
                 flex-direction: column;
+                -ms-flex-direction: column;
                 -webkit-flex-direction: column;
                 font-size: 24px;
                 height: 100vh;
                 justify-content: space-around;
+                -ms-flex-pack: justify;
                 -webkit-justify-content: space-around;
                 min-height: 30vw;
                 position: relative;
@@ -36,11 +39,14 @@ final class MDMattifestoHeroView {
 
             .MDMattifestoHeroView .text {
                 display: flex;
+                display: -ms-flexbox;
                 display: -webkit-flex;
                 flex-direction: column;
+                -ms-flex-direction: column;
                 -webkit-flex-direction: column;
                 height: 5em;
                 justify-content: center;
+                -ms-flex-pack: center;
                 -webkit-justify-content: center;
                 padding: 0 20px;
             }
