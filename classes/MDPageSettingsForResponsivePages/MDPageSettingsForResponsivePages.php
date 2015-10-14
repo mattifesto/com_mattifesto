@@ -18,8 +18,10 @@ final class MDPageSettingsForResponsivePages {
         <script src="<?= CBSystemURL ?>/javascript/ColbyEqualize.js"></script>
         <link rel="stylesheet" href="<?= CBSystemURL ?>/css/equalize.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
         <style>
-            html { color: hsl(0, 0%, 20%); }
+            html { color: hsl(0, 0%, 20%); font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial" }
             .CBSiteFontFamily { font-family: "Open Sans"; }
             .MDBodyText { font-family: "Open Sans"; font-size: 20px; font-weight: 300; line-height: 1.5; }
             .MDH1Text { font-family: "Open Sans"; font-size: 30px; font-weight: 300; line-height: 1; }
