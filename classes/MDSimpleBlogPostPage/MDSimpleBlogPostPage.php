@@ -53,6 +53,8 @@ final class MDSimpleBlogPostPage {
      * @return stdClass
      */
     public static function specToModel(stdClass $spec) {
+        $spec = clone $spec;
+        $spec->classNameForKind = 'MDBlogPost';
         $model = CBPages::specToModel($spec);
         $model->bodyAsHTML = ColbyConvert::markaroundToHTML(CBModel::value($spec, 'bodyAsMarkaround', ''));
 
