@@ -19,6 +19,7 @@ var MDSimpleBlogPostPageEditorFactory = {
                 { type : "string", name : "description", labelText : "Description"},
             ],
             spec : args.spec,
+            specChangedCallback : args.handleSpecChanged,
         }));
         element.appendChild(CBUI.createHalfSpace());
         element.appendChild(MDSimpleBlogPostPageEditorFactory.createPropertyEditorSection({
@@ -26,6 +27,7 @@ var MDSimpleBlogPostPageEditorFactory = {
                 { type : "string", name : "content", labelText : "Content"},
             ],
             spec : args.spec,
+            specChangedCallback : args.handleSpecChanged,
         }));
         element.appendChild(CBUI.createHalfSpace());
 
@@ -35,6 +37,7 @@ var MDSimpleBlogPostPageEditorFactory = {
     /**
      * @param [object] args.properties
      * @param object args.spec
+     * @param function args.specChangedCallback
      *
      * @return Element
      */
@@ -48,7 +51,7 @@ var MDSimpleBlogPostPageEditorFactory = {
                 labelText : property.labelText,
                 propertyName : property.name,
                 spec : args.spec,
-                specChangedCallback : args.handleSpecChanged,
+                specChangedCallback : args.specChangedCallback,
             }).element);
 
             section.appendChild(item);
