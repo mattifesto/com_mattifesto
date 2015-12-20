@@ -6,7 +6,7 @@ final class MDSimpleBlogPostPageEditor {
      * @return [string]
      */
     public static function requiredClassNames() {
-        return ['CBUI', 'CBUIStringEditor'];
+        return ['CBUI', 'CBUIStringEditor', 'CBUIUnixTimestampEditor'];
     }
 
     /**
