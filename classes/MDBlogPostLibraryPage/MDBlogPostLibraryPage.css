@@ -1,0 +1,33 @@
+.MDBlogPostSummary {
+    color: inherit;
+    text-decoration: none;
+}
+
+.MDBlogPostSummary article {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 480px;
+    padding: 20px 10px;
+}
+
+.MDBlogPostSummary h1 {
+    color: hsl(210, 100%, 60%);
+    font: inherit;
+}
+
+.MDBlogPostSummary:hover h1 {
+    color: hsl(230, 100%, 60%);
+}
+
+.MDBlogPostSummary .description {
+    color: hsl(0, 0%, 30%);
+    font-size: 15px;
+    padding: 0 10px;
+    xfont-weight: 300;
+}
+
+.MDBlogPostSummary .published {
+    color: hsl(0, 0%, 60%);
+    font-size: 12px;
+    text-align: right;
+}

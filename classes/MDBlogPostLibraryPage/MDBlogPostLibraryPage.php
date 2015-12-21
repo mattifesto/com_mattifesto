@@ -58,10 +58,39 @@ final class MDBlogPostLibraryPage {
      */
     public static function renderModelAsHTML(stdClass $model) {
         CBHTMLOutput::$classNameForSettings = 'MDPageSettingsForResponsivePages';
-        CBHTMLOutput::begin();
         CBHTMLOutput::setTitleHTML($model->titleAsHTML);
+        CBHTMLOutput::addCSSURL(MDBlogPostLibraryPage::URL('MDBlogPostLibraryPage.css'));
+        CBHTMLOutput::begin();
 
-        echo "<h1 style=\"padding: 100px; text-align: center;\">{$model->titleAsHTML}</h1>";
+        $SQL = <<<EOT
+
+            SELECT `keyValueData`
+            FROM `ColbyPages`
+            WHERE `classNameForKind` = 'MDBlogPost' AND `published` IS NOT NULL
+            ORDER BY `published` DESC
+            LIMIT 20
+
+EOT;
+
+        $modelsForPages = CBDB::SQLToArray($SQL, ['valueIsJSON' => true]);
+
+        echo "<h1 style=\"padding: 50px; text-align: center;\">{$model->titleAsHTML}</h1>";
+
+        foreach ($modelsForPages as $modelForPage) { ?>
+            <a class="MDBlogPostSummary" href="<?= CBSiteURL, '/', $modelForPage->URI, '/' ?>">
+                <article>
+                    <div class="published">
+                        <?= ColbyConvert::timestampToHTML($modelForPage->publicationTimeStamp) ?>
+                    </div>
+                    <h1><?= $modelForPage->titleHTML ?></h1>
+                    <div class="description">
+                        <?= $modelForPage->descriptionHTML ?>
+                    </div>
+
+                </article>
+            </a>
+        <?php }
+
 
         CBHTMLOutput::render();
     }
@@ -76,5 +105,15 @@ final class MDBlogPostLibraryPage {
         $model->schemaVersion = MDBlogPostLibraryPage::schemaVersion;
 
         return $model;
+    }
+
+    /**
+     * @param string $filename
+     *
+     * @return string
+     */
+    public static function URL($filename) {
+        $className = __CLASS__;
+        return CBSiteURL . "/classes/{$className}/{$filename}";
     }
 }
