@@ -25,7 +25,7 @@ var MDSimpleBlogPostPageEditorFactory = {
 
         element.appendChild(MDSimpleBlogPostPageEditorFactory.createPropertyEditorSection({
             properties : [
-                { type : "string", name : "content", labelText : "Content"},
+                { type : "string", name : "bodyAsMarkaround", labelText : "Content"},
             ],
             spec : args.spec,
             specChangedCallback : args.handleSpecChanged,
