@@ -38,11 +38,25 @@ final class MDSimpleBlogPostPage {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
-        CBHTMLOutput::$classNameForSettings = 'MDPageSettingsForResponsivePages';
         CBHTMLOutput::begin();
+        CBHTMLOutput::$classNameForSettings = 'MDPageSettingsForResponsivePages';
+        CBHTMLOutput::addCSSURL(MDSimpleBlogPostPage::URL('MDSimpleBlogPostPage.css'));
         CBHTMLOutput::setTitleHTML($model->titleAsHTML);
 
-        echo "<h1 style=\"padding: 100px; text-align: center;\">{$model->titleAsHTML}</h1>";
+        ?>
+
+        <article class="MDSimpleBlogPost">
+            <header>
+                <h1><?= $model->titleAsHTML ?></h1>
+                <div><?= $model->descriptionAsHTML ?></div>
+                <?= ColbyConvert::timestampToHTML($model->published) ?>
+            </header>
+            <section>
+                <?= $model->bodyAsHTML ?>
+            </section>
+        </article>
+
+        <?php
 
         CBHTMLOutput::render();
     }
@@ -61,5 +75,15 @@ final class MDSimpleBlogPostPage {
         $model->schemaVersion = MDSimpleBlogPostPage::schemaVersion;
 
         return $model;
+    }
+
+    /**
+     * @param string $filename
+     *
+     * @return string
+     */
+    public static function URL($filename) {
+        $className = __CLASS__;
+        return CBSiteURL . "/classes/{$className}/{$filename}";
     }
 }

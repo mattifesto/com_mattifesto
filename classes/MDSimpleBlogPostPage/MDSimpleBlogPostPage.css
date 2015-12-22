@@ -1,0 +1,24 @@
+.MDSimpleBlogPost > header {
+    padding: 40px 10px;
+    text-align: center;
+}
+
+.MDSimpleBlogPost > header > div {
+    box-sizing: border-box;
+    color: hsl(0, 0%, 50%);
+    font-style: italic;
+    margin: 20px auto;
+    max-width: 480px;
+}
+
+.MDSimpleBlogPost > section {
+    box-sizing: border-box;
+    line-height: 1.4;
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 20px 10px;
+}
+
+.MDSimpleBlogPost > section > p {
+    padding: 5px 0;
+}
