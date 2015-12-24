@@ -145,6 +145,15 @@ var MDUIPagePropertiesEditor = {
         }).element);
         section.appendChild(item);
 
+        // preview
+        item = CBUI.createSectionItem();
+        item.classList.add("preview");
+        var preview = document.createElement("a");
+        preview.textContent = "preview";
+        preview.href = "/admin/pages/preview/?ID=" + args.spec.ID;
+        item.appendChild(preview);
+        section.appendChild(item);
+
         return section;
     },
 
