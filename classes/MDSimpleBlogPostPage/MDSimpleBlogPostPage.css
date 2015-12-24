@@ -1,3 +1,24 @@
+.CBThemedMenuView.NoTheme ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.CBThemedMenuView.NoTheme a {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    min-height: 44px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+.CBThemedMenuView.NoTheme a:hover {
+    background-color: hsl(0, 0%, 95%);
+}
+
 .MDSimpleBlogPost > header {
     padding: 40px 10px;
     text-align: center;

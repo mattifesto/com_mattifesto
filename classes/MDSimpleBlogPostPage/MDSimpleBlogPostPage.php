@@ -43,7 +43,10 @@ final class MDSimpleBlogPostPage {
         CBHTMLOutput::addCSSURL(MDSimpleBlogPostPage::URL('MDSimpleBlogPostPage.css'));
         CBHTMLOutput::setTitleHTML($model->titleAsHTML);
 
-        CBThemedMenuView::renderModelAsHTML((object)['menuID' => CBMainMenu::ID]);
+        CBThemedMenuView::renderModelAsHTML((object)[
+            'menuID' => CBMainMenu::ID,
+            'selectedItemName' => 'blog',
+        ]);
 
         ?>
 
