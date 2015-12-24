@@ -17,8 +17,9 @@
     margin: 0 auto;
     max-width: 640px;
     padding: 20px 10px;
+    text-align: justify;
 }
 
-.MDSimpleBlogPost > section > p {
+.MDSimpleBlogPost > .CBThemedTextView > div > * {
     padding: 5px 0;
 }

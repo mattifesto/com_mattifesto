@@ -43,6 +43,8 @@ final class MDSimpleBlogPostPage {
         CBHTMLOutput::addCSSURL(MDSimpleBlogPostPage::URL('MDSimpleBlogPostPage.css'));
         CBHTMLOutput::setTitleHTML($model->titleAsHTML);
 
+        CBThemedMenuView::renderModelAsHTML((object)['menuID' => CBMainMenu::ID]);
+
         ?>
 
         <article class="MDSimpleBlogPost">
@@ -51,9 +53,8 @@ final class MDSimpleBlogPostPage {
                 <div><?= $model->descriptionAsHTML ?></div>
                 <?= ColbyConvert::timestampToHTML($model->published) ?>
             </header>
-            <section>
-                <?= $model->bodyAsHTML ?>
-            </section>
+
+            <?php CBThemedTextView::renderModelAsHTML((object)['contentAsHTML' => $model->bodyAsHTML]); ?>
         </article>
 
         <?php
