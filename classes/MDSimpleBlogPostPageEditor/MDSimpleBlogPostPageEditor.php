@@ -38,6 +38,8 @@ EOT;
 
         $themes = CBDB::SQLToArray($SQL, ['valueIsJSON' => true]);
 
+        // container view themes
+
         $pageThemes = array_filter($themes, function ($theme) {
             return $theme->classNameForKind === "MDContainer";
         });
@@ -50,7 +52,24 @@ EOT;
             ];
         }, $pageThemes);
 
-        return [['MDSimpleBlogPostPageThemes', array_values($pageThemes)]];
+        // menu view themes
+
+        $menuViewThemes = array_filter($themes, function ($theme) {
+            return $theme->classNameForKind === "CBMenuView";
+        });
+
+        $menuViewThemes = array_map(function ($theme) {
+            return (object)[
+                'title' => $theme->title,
+                'description' => $theme->description,
+                'value' => $theme->ID,
+            ];
+        }, $menuViewThemes);
+
+        return [
+            ['MDSimpleBlogPostPageThemes', array_values($pageThemes)],
+            ['CBMenuViewThemes', array_values($menuViewThemes)]
+        ];
     }
 
     /**

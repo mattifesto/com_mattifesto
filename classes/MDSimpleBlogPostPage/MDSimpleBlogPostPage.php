@@ -51,6 +51,7 @@ final class MDSimpleBlogPostPage {
             CBThemedMenuView::renderModelAsHTML((object)[
                 'menuID' => CBMainMenu::ID,
                 'selectedItemName' => 'blog',
+                'themeID' => $model->menuViewThemeID,
             ]); ?>
 
             <article>
@@ -78,6 +79,7 @@ final class MDSimpleBlogPostPage {
         $model = CBPages::specToModel($spec);
         $model->bodyAsHTML = ColbyConvert::markaroundToHTML(CBModel::value($spec, 'bodyAsMarkaround', ''));
         $model->themeID = CBModel::value($spec, 'themeID', null);
+        $model->menuViewThemeID = CBModel::value($spec, 'menuViewThemeID', null);
         $model->schemaVersion = MDSimpleBlogPostPage::schemaVersion;
 
         return $model;

@@ -32,6 +32,8 @@ var MDSimpleBlogPostPageEditorFactory = {
             specChangedCallback : args.handleSpecChanged,
         });
 
+        // themeID
+
         item = CBUI.createSectionItem();
         item.appendChild(CBUISelector.create({
             labelText : "Theme",
@@ -40,6 +42,20 @@ var MDSimpleBlogPostPageEditorFactory = {
             spec : args.spec,
             specChangedCallback : args.specChangedCallback,
             options : [{title:"Default", description:"", value:undefined}].concat(MDSimpleBlogPostPageThemes),
+        }).element);
+
+        section.appendChild(item);
+
+        // menuThemeID
+
+        item = CBUI.createSectionItem();
+        item.appendChild(CBUISelector.create({
+            labelText : "Menu Theme",
+            navigateCallback : args.navigateCallback,
+            propertyName : "menuViewThemeID",
+            spec : args.spec,
+            specChangedCallback : args.specChangedCallback,
+            options : [{title:"Default", description:"", value:undefined}].concat(CBMenuViewThemes),
         }).element);
 
         section.appendChild(item);
