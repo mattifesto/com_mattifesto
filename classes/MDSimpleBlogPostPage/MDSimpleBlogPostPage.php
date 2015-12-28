@@ -41,26 +41,28 @@ final class MDSimpleBlogPostPage {
         CBHTMLOutput::begin();
         CBHTMLOutput::$classNameForSettings = 'MDPageSettingsForResponsivePages';
         CBHTMLOutput::addCSSURL(MDSimpleBlogPostPage::URL('MDSimpleBlogPostPage.css'));
+        CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($model->themeID));
         CBHTMLOutput::setTitleHTML($model->titleAsHTML);
 
-        CBThemedMenuView::renderModelAsHTML((object)[
-            'menuID' => CBMainMenu::ID,
-            'selectedItemName' => 'blog',
-        ]);
+        $themeClass = CBTheme::IDToCSSClass($model->themeID); ?>
 
-        ?>
+        <div class="MDSimpleBlogPostPage <?= $themeClass ?>"> <?php
 
-        <article class="MDSimpleBlogPost">
-            <header>
-                <h1><?= $model->titleAsHTML ?></h1>
-                <div><?= $model->descriptionAsHTML ?></div>
-                <?= ColbyConvert::timestampToHTML($model->published) ?>
-            </header>
+            CBThemedMenuView::renderModelAsHTML((object)[
+                'menuID' => CBMainMenu::ID,
+                'selectedItemName' => 'blog',
+            ]); ?>
 
-            <?php CBThemedTextView::renderModelAsHTML((object)['contentAsHTML' => $model->bodyAsHTML]); ?>
-        </article>
+            <article>
+                <header "CBHeaderView NoTheme">
+                    <h1><?= $model->titleAsHTML ?></h1>
+                    <div><?= $model->descriptionAsHTML ?></div>
+                    <?= ColbyConvert::timestampToHTML($model->published) ?>
+                </header>
 
-        <?php
+                <?php CBThemedTextView::renderModelAsHTML((object)['contentAsHTML' => $model->bodyAsHTML]); ?>
+            </article>
+        </div> <?php
 
         CBHTMLOutput::render();
     }
@@ -75,7 +77,7 @@ final class MDSimpleBlogPostPage {
         $spec->classNameForKind = 'MDBlogPost';
         $model = CBPages::specToModel($spec);
         $model->bodyAsHTML = ColbyConvert::markaroundToHTML(CBModel::value($spec, 'bodyAsMarkaround', ''));
-
+        $model->themeID = CBModel::value($spec, 'themeID', null);
         $model->schemaVersion = MDSimpleBlogPostPage::schemaVersion;
 
         return $model;

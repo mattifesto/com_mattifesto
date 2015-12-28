@@ -10,6 +10,7 @@ var MDSimpleBlogPostPageEditorFactory = {
      * @return Element
      */
     createEditor : function(args) {
+        var section, item;
         var element = document.createElement("div");
         element.className = "MDSimpleBlogPostPageEditor";
 
@@ -23,13 +24,26 @@ var MDSimpleBlogPostPageEditorFactory = {
 
         element.appendChild(CBUI.createHalfSpace());
 
-        element.appendChild(MDSimpleBlogPostPageEditorFactory.createPropertyEditorSection({
+        section = MDSimpleBlogPostPageEditorFactory.createPropertyEditorSection({
             properties : [
                 { type : "string", name : "bodyAsMarkaround", labelText : "Content"},
             ],
             spec : args.spec,
             specChangedCallback : args.handleSpecChanged,
-        }));
+        });
+
+        item = CBUI.createSectionItem();
+        item.appendChild(CBUISelector.create({
+            labelText : "Theme",
+            navigateCallback : args.navigateCallback,
+            propertyName : "themeID",
+            spec : args.spec,
+            specChangedCallback : args.specChangedCallback,
+            options : [{title:"Default", description:"", value:undefined}].concat(MDSimpleBlogPostPageThemes),
+        }).element);
+
+        section.appendChild(item);
+        element.appendChild(section);
 
         element.appendChild(CBUI.createHalfSpace());
 
