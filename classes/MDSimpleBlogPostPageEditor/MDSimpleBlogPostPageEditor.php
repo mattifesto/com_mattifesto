@@ -66,9 +66,39 @@ EOT;
             ];
         }, $menuViewThemes);
 
+        // text view themes
+
+        $textViewThemes = array_filter($themes, function ($theme) {
+            return $theme->classNameForKind === "CBTextView";
+        });
+
+        $textViewThemes = array_map(function ($theme) {
+            return (object)[
+                'title' => $theme->title,
+                'description' => $theme->description,
+                'value' => $theme->ID,
+            ];
+        }, $textViewThemes);
+
+        // header text view themes
+
+        $headerTextViewThemes = array_filter($themes, function ($theme) {
+            return $theme->classNameForKind === "CBHeaderTextView";
+        });
+
+        $headerTextViewThemes = array_map(function ($theme) {
+            return (object)[
+                'title' => $theme->title,
+                'description' => $theme->description,
+                'value' => $theme->ID,
+            ];
+        }, $headerTextViewThemes);
+
         return [
             ['MDSimpleBlogPostPageThemes', array_values($pageThemes)],
-            ['CBMenuViewThemes', array_values($menuViewThemes)]
+            ['CBMenuViewThemes', array_values($menuViewThemes)],
+            ['CBTextViewThemes', array_values($textViewThemes)],
+            ['CBHeaderTextViewThemes', array_values($headerTextViewThemes)],
         ];
     }
 

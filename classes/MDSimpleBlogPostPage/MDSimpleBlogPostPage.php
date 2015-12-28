@@ -40,11 +40,12 @@ final class MDSimpleBlogPostPage {
     public static function renderModelAsHTML(stdClass $model) {
         CBHTMLOutput::begin();
         CBHTMLOutput::$classNameForSettings = 'MDPageSettingsForResponsivePages';
-        CBHTMLOutput::addCSSURL(MDSimpleBlogPostPage::URL('MDSimpleBlogPostPage.css'));
         CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($model->themeID));
+        CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($model->headerThemeID));
         CBHTMLOutput::setTitleHTML($model->titleAsHTML);
 
-        $themeClass = CBTheme::IDToCSSClass($model->themeID); ?>
+        $themeClass = CBTheme::IDToCSSClass($model->themeID);
+        $headerThemeClass = CBTheme::IDToCSSClass($model->headerThemeID); ?>
 
         <div class="MDSimpleBlogPostPage <?= $themeClass ?>"> <?php
 
@@ -55,13 +56,17 @@ final class MDSimpleBlogPostPage {
             ]); ?>
 
             <article>
-                <header "CBHeaderView NoTheme">
+                <header class="CBHeaderTextView <?= $headerThemeClass ?>">
                     <h1><?= $model->titleAsHTML ?></h1>
                     <div><?= $model->descriptionAsHTML ?></div>
                     <?= ColbyConvert::timestampToHTML($model->published) ?>
-                </header>
+                </header> <?php
 
-                <?php CBThemedTextView::renderModelAsHTML((object)['contentAsHTML' => $model->bodyAsHTML]); ?>
+                CBThemedTextView::renderModelAsHTML((object)[
+                    'contentAsHTML' => $model->contentAsHTML,
+                    'themeID' => $model->contentThemeID,
+                ]); ?>
+
             </article>
         </div> <?php
 
@@ -77,9 +82,12 @@ final class MDSimpleBlogPostPage {
         $spec = clone $spec;
         $spec->classNameForKind = 'MDBlogPost';
         $model = CBPages::specToModel($spec);
-        $model->bodyAsHTML = ColbyConvert::markaroundToHTML(CBModel::value($spec, 'bodyAsMarkaround', ''));
-        $model->themeID = CBModel::value($spec, 'themeID', null);
-        $model->menuViewThemeID = CBModel::value($spec, 'menuViewThemeID', null);
+        $model->contentAsHTML = ColbyConvert::markaroundToHTML(CBModel::value($spec, 'contentAsMarkaround'));
+        $model->contentThemeID = CBModel::value($spec, 'contentThemeID');
+        $model->headerThemeID = CBModel::value($spec, 'headerThemeID');
+        $model->menuViewThemeID = CBModel::value($spec, 'menuViewThemeID');
+        $model->themeID = CBModel::value($spec, 'themeID');
+
         $model->schemaVersion = MDSimpleBlogPostPage::schemaVersion;
 
         return $model;

@@ -26,7 +26,7 @@ var MDSimpleBlogPostPageEditorFactory = {
 
         section = MDSimpleBlogPostPageEditorFactory.createPropertyEditorSection({
             properties : [
-                { type : "string", name : "bodyAsMarkaround", labelText : "Content"},
+                { type : "string", name : "contentAsMarkaround", labelText : "Content"},
             ],
             spec : args.spec,
             specChangedCallback : args.handleSpecChanged,
@@ -56,6 +56,34 @@ var MDSimpleBlogPostPageEditorFactory = {
             spec : args.spec,
             specChangedCallback : args.specChangedCallback,
             options : [{title:"Default", description:"", value:undefined}].concat(CBMenuViewThemes),
+        }).element);
+
+        section.appendChild(item);
+
+        // headerThemeID
+
+        item = CBUI.createSectionItem();
+        item.appendChild(CBUISelector.create({
+            labelText : "Header Theme",
+            navigateCallback : args.navigateCallback,
+            propertyName : "headerThemeID",
+            spec : args.spec,
+            specChangedCallback : args.specChangedCallback,
+            options : [{title:"Default", description:"", value:undefined}].concat(CBHeaderTextViewThemes),
+        }).element);
+
+        section.appendChild(item);
+
+        // contentThemeID
+
+        item = CBUI.createSectionItem();
+        item.appendChild(CBUISelector.create({
+            labelText : "Content Theme",
+            navigateCallback : args.navigateCallback,
+            propertyName : "contentThemeID",
+            spec : args.spec,
+            specChangedCallback : args.specChangedCallback,
+            options : [{title:"Default", description:"", value:undefined}].concat(CBTextViewThemes),
         }).element);
 
         section.appendChild(item);
