@@ -1,8 +1,17 @@
 <?php
 
 final class MDSimpleBlogPostPage {
-
     const schemaVersion = 1;
+
+    /**
+     * @return stdClass
+     */
+    public static function info() {
+        return CBModelClassInfo::specToModel((object)[
+            'pluralTitle' => 'Simple Blog Post Pages',
+            'singularTitle' => 'Simple Blog Post Page',
+        ]);
+    }
 
     /**
      * @param [stdClass] $tuples

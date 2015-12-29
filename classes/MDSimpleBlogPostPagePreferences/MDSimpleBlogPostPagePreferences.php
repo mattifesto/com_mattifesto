@@ -14,6 +14,9 @@ final class MDSimpleBlogPostPagePreferences {
         ]);
     }
 
+    /**
+     * @return null
+     */
     public static function install() {
         $spec = CBModels::fetchSpecByID(MDSimpleBlogPostPagePreferences::ID);
 
