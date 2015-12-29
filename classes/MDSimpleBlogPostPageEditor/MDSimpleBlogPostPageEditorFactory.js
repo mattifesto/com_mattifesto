@@ -24,13 +24,17 @@ var MDSimpleBlogPostPageEditorFactory = {
 
         element.appendChild(CBUI.createHalfSpace());
 
-        section = MDSimpleBlogPostPageEditorFactory.createPropertyEditorSection({
+        element.appendChild(MDSimpleBlogPostPageEditorFactory.createPropertyEditorSection({
             properties : [
                 { type : "string", name : "contentAsMarkaround", labelText : "Content"},
             ],
             spec : args.spec,
             specChangedCallback : args.handleSpecChanged,
-        });
+        }));
+
+        element.appendChild(CBUI.createHalfSpace());
+
+        section = CBUI.createSection();
 
         // containerThemeID
 
