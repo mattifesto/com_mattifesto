@@ -32,30 +32,30 @@ var MDSimpleBlogPostPageEditorFactory = {
             specChangedCallback : args.handleSpecChanged,
         });
 
-        // themeID
+        // containerThemeID
 
         item = CBUI.createSectionItem();
         item.appendChild(CBUISelector.create({
-            labelText : "Theme",
+            labelText : "Container Theme",
             navigateCallback : args.navigateCallback,
-            propertyName : "themeID",
+            propertyName : "containerThemeID",
             spec : args.spec,
             specChangedCallback : args.specChangedCallback,
-            options : [{title:"Default", description:"", value:undefined}].concat(MDSimpleBlogPostPageThemes),
+            options : [{title:"Default", description:"", value:undefined}].concat(CBContainerViewThemes),
         }).element);
 
         section.appendChild(item);
 
-        // menuThemeID
+        // contentThemeID
 
         item = CBUI.createSectionItem();
         item.appendChild(CBUISelector.create({
-            labelText : "Menu Theme",
+            labelText : "Content Theme",
             navigateCallback : args.navigateCallback,
-            propertyName : "menuViewThemeID",
+            propertyName : "contentThemeID",
             spec : args.spec,
             specChangedCallback : args.specChangedCallback,
-            options : [{title:"Default", description:"", value:undefined}].concat(CBMenuViewThemes),
+            options : [{title:"Default", description:"", value:undefined}].concat(CBTextViewThemes),
         }).element);
 
         section.appendChild(item);
@@ -74,16 +74,16 @@ var MDSimpleBlogPostPageEditorFactory = {
 
         section.appendChild(item);
 
-        // contentThemeID
+        // menuThemeID
 
         item = CBUI.createSectionItem();
         item.appendChild(CBUISelector.create({
-            labelText : "Content Theme",
+            labelText : "Menu Theme",
             navigateCallback : args.navigateCallback,
-            propertyName : "contentThemeID",
+            propertyName : "menuThemeID",
             spec : args.spec,
             specChangedCallback : args.specChangedCallback,
-            options : [{title:"Default", description:"", value:undefined}].concat(CBTextViewThemes),
+            options : [{title:"Default", description:"", value:undefined}].concat(CBMenuViewThemes),
         }).element);
 
         section.appendChild(item);

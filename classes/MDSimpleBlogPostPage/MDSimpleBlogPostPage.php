@@ -38,21 +38,27 @@ final class MDSimpleBlogPostPage {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
+        $preferences = CBModelCache::fetchModelByID(MDSimpleBlogPostPagePreferences::ID);
+        $containerThemeID = CBModel::value($model, 'containerThemeID', $preferences->defaultContainerThemeID);
+        $contentThemeID = CBModel::value($model, 'contentThemeID', $preferences->defaultContentThemeID);
+        $headerThemeID = CBModel::value($model, 'headerThemeID', $preferences->defaultHeaderThemeID);
+        $menuThemeID = CBModel::value($model, 'menuThemeID', $preferences->defaultMenuThemeID);
+
         CBHTMLOutput::begin();
         CBHTMLOutput::$classNameForSettings = 'MDPageSettingsForResponsivePages';
-        CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($model->themeID));
-        CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($model->headerThemeID));
+        CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($containerThemeID));
+        CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($headerThemeID));
         CBHTMLOutput::setTitleHTML($model->titleAsHTML);
 
-        $themeClass = CBTheme::IDToCSSClass($model->themeID);
-        $headerThemeClass = CBTheme::IDToCSSClass($model->headerThemeID); ?>
+        $containerThemeClass = CBTheme::IDToCSSClass($containerThemeID);
+        $headerThemeClass = CBTheme::IDToCSSClass($headerThemeID); ?>
 
-        <div class="MDSimpleBlogPostPage <?= $themeClass ?>"> <?php
+        <div class="MDSimpleBlogPostPage <?= $containerThemeClass ?>"> <?php
 
             CBThemedMenuView::renderModelAsHTML((object)[
                 'menuID' => CBMainMenu::ID,
                 'selectedItemName' => 'blog',
-                'themeID' => $model->menuViewThemeID,
+                'themeID' => $menuThemeID,
             ]); ?>
 
             <article>
@@ -64,7 +70,7 @@ final class MDSimpleBlogPostPage {
 
                 CBThemedTextView::renderModelAsHTML((object)[
                     'contentAsHTML' => $model->contentAsHTML,
-                    'themeID' => $model->contentThemeID,
+                    'themeID' => $contentThemeID,
                 ]); ?>
 
             </article>
@@ -82,12 +88,11 @@ final class MDSimpleBlogPostPage {
         $spec = clone $spec;
         $spec->classNameForKind = 'MDBlogPost';
         $model = CBPages::specToModel($spec);
+        $model->containerThemeID = CBModel::value($spec, 'containerThemeID');
         $model->contentAsHTML = ColbyConvert::markaroundToHTML(CBModel::value($spec, 'contentAsMarkaround'));
         $model->contentThemeID = CBModel::value($spec, 'contentThemeID');
         $model->headerThemeID = CBModel::value($spec, 'headerThemeID');
-        $model->menuViewThemeID = CBModel::value($spec, 'menuViewThemeID');
-        $model->themeID = CBModel::value($spec, 'themeID');
-
+        $model->menuThemeID = CBModel::value($spec, 'menuThemeID');
         $model->schemaVersion = MDSimpleBlogPostPage::schemaVersion;
 
         return $model;
