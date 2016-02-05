@@ -10,6 +10,14 @@ RewriteEngine On
 RewriteBase /
 
 #
+# Redirect to https
+#
+
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{SERVER_NAME}/$1 [R=301,L]
+
+
+#
 # pass URLS matching the following patterns through
 # without any further modification
 #
