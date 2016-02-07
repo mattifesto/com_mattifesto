@@ -98,7 +98,7 @@ final class MDSimpleBlogPostPage {
         $spec->classNameForKind = 'MDBlogPost';
         $model = CBPages::specToModel($spec);
         $model->containerThemeID = CBModel::value($spec, 'containerThemeID');
-        $model->contentAsHTML = ColbyConvert::markaroundToHTML(CBModel::value($spec, 'contentAsMarkaround'));
+        $model->contentAsHTML = CBMarkaround::markaroundToHTML(CBModel::value($spec, 'contentAsMarkaround'));
         $model->contentThemeID = CBModel::value($spec, 'contentThemeID');
         $model->headerThemeID = CBModel::value($spec, 'headerThemeID');
         $model->menuThemeID = CBModel::value($spec, 'menuThemeID');

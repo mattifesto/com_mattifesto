@@ -47,7 +47,7 @@ final class MDBodyTextView {
     public static function specToModel(stdClass $spec) {
         $model = CBModels::modelWithClassName(__CLASS__);
         $model->contentAsMarkaround = isset($spec->contentAsMarkaround) ? $spec->contentAsMarkaround : '';
-        $model->contentAsHTML = ColbyConvert::markaroundToHTML($model->contentAsMarkaround);
+        $model->contentAsHTML = CBMarkaround::markaroundToHTML($model->contentAsMarkaround);
         $model->title = isset($spec->title) ? trim($spec->title) : '';
         $model->titleAsHTML = ColbyConvert::textToHTML($model->title);
 
