@@ -1,9 +1,0 @@
-.CBUISectionItem.preview {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-.CBUISectionItem.preview a {
-    text-decoration: none;
-}
