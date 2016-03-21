@@ -9,7 +9,7 @@ final class MDBlogPostPageLayout {
             'themeID' => CBStandardModels::CBThemeIDForCBMenuViewForMainMenu,
         ]);
 
-        echo '<main><article>';
+        echo '<main class="MDBlogPostPageLayout"><article>';
 
         if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
             CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
