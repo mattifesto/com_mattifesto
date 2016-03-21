@@ -19,6 +19,7 @@ final class MDStandardPageFooterView {
 
         ?>
 
+        <div style="flex: 1 1 auto"></div>
         <footer class="MDStandardPageFooterView <?= $class ?>">
             Copyright &copy; <?= gmdate('Y'), ' ', CBSiteNameHTML ?>
         </footer>
