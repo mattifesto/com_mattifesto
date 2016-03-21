@@ -2,6 +2,12 @@
 
 final class MDStandardPageLayout {
 
+    /**
+     * @param stdClass $layoutModel
+     * @param callable $renderContentCallback
+     *
+     * @return null
+     */
     public static function render(stdClass $layoutModel, callable $renderContentCallback) {
 
         CBThemedMenuView::renderModelAsHTML((object)[
@@ -20,8 +26,17 @@ final class MDStandardPageLayout {
         $renderContentCallback();
 
         echo '</main>';
+
+        MDStandardPageFooterView::renderModelAsHTML((object)[
+            'themeID' => MDStandardModels::CBThemeIDForMDStandardPageFooterView,
+        ]);
     }
 
+    /**
+     * @param stdClass $spec
+     *
+     * @return stdClass
+     */
     public static function specToModel(stdClass $spec) {
         return (object)[
             'className' => __CLASS__,
