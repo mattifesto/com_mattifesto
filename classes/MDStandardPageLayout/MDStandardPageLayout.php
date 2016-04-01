@@ -18,9 +18,7 @@ final class MDStandardPageLayout {
         echo '<main class="MDStandardPageLayout">';
 
         if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
-            CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
-                'themeID' => CBStandardModels::CBThemeIDForCBPageTitleAndDescriptionView,
-            ]);
+            CBPageTitleAndDescriptionView::renderModelAsHTML((object)[]);
         }
 
         $renderContentCallback();
