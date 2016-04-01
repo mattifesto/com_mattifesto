@@ -20,7 +20,6 @@ final class MDBlogPostPageLayout {
         if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
             CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
                 'showPublicationDate' => true,
-                'themeID' => CBStandardModels::CBThemeIDForCBPageTitleAndDescriptionView,
             ]);
         }
 
