@@ -1,9 +1,20 @@
-/* Mattifesto StandardBodyText Theme: Version 1 */
+/**
+ * Mattifesto StandardBodyText Theme
+ * Version 2
+ */
 
 view {
+  padding: 20px;
+}
+
+a.view {
+  text-decoration: none;
+}
+
+view > h1,
+view > div {
   margin: 0 auto;
   max-width: 680px;
-  padding: 20px;
 }
 
 a.view > h1,
@@ -42,7 +53,7 @@ view > div {
   line-height: 1.5;
 }
 
-view > div > p + * {
+view > div > * + * {
   margin-top: 1em;
 }
 
