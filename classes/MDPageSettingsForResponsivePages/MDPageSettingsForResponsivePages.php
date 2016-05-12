@@ -23,10 +23,16 @@ final class MDPageSettingsForResponsivePages {
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
         <style>
-            html { color: hsl(0, 0%, 20%); font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial" }
-            .CBSiteFontFamily { font-family: "Open Sans"; }
-            .MDBodyText { font-family: "Open Sans"; font-size: 20px; font-weight: 300; line-height: 1.5; }
-            .MDH1Text { font-family: "Open Sans"; font-size: 30px; font-weight: 300; line-height: 1; }
+            html {
+                color: hsl(0, 0%, 20%);
+                font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            }
+            .CBStandardBodyTextTheme,
+            .CBStandardBodyTextTheme h1, .CBStandardBodyTextTheme h2,
+            .CBStandardBodyTextTheme h3, .CBStandardBodyTextTheme h4,
+            .CBStandardBodyTextTheme h5, .CBStandardBodyTextTheme h6 {
+                font-weight: 300;
+            }
         </style>
     <?php }
 
