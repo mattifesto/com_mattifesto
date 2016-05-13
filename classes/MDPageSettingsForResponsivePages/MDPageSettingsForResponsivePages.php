@@ -33,6 +33,10 @@ final class MDPageSettingsForResponsivePages {
             .CBStandardBodyTextTheme h5, .CBStandardBodyTextTheme h6 {
                 font-weight: 300;
             }
+            .CBStandardPageTitleAndDescriptionTheme,
+            .CBStandardPageTitleAndDescriptionTheme h1 {
+                font-weight: 300;
+            }
         </style>
     <?php }
 
