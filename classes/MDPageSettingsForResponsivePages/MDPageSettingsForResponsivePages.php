@@ -27,16 +27,6 @@ final class MDPageSettingsForResponsivePages {
                 color: hsl(0, 0%, 20%);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
             }
-            .CBStandardBodyTextTheme,
-            .CBStandardBodyTextTheme h1, .CBStandardBodyTextTheme h2,
-            .CBStandardBodyTextTheme h3, .CBStandardBodyTextTheme h4,
-            .CBStandardBodyTextTheme h5, .CBStandardBodyTextTheme h6 {
-                font-weight: 300;
-            }
-            .CBStandardPageTitleAndDescriptionTheme,
-            .CBStandardPageTitleAndDescriptionTheme h1 {
-                font-weight: 300;
-            }
         </style>
     <?php }
 
