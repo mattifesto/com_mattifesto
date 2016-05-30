@@ -26,6 +26,7 @@ final class MDPageSettingsForResponsivePages {
             html {
                 color: hsl(0, 0%, 20%);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+                font-size: 18px;
             }
         </style>
     <?php }
