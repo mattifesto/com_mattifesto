@@ -24,7 +24,7 @@ final class MDStandardPageFooterView {
             <div class="container">
                 <div>
                     <div>
-                        Technology, Sofware Development, and Consulting for Websites
+                        Technology, Software Development, and Consulting for Websites
                     </div>
                 </div>
                 <div>
