@@ -7,21 +7,37 @@ final class MDStandardPageFooterView {
      *
      * @return null
      */
-    public static function renderModelAsHTML(stdClass $model) {
-        if (empty($model->themeID)) {
-            $class = null;
-        } else {
-            $class = CBTheme::IDToCSSClass($model->themeID);
-            CBHTMLOutput::addCSSURL(CBTheme::IDToCSSURL($model->themeID));
+    public static function renderModelAsHTML(stdClass $model = null) {
+        if (empty($themeID = CBModel::value($model, 'themeID'))) {
+            $themeID = MDWellKnownThemeForFooter::ID;
         }
 
+        CBTheme::useThemeWithID($themeID);
+
+        $class = CBTheme::IDToCSSClass($themeID);
         $year = gmdate('Y');
 
         ?>
 
         <div style="flex: 1 1 auto"></div>
         <footer class="MDStandardPageFooterView <?= $class ?>">
-            Copyright &copy; <?= gmdate('Y'), ' ', CBSiteNameHTML ?>
+            <div class="container">
+                <div>
+                    <div>
+                        Technology, Sofware Development, and Consulting for Websites
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        Mattifesto<br>
+                        14150 NE 20th Street<br>
+                        F1-452<br>
+                        Bellevue, WA 98007<br>
+                        <a href="mailto:matt@mattifesto.com">matt@mattifesto.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">Copyright &copy; <?= gmdate('Y'), ' ', CBSiteNameHTML ?></div>
         </footer>
 
         <?php
