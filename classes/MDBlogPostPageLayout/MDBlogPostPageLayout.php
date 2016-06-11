@@ -27,9 +27,7 @@ final class MDBlogPostPageLayout {
 
         echo '</article></main>';
 
-        MDStandardPageFooterView::renderModelAsHTML((object)[
-            'themeID' => MDStandardModels::CBThemeIDForMDStandardPageFooterView,
-        ]);
+        MDStandardPageFooterView::renderModelAsHTML();
     }
 
     /**

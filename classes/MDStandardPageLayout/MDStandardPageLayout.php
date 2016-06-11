@@ -25,9 +25,7 @@ final class MDStandardPageLayout {
 
         echo '</main>';
 
-        MDStandardPageFooterView::renderModelAsHTML((object)[
-            'themeID' => MDStandardModels::CBThemeIDForMDStandardPageFooterView,
-        ]);
+        MDStandardPageFooterView::renderModelAsHTML();
     }
 
     /**
