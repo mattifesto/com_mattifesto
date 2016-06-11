@@ -2,4 +2,4 @@
 
 include CBSystemDirectory . '/setup/install-database.php';
 
-MDStandardModels::install();
+MDWellKnownThemeForFooter::install();
