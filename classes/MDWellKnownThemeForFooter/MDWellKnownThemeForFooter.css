@@ -13,6 +13,11 @@
     text-decoration: underline;
 }
 
+.MDStandardPageFooterView ul {
+    list-style: none;
+    padding: 0;
+}
+
 .MDStandardPageFooterView .container {
     display: flex;
     flex-wrap: wrap;

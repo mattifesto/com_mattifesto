@@ -3,6 +3,7 @@
 final class MDStandardPageFooterView {
 
     /**
+     * @param bool? $model->hideFlexboxFill
      * @param hex160? $model->themeID
      *
      * @return null
@@ -17,15 +18,35 @@ final class MDStandardPageFooterView {
         $class = CBTheme::IDToCSSClass($themeID);
         $year = gmdate('Y');
 
+        if (empty(CBModel::value($model, 'hideFlexboxFill'))) {
+            echo '<div class="MDStandardPageFooterViewFill" style="flex: 1 1 auto;"></div>';
+        }
+
+        $sitePreferences = CBSitePreferences::model();
+
         ?>
 
-        <div style="flex: 1 1 auto"></div>
         <footer class="MDStandardPageFooterView <?= $class ?>">
             <div class="container">
                 <div>
                     <div>
                         Technology, Software Development, and Consulting for Websites
                     </div>
+                </div>
+                <div>
+                    <ul>
+                        <?php
+
+                        if (!empty($URL = $sitePreferences->facebookURL)) {
+                            echo "<li><a href=\"{$URL}\">Facebook</a></li>";
+                        }
+
+                        if (!empty($URL = $sitePreferences->twitterURL)) {
+                            echo "<li><a href=\"{$URL}\">Twitter</a></li>";
+                        }
+
+                        ?>
+                    </ul>
                 </div>
                 <div>
                     <div>
