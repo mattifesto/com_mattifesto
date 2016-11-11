@@ -24,9 +24,13 @@ final class MDPageSettingsForResponsivePages {
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
         <style>
             html {
+                --CBLinkColor: hsl(210, 80%, 50%);
                 color: rgba(0, 0, 0, 0.8);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
                 font-size: 18px;
+            }
+            a {
+                color: hsl(210, 80%, 50%);
             }
         </style>
     <?php }
