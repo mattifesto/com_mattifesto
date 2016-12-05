@@ -1,0 +1,96 @@
+.MDBlogPostPageKindIndex {
+    background-color: hsl(0, 0%, 20%);
+    color: hsla(0, 0%, 100%, 0.9);
+}
+
+.MDBlogPostPageKindIndex a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.MDBlogPostPageKindIndex h1 {
+    text-align: center;
+}
+
+.MDBlogPostPageKindIndex .posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.MDBlogPostPageKindIndex .post {
+    box-sizing: border-box;
+    display: block;
+    max-width: 480px;
+    padding: 20px 20px 40px;
+    width: 480px;
+}
+
+.MDBlogPostPageKindIndex .post h2 {
+    font-size: inherit;
+    margin: 5px 0;
+}
+
+.MDBlogPostPageKindIndex .post .description {
+    color: hsla(0, 0%, 100%, 0.7);
+}
+
+.MDBlogPostPageKindIndex .image {
+    width: 100%;
+}
+
+.MDBlogPostPageKindIndex .image > div {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+}
+
+.MDBlogPostPageKindIndex .image > div.empty {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.MDBlogPostPageKindIndex .image > div > img {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.MDBlogPostPageKindIndex .archives {
+    padding: 100px 20px 50px;
+    text-align: center;
+}
+
+.MDBlogPostPageKindIndex .archives a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1919px) {
+    .MDBlogPostPageKindIndex .post {
+        width: 20%;
+    }
+}
+
+@media (max-width: 1599px) {
+    .MDBlogPostPageKindIndex .post {
+        width: 25%;
+    }
+}
+
+@media (max-width: 1279px) {
+    .MDBlogPostPageKindIndex .post {
+        width: 33.3%;
+    }
+}
+
+@media (max-width: 959px) {
+    .MDBlogPostPageKindIndex .post {
+        width: 50%;
+    }
+}
+
+@media (max-width: 639px) {
+    .MDBlogPostPageKindIndex .post {
+        width: 100%;
+    }
+}
