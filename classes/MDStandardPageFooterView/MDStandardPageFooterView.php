@@ -58,7 +58,7 @@ final class MDStandardPageFooterView {
                     </div>
                 </div>
             </div>
-            <div class="copyright">Copyright &copy; <?= gmdate('Y'), ' ', CBSiteNameHTML ?></div>
+            <div class="copyright">Copyright &copy; <?= gmdate('Y') ?> Mattifesto Design</div>
         </footer>
 
         <?php
