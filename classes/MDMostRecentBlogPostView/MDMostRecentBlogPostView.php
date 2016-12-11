@@ -29,10 +29,23 @@ EOT;
         if ($summary = MDMostRecentBlogPostView::fetchSummary()) {
             CBHTMLOutput::requireClassName(__CLASS__);
 
+            $publishedAsHTML = ColbyConvert::timestampToHTML($summary->publicationTimeStamp, 'Unpublished');
+
+            if (empty($model->useLightTextColors)) {
+                $class = '';
+            } else {
+                $class = 'light';
+            }
+
             ?>
 
-            <div class="MDMostRecentBlogPostView">
+            <a class="MDMostRecentBlogPostView <?= $class ?>" href="/<?= $summary->URI ?>/">
                 <div>
+                    <div class="header">
+                        <div>Newest Blog Post</div>
+                        <div><?= $publishedAsHTML ?></div>
+                    </div>
+
                     <?php
 
                     if (!empty($summary->image)) {
@@ -51,11 +64,12 @@ EOT;
                     }
 
                     ?>
+
                     <h2><?= $summary->titleHTML ?></h2>
-                    <div><?= $summary->descriptionHTML ?></div>
-                    <div><a href="/<?= $summary->URI ?>/">read more &gt;</a></div>
+                    <div class="description"><?= $summary->descriptionHTML ?></div>
+                    <div><span class="link">read more &gt;</span></div>
                 </div>
-            </div>
+            </a>
 
             <?php
         }
@@ -76,6 +90,7 @@ EOT;
     static function specToModel(stdClass $spec) {
         return (object)[
             'className' => __CLASS__,
+            'useLightTextColors' => CBModel::value($spec, 'useLightTextColors', false, 'boolval'),
         ];
     }
 }
