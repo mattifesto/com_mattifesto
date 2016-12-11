@@ -1,0 +1,37 @@
+.MDMostRecentBlogPostView {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.MDMostRecentBlogPostView h2 {
+    font-size: inherit;
+}
+
+.MDMostRecentBlogPostView > div {
+    max-width: 640px;
+    width: 100%;
+}
+
+.MDMostRecentBlogPostView .image {
+    background-color: yellow;
+    padding-bottom: 56.25%;
+    position: relative;
+}
+
+.MDMostRecentBlogPostView .image > div {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.MDMostRecentBlogPostView .image > div > img {
+    width: 100%;
+}
