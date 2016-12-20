@@ -19,6 +19,24 @@ var MDBlogPostPageLayoutEditor = {
             specChangedCallback : args.specChangedCallback,
         }).element);
         section.appendChild(item);
+
+        item = CBUI.createSectionItem();
+        item.appendChild(CBUIBooleanEditor.create({
+            labelText: "Use Light Text Colors",
+            propertyName: "useLightTextColors",
+            spec: args.spec,
+            specChangedCallback: args.specChangedCallback,
+        }).element);
+        section.appendChild(item);
+
+        item = CBUI.createSectionItem();
+        item.appendChild(CBUIBooleanEditor.create({
+            labelText: "Add Bottom Padding",
+            propertyName: "addBottomPadding",
+            spec: args.spec,
+            specChangedCallback: args.specChangedCallback,
+        }).element);
+        section.appendChild(item);
         element.appendChild(section);
 
         /* local styles */

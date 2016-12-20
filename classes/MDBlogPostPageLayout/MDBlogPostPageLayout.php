@@ -3,9 +3,11 @@
 final class MDBlogPostPageLayout {
 
     /**
+     * @param bool? $layoutModel->addBottomPadding
      * @param bool? $layoutModel->hidePageTitleAndDescriptionView
      * @param hex160? $layoutModel->stylesID
      * @param string? $layoutModel->stylesCSS
+     * @param bool? $layoutModel->useLightTextColors
      *
      * @param callable $renderContentCallback
      *
@@ -16,9 +18,11 @@ final class MDBlogPostPageLayout {
         $stylesCSS = CBModel::value($layoutModel, 'stylesCSS');
 
         $classes[] = 'MDBlogPostPageLayout';
+
         if (!empty($stylesID)) {
             $classes[] = CBTheme::IDToCSSClass($stylesID);
         }
+
         $classes = implode(' ', $classes);
 
         if (empty($stylesCSS)) {
@@ -32,9 +36,17 @@ final class MDBlogPostPageLayout {
             'themeID' => CBStandardModels::CBThemeIDForCBMenuViewForMainMenu,
         ]);
 
+        $styles[] = 'flex: 1 1 auto';
+
+        if (!empty($layoutModel->addBottomPadding)) {
+            $styles[] = 'padding-bottom: 100px';
+        }
+
+        $styles = implode('; ', $styles);
+
         ?>
 
-        <main class="<?= $classes ?>" style="flex: 1 1 auto;">
+        <main class="<?= $classes ?>" style="<?= $styles ?>">
             <?= $styleElement ?>
             <article>
 
@@ -43,6 +55,7 @@ final class MDBlogPostPageLayout {
                 if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
                     CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
                         'showPublicationDate' => true,
+                        'useLightTextColors' => !empty($layoutModel->useLightTextColors),
                     ]);
                 }
 
@@ -68,7 +81,9 @@ final class MDBlogPostPageLayout {
     public static function specToModel(stdClass $spec) {
         $model = (object)[
             'className' => __CLASS__,
+            'addBottomPadding' => CBModel::value($spec, 'addBottomPadding', false, 'boolval'),
             'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
+            'useLightTextColors' => CBModel::value($spec, 'useLightTextColors', false, 'boolval'),
         ];
 
         if (!empty($stylesTemplate = CBModel::value($spec, 'stylesTemplate', '', 'trim'))) {
