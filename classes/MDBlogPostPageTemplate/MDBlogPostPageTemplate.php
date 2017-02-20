@@ -14,7 +14,7 @@ final class MDBlogPostPageTemplate {
 
         // text
         $spec->sections[] = (object)[
-            'className' => 'CBThemedTextView',
+            'className' => 'CBTextView2',
         ];
 
         return $spec;
