@@ -10,7 +10,7 @@ final class MDBlogPostPageKind {
      * @return null
      */
     static function renderIndexForCBPageListView($args) {
-        CBHTMLOutput::addCSSURL(Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__));
+        CBHTMLOutput::addCSSURL(Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__));
 
         ?>
 
@@ -29,7 +29,7 @@ final class MDBlogPostPageKind {
                         $basename = $matches[4];
                         $pathinfo = pathinfo($basename);
                         $extension = $pathinfo['extension'];
-                        $imageSrc = CBDataStore::flexpath($ID, "rw640.{$extension}", CBSiteURL);
+                        $imageSrc = CBDataStore::flexpath($ID, "rw640.{$extension}", CBSitePreferences::siteURL());
                     } else {
                         $imageSrc = $summary->thumbnailURL;
 

@@ -3,7 +3,7 @@
 CBHTMLOutput::setTitleHTML(cbhtml(CBSitePreferences::siteName()));
 CBHTMLOutput::setDescriptionHTML('Mattifesto Design web design and development services for Seattle, Bellevue, Kirkland, Redmond, and Western Washington');
 CBHTMLOutput::begin();
-CBHTMLOutput::addCSSURL(CBSiteURL . '/handlers/handle-front-page.css');
+CBHTMLOutput::addCSSURL(CBSitePreferences::siteURL() . '/handlers/handle-front-page.css');
 
 ?>
 

@@ -23,6 +23,6 @@ final class MDStandardPageLayoutEditor {
      */
     public static function URL($filename) {
         $className = __CLASS__;
-        return CBSiteURL . "/classes/{$className}/{$filename}";
+        return CBSitePreferences::siteURL() . "/classes/{$className}/{$filename}";
     }
 }

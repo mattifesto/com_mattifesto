@@ -72,6 +72,6 @@ final class MDImage400View {
     public static function URL($filename) {
         $className = __CLASS__;
 
-        return CBSiteURL . "/classes/{$className}/{$filename}";
+        return CBSitePreferences::siteURL() . "/classes/{$className}/{$filename}";
     }
 }

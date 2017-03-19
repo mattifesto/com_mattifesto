@@ -50,7 +50,7 @@ EOT;
 
                     if (!empty($summary->image)) {
                         $image = $summary->image;
-                        $imageURL = CBDataStore::flexpath($image->ID, "rw1280.{$image->extension}", CBSiteURL);
+                        $imageURL = CBDataStore::flexpath($image->ID, "rw1280.{$image->extension}", CBSitePreferences::siteURL());
 
                         ?>
 
@@ -79,7 +79,7 @@ EOT;
      * @return [string]
      */
     static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
+        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
     }
 
     /**

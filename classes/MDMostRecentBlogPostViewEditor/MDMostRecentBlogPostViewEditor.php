@@ -13,6 +13,6 @@ final class MDMostRecentBlogPostViewEditor {
      * @return [string]
      */
     static function requiredJavaScriptURLs() {
-        return [Colby::flexnameForJavaScriptForClass(CBSiteURL, __CLASS__)];
+        return [Colby::flexnameForJavaScriptForClass(CBSitePreferences::siteURL(), __CLASS__)];
     }
 }

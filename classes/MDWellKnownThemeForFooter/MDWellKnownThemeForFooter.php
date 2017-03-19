@@ -34,6 +34,6 @@ final class MDWellKnownThemeForFooter {
      * @return [string]
      */
     public static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
+        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
     }
 }
