@@ -31,7 +31,7 @@ final class MDPageSettingsForResponsivePages {
                 --CBDefaultThemeTextColor2: hsla(0, 0%, 100%, 0.5);
 
                 --CBLinkColor: hsl(210, 80%, 50%);
-                color: hsla(0, 0%, 100%, 0.9);
+                color: hsla(0, 0%, 0%, 0.8);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
                 font-size: 18px;
             }
