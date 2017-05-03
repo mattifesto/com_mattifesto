@@ -24,12 +24,6 @@ final class MDPageSettingsForResponsivePages {
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
         <style>
             html {
-                --CBDefaultThemeBackgroundColor: hsl(0, 0%, 20%);
-                --CBDefaultThemeBackgroundColorForPanel: hsla(0, 0%, 100%, 0.05);
-                --CBDefaultThemeLineColor: hsla(0, 0%, 100%, 0.2);
-                --CBDefaultThemeTextColor: hsla(0, 0%, 100%, 0.9);
-                --CBDefaultThemeTextColor2: hsla(0, 0%, 100%, 0.5);
-
                 --CBLinkColor: hsl(210, 80%, 50%);
                 color: hsla(0, 0%, 0%, 0.8);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
