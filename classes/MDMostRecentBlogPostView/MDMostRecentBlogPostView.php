@@ -40,35 +40,25 @@ EOT;
             ?>
 
             <a class="MDMostRecentBlogPostView <?= $class ?>" href="/<?= $summary->URI ?>/">
-                <div>
-                    <div class="header">
-                        <div>Newest Blog Post</div>
-                        <div><?= $publishedAsHTML ?></div>
-                    </div>
+                <?php
 
-                    <?php
+                $image = $summary->image;
+                $filename = 'rw1280';
+                $imageURL = CBDataStore::flexpath($image->ID, "{$filename}.{$image->extension}", CBSitePreferences::siteURL());
 
-                    if (!empty($summary->image)) {
-                        $image = $summary->image;
-                        $imageURL = CBDataStore::flexpath($image->ID, "rw1280.{$image->extension}", CBSitePreferences::siteURL());
+                if (!empty($summary->image)) {
+                    CBArtworkElement::render([
+                        'height' => $image->height,
+                        'maxWidth' => 640,
+                        'URL' => $imageURL,
+                        'width' => $image->width,
+                    ]);
+                }
+                ?>
 
-                        ?>
-
-                        <div class="image">
-                            <div>
-                                <img src="<?= $imageURL ?>" alt="<?= $summary->titleHTML ?>">
-                            </div>
-                        </div>
-
-                        <?php
-                    }
-
-                    ?>
-
-                    <h2><?= $summary->titleHTML ?></h2>
-                    <div class="description"><?= $summary->descriptionHTML ?></div>
-                    <div><span class="link">read more &gt;</span></div>
-                </div>
+                <h2><?= $summary->titleHTML ?></h2>
+                <div class="description"><?= $summary->descriptionHTML ?></div>
+                <div><span class="link">read more &gt;</span></div>
             </a>
 
             <?php

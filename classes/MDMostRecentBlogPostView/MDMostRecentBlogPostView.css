@@ -1,52 +1,26 @@
 .MDMostRecentBlogPostView {
+    align-items: center;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     padding: 20px;
-    text-align: center;
     text-decoration: none;
+}
+
+.MDMostRecentBlogPostView > * {
+    max-width: 640px;
+    width: 100%;
+}
+
+.MDMostRecentBlogPostView > * + * {
+    margin-top: 10px;
 }
 
 .MDMostRecentBlogPostView:hover .link {
     text-decoration: underline;
 }
 
-.MDMostRecentBlogPostView > div {
-    max-width: 640px;
-    width: 100%;
-}
-
-.MDMostRecentBlogPostView .image {
-    margin: 10px 0;
-    padding-bottom: 56.25%;
-    position: relative;
-}
-
-.MDMostRecentBlogPostView .image > div {
-    align-items: center;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.MDMostRecentBlogPostView .image > div > img {
-    width: 100%;
-}
-
-.MDMostRecentBlogPostView h2 {
-    font-size: inherit;
-}
-
 .MDMostRecentBlogPostView .description {
-    font-size: 90%;
-    font-style: italic;
     line-height: 1.6;
-    margin: 20px auto 40px;
-    max-width: 400px;
 }
 
 .MDMostRecentBlogPostView {
@@ -57,19 +31,9 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
-.MDMostRecentBlogPostView .header {
-    font-size: 80%;
-    color: rgba(0, 0, 0, 0.6);
-    margin: 0 0 40px;
-}
-
-.MDMostRecentBlogPostView .header time {
-    font-size: 80%;
-    font-style: italic;
-}
-
-.MDMostRecentBlogPostView.light .header {
-    color: rgba(255, 255, 255, 0.6);
+.MDMostRecentBlogPostView h2 {
+    font-size: inherit;
+    font-weight: inherit;
 }
 
 .MDMostRecentBlogPostView .description {
@@ -81,6 +45,5 @@
 }
 
 .MDMostRecentBlogPostView .link {
-    font-size: 90%;
     color: hsl(210, 100%, 50%);
 }
