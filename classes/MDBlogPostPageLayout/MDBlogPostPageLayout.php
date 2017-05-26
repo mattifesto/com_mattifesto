@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * This class performs two related functions:
+ *
+ * 1. It's original purpose was as a page layout and it will continue to serve
+ *    that purpose for pages already using it. It has been deprecated for this
+ *    purpose. Eventually we will replace this layout on pages that use it and
+ *    remove this functionality from the class.
+ *
+ * 2. It is the customLayoutClassName class for new blog posts created using the
+ *    CBPageLayout layout class. It has the option in the future to implement
+ *    custom layout functionality for blog posts. For instances, adding a blog
+ *    specific header menu.
+ */
 final class MDBlogPostPageLayout {
 
     /**
