@@ -1,5 +1,6 @@
 .MDMostRecentBlogPostView {
     align-items: center;
+    color: inherit; /* override anchor text color */
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -15,20 +16,9 @@
     margin-top: 10px;
 }
 
-.MDMostRecentBlogPostView:hover .link {
-    text-decoration: underline;
-}
-
 .MDMostRecentBlogPostView .description {
+    color: var(--CBTextColor2);
     line-height: 1.6;
-}
-
-.MDMostRecentBlogPostView {
-    color: inherit;
-}
-
-.MDMostRecentBlogPostView.light {
-    color: rgba(255, 255, 255, 0.9);
 }
 
 .MDMostRecentBlogPostView h2 {
@@ -36,14 +26,21 @@
     font-weight: inherit;
 }
 
-.MDMostRecentBlogPostView .description {
-    color: rgba(0, 0, 0, 0.6);
+.MDMostRecentBlogPostView .link {
+    color: hsl(210, 100%, 50%);
+    color: var(--CBTextColorForLinks);
+}
+
+.MDMostRecentBlogPostView:hover .link {
+    text-decoration: underline;
+}
+
+/* light text colors (deprecated, use theme classes) */
+
+.MDMostRecentBlogPostView.light {
+    color: hsla(0, 0%, 100%, 0.9); /* CBTextColor for CBDarkTheme */
 }
 
 .MDMostRecentBlogPostView.light .description {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.MDMostRecentBlogPostView .link {
-    color: hsl(210, 100%, 50%);
+    color: hsla(0, 0%, 100%, 0.7); /* CBTextColor2 for CBDarkTheme */
 }
