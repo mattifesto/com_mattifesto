@@ -24,10 +24,7 @@ final class MDStandardPageLayout {
             $styleElement = "<style>{$stylesCSS}</style>";
         }
 
-        CBThemedMenuView::renderModelAsHTML((object)[
-            'menuID' => CBStandardModels::CBMenuIDForMainMenu,
-            'themeID' => CBStandardModels::CBThemeIDForCBMenuViewForMainMenu,
-        ]);
+        CBPageHelpers::renderDefaultPageHeader((object)[]);
 
         ?>
 
@@ -48,9 +45,7 @@ final class MDStandardPageLayout {
 
         <?php
 
-        MDStandardPageFooterView::renderModelAsHTML((object)[
-            'hideFlexboxFill' => true,
-        ]);
+        CBPageHelpers::renderDefaultPageFooter((object)[]);
     }
 
     /**
