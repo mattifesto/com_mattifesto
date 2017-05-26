@@ -31,10 +31,7 @@ final class MDBlogPostPageLayout {
             $styleElement = "<style>{$stylesCSS}</style>";
         }
 
-        CBThemedMenuView::renderModelAsHTML((object)[
-            'menuID' => CBStandardModels::CBMenuIDForMainMenu,
-            'themeID' => CBStandardModels::CBThemeIDForCBMenuViewForMainMenu,
-        ]);
+        CBPageHelpers::renderDefaultPageHeader((object)[]);
 
         $styles[] = 'flex: 1 1 auto';
 
@@ -68,9 +65,7 @@ final class MDBlogPostPageLayout {
 
         <?php
 
-        MDStandardPageFooterView::renderModelAsHTML((object)[
-            'hideFlexboxFill' => true,
-        ]);
+        CBPageHelpers::renderDefaultPageFooter((object)[]);
     }
 
     /**
