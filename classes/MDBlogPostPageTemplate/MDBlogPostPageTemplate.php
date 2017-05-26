@@ -9,7 +9,21 @@ final class MDBlogPostPageTemplate {
         $spec = (object)[
             'className' => 'CBViewPage',
             'classNameForKind' => 'MDBlogPostPageKind',
-            'layout' => (object)['className' => 'MDBlogPostPageLayout'],
+            'layout' => (object)[
+                'className' => 'CBPageLayout',
+                'CSSClassNames' => 'endContentWithWhiteSpace',
+                'customLayoutClassName' => 'MDBlogPostPageLayout',
+                'isArticle' => true,
+            ],
+        ];
+
+        $spec->sections[] = (object)[
+            'className' => 'CBPageTitleAndDescriptionView',
+            'showPublicationDate' => true,
+        ];
+
+        $spec->sections[] = (object)[
+            'className' => 'CBArtworkView',
         ];
 
         // text
@@ -24,6 +38,6 @@ final class MDBlogPostPageTemplate {
      * @return string
      */
     public static function title() {
-        return 'Blog Post';
+        return 'Mattifesto Blog Post';
     }
 }
