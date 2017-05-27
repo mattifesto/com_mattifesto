@@ -3,16 +3,23 @@
 final class MDPageSettingsForResponsivePages {
 
     /**
+     * @return string
+     */
+    static function defaultThemeClassName() {
+        return 'CBDarkTheme';
+    }
+
+    /**
      * @return  null
      */
-    public static function renderEndOfBodyContent() { ?>
+    static function renderEndOfBodyContent() { ?>
         <script src="<?= CBSystemURL ?>/javascript/Colby.js"></script>
     <?php }
 
     /**
      * @return  null
      */
-    public static function renderHeadContent() { ?>
+    static function renderHeadContent() { ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="<?= CBSystemURL ?>/javascript/html5shiv.js"></script>
         <script src="<?= CBSystemURL ?>/javascript/ColbyEqualize.js"></script>
@@ -24,13 +31,8 @@ final class MDPageSettingsForResponsivePages {
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
         <style>
             html {
-                --CBLinkColor: hsl(210, 80%, 50%);
-                color: hsla(0, 0%, 0%, 0.8);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
                 font-size: 18px;
-            }
-            a {
-                color: hsl(210, 80%, 50%);
             }
         </style>
     <?php }
@@ -38,7 +40,7 @@ final class MDPageSettingsForResponsivePages {
     /**
      * @return  null
      */
-    public static function renderStartOfBodyContent() {
+    static function renderStartOfBodyContent() {
         $googleTagManagerID = CBSitePreferences::googleTagManagerID();
 
         if ($googleTagManagerID !== '') { ?>
