@@ -5,6 +5,16 @@ final class CBPageHelpers {
     /**
      * @return [string]
      */
+    static function classNamesForPageKinds() {
+        return array_merge(
+            CBPagesPreferences::classNamesForPageKindsDefault(),
+            ['MDBlogPostPageKind']
+        );
+    }
+
+    /**
+     * @return [string]
+     */
     static function classNamesForPageTemplates() {
         return array_merge(['MDBlogPostPageTemplate'], CBPagesPreferences::defaultClassNamesForPageTemplates);
     }
