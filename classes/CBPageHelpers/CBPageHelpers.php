@@ -3,6 +3,13 @@
 final class CBPageHelpers {
 
     /**
+     * @return string
+     */
+    static function classNameForUnsetPageSettings() {
+        return 'MDPageSettingsForResponsivePages';
+    }
+
+    /**
      * @return [string]
      */
     static function classNamesForPageKinds() {
