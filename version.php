@@ -1,3 +1,3 @@
 <?php
 
-define('CBSiteVersionNumber', '72');
+define('CBSiteVersionNumber', '73');
