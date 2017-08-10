@@ -63,7 +63,8 @@ final class MDBlogPostPageLayout {
                 <?php
 
                 if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
-                    CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
+                    CBView::render((object)[
+                        'className' => 'CBPageTitleAndDescriptionView',
                         'showPublicationDate' => true,
                         'useLightTextColors' => !empty($layoutModel->useLightTextColors),
                     ]);
