@@ -34,7 +34,9 @@ final class MDStandardPageLayout {
             <?php
 
             if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
-                CBPageTitleAndDescriptionView::renderModelAsHTML((object)[]);
+                CBView::render((object)[
+                    'className' => 'CBPageTitleAndDescriptionView',
+                ]);
             }
 
             $renderContentCallback();
