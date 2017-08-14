@@ -37,17 +37,4 @@ final class CBPageHelpers {
             'hideFlexboxFill' => true,
         ]);
     }
-
-    /**
-     * @param stdClass $properties
-     *
-     * @return null
-     */
-    static function renderDefaultPageHeader(stdClass $properties) {
-        CBView::renderModelAsHTML((object)[
-            'className' => 'CBThemedMenuView',
-            'menuID' => CBStandardModels::CBMenuIDForMainMenu,
-            'themeID' => CBStandardModels::CBThemeIDForCBMenuViewForMainMenu,
-        ]);
-    }
 }
