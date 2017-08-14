@@ -44,7 +44,7 @@ final class MDBlogPostPageLayout {
             $styleElement = "<style>{$stylesCSS}</style>";
         }
 
-        CBPageHelpers::renderDefaultPageHeader((object)[]);
+        CBPageLayout::renderPageHeader();
 
         $styles[] = 'flex: 1 1 auto';
 
