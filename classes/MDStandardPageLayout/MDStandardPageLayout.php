@@ -24,7 +24,7 @@ final class MDStandardPageLayout {
             $styleElement = "<style>{$stylesCSS}</style>";
         }
 
-        CBPageHelpers::renderDefaultPageHeader((object)[]);
+        CBPageLayout::renderPageHeader();
 
         ?>
 
@@ -55,7 +55,7 @@ final class MDStandardPageLayout {
      *
      * @return stdClass
      */
-    public static function specToModel(stdClass $spec) {
+    static function CBModel_toModel(stdClass $spec) {
         $model = (object)[
             'className' => __CLASS__,
             'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
