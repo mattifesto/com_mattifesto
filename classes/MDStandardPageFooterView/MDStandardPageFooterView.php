@@ -3,19 +3,19 @@
 final class MDStandardPageFooterView {
 
     /**
+     * @return [string]
+     */
+    static function CBHTMLOutput_CSSURLs() {
+        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
+    }
+
+    /**
      * @param bool? $model->hideFlexboxFill
      * @param hex160? $model->themeID
      *
      * @return null
      */
-    public static function renderModelAsHTML(stdClass $model = null) {
-        if (empty($themeID = CBModel::value($model, 'themeID'))) {
-            $themeID = MDWellKnownThemeForFooter::ID;
-        }
-
-        CBTheme::useThemeWithID($themeID);
-
-        $class = CBTheme::IDToCSSClass($themeID);
+    static function CBView_render(stdClass $model = null) {
         $year = gmdate('Y');
 
         if (empty(CBModel::value($model, 'hideFlexboxFill'))) {
@@ -26,7 +26,7 @@ final class MDStandardPageFooterView {
 
         ?>
 
-        <footer class="MDStandardPageFooterView <?= $class ?>">
+        <footer class="MDStandardPageFooterView CBDarkTheme">
             <div class="container">
                 <div>
                     <div>
@@ -69,7 +69,7 @@ final class MDStandardPageFooterView {
      *
      * @return stdClass
      */
-    public static function specToModel(stdClass $spec) {
+    static function CBModel_toModel(stdClass $spec) {
         return (object)[
             'className' => __CLASS__,
             'themeID' => CBModel::value($spec, 'themeID'),
