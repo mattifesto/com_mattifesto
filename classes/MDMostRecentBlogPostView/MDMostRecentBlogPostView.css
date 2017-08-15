@@ -34,13 +34,3 @@
 .MDMostRecentBlogPostView:hover .link {
     text-decoration: underline;
 }
-
-/* light text colors (deprecated, use theme classes) */
-
-.MDMostRecentBlogPostView.light {
-    color: hsla(0, 0%, 100%, 0.9); /* CBTextColor for CBDarkTheme */
-}
-
-.MDMostRecentBlogPostView.light .description {
-    color: hsla(0, 0%, 100%, 0.7); /* CBTextColor2 for CBDarkTheme */
-}

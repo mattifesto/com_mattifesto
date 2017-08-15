@@ -25,21 +25,15 @@ EOT;
      *
      * @return null
      */
-    static function renderModelAsHTML(stdClass $model) {
+    static function CBView_render(stdClass $model) {
         if ($summary = MDMostRecentBlogPostView::fetchSummary()) {
             CBHTMLOutput::requireClassName(__CLASS__);
 
             $publishedAsHTML = ColbyConvert::timestampToHTML($summary->publicationTimeStamp, 'Unpublished');
 
-            if (empty($model->useLightTextColors)) {
-                $class = '';
-            } else {
-                $class = 'light';
-            }
-
             ?>
 
-            <a class="MDMostRecentBlogPostView <?= $class ?>" href="/<?= $summary->URI ?>/">
+            <a class="MDMostRecentBlogPostView" href="/<?= $summary->URI ?>/">
                 <?php
 
                 $image = $summary->image;
@@ -68,8 +62,8 @@ EOT;
     /**
      * @return [string]
      */
-    static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
+    static function CBHTMLOutput_CSSURLs() {
+        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
     }
 
     /**
@@ -77,10 +71,9 @@ EOT;
      *
      * @return stdClass
      */
-    static function specToModel(stdClass $spec) {
+    static function CBModel_toModel(stdClass $spec) {
         return (object)[
             'className' => __CLASS__,
-            'useLightTextColors' => CBModel::value($spec, 'useLightTextColors', false, 'boolval'),
         ];
     }
 }
