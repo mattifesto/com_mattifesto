@@ -6,13 +6,13 @@ final class MDMostRecentBlogPostViewEditor {
      * @return [string]
      */
     static function requiredClassNames() {
-        return ['CBUI', 'CBUIBooleanEditor'];
+        return ['CBUI'];
     }
 
     /**
      * @return [string]
      */
     static function requiredJavaScriptURLs() {
-        return [Colby::flexnameForJavaScriptForClass(CBSitePreferences::siteURL(), __CLASS__)];
+        return [Colby::flexpath(__CLASS__, 'js', cbsiteurl())];
     }
 }

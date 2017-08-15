@@ -1,7 +1,6 @@
 "use strict"; /* jshint strict: global */
 /* globals
-    CBUI,
-    CBUIBooleanEditor */
+    CBUI */
 
 var MDMostRecentBlogPostViewEditor = {
 
@@ -16,17 +15,9 @@ var MDMostRecentBlogPostViewEditor = {
         var element = document.createElement("div");
         element.className = "MDMostRecentBlogPostViewEditor";
 
-        section = CBUI.createSection();
-
-        item = CBUI.createSectionItem();
-        item.appendChild(CBUIBooleanEditor.create({
-            labelText: "Use Light Text Colors",
-            propertyName: "useLightTextColors",
-            spec: args.spec,
-            specChangedCallback: args.specChangedCallback,
-        }).element);
-        section.appendChild(item);
-        element.appendChild(section);
+        element.appendChild(CBUI.createSectionHeader({
+            paragraphs: ["There are no editable properties."],
+        }));
 
         return element;
     }
