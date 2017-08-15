@@ -1,5 +1,6 @@
 .MDStandardPageFooterView {
-  padding: 10px 0 0;
+    background-color: var(--CBBackgroundColor2);
+    padding: 10px 0 0;
 }
 
 .MDStandardPageFooterView a {
