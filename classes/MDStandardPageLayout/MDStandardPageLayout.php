@@ -8,29 +8,24 @@ final class MDStandardPageLayout {
      *
      * @return null
      */
-    public static function render(stdClass $layoutModel, callable $renderContentCallback) {
+    static function render(stdClass $layoutModel, callable $renderContentCallback) {
         $stylesID = CBModel::value($layoutModel, 'stylesID');
         $stylesCSS = CBModel::value($layoutModel, 'stylesCSS');
 
         $classes[] = 'MDStandardPageLayout';
+
         if (!empty($stylesID)) {
-            $classes[] = CBTheme::IDToCSSClass($stylesID);
+            $classes[] = "T{$stylesID}";
         }
+
         $classes = implode(' ', $classes);
 
-        if (empty($stylesCSS)) {
-            $styleElement = '';
-        } else {
-            $styleElement = "<style>{$stylesCSS}</style>";
-        }
-
+        CBHTMLOutput::addCSS($stylesCSS);
         CBPageLayout::renderPageHeader();
 
         ?>
 
         <main class="<?= $classes ?>" style="flex: 1 1 auto;">
-            <?= $styleElement ?>
-
             <?php
 
             if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
@@ -63,7 +58,8 @@ final class MDStandardPageLayout {
 
         if (!empty($stylesTemplate = CBModel::value($spec, 'stylesTemplate', '', 'trim'))) {
             $model->stylesID = CBHex160::random();
-            $model->stylesCSS = CBTheme::stylesTemplateToStylesCSS($stylesTemplate, $model->stylesID);
+            $localCSSClassName = "T{$model->stylesID}";
+            $model->stylesCSS = CBView::localCSSTemplateToLocalCSS($stylesTemplate, 'view', ".{$localCSSClassName}");
         }
 
         return $model;

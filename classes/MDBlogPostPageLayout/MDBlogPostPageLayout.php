@@ -26,24 +26,19 @@ final class MDBlogPostPageLayout {
      *
      * @return null
      */
-    public static function render(stdClass $layoutModel, callable $renderContentCallback) {
+    static function render(stdClass $layoutModel, callable $renderContentCallback) {
         $stylesID = CBModel::value($layoutModel, 'stylesID');
         $stylesCSS = CBModel::value($layoutModel, 'stylesCSS');
 
         $classes[] = 'MDBlogPostPageLayout';
 
         if (!empty($stylesID)) {
-            $classes[] = CBTheme::IDToCSSClass($stylesID);
+            $classes[] = "T{$stylesID}";
         }
 
         $classes = implode(' ', $classes);
 
-        if (empty($stylesCSS)) {
-            $styleElement = '';
-        } else {
-            $styleElement = "<style>{$stylesCSS}</style>";
-        }
-
+        CBHTMLOutput::addCSS($stylesCSS);
         CBPageLayout::renderPageHeader();
 
         $styles[] = 'flex: 1 1 auto';
@@ -57,7 +52,6 @@ final class MDBlogPostPageLayout {
         ?>
 
         <main class="<?= $classes ?>" style="<?= $styles ?>">
-            <?= $styleElement ?>
             <article>
 
                 <?php
@@ -87,7 +81,7 @@ final class MDBlogPostPageLayout {
      *
      * @return stdClass
      */
-    public static function specToModel(stdClass $spec) {
+    static function CBModel_toModel(stdClass $spec) {
         $model = (object)[
             'className' => __CLASS__,
             'addBottomPadding' => CBModel::value($spec, 'addBottomPadding', false, 'boolval'),
@@ -97,7 +91,8 @@ final class MDBlogPostPageLayout {
 
         if (!empty($stylesTemplate = CBModel::value($spec, 'stylesTemplate', '', 'trim'))) {
             $model->stylesID = CBHex160::random();
-            $model->stylesCSS = CBTheme::stylesTemplateToStylesCSS($stylesTemplate, $model->stylesID);
+            $localCSSClassName = "T{$model->stylesID}";
+            $model->stylesCSS = CBView::localCSSTemplateToLocalCSS($stylesTemplate, 'view', ".{$localCSSClassName}");
         }
 
         return $model;
