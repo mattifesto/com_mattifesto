@@ -3,7 +3,7 @@
 final class MDMostRecentBlogPostView {
 
     /**
-     * @return stdClass
+     * @return object
      */
     private static function fetchSummary() {
         $SQL = <<<EOT
@@ -21,14 +21,12 @@ EOT;
     }
 
     /**
-     * @param stdClass $model
+     * @param object $model
      *
      * @return null
      */
     static function CBView_render(stdClass $model) {
         if ($summary = MDMostRecentBlogPostView::fetchSummary()) {
-            CBHTMLOutput::requireClassName(__CLASS__);
-
             $publishedAsHTML = ColbyConvert::timestampToHTML($summary->publicationTimeStamp, 'Unpublished');
 
             ?>
@@ -36,11 +34,11 @@ EOT;
             <a class="MDMostRecentBlogPostView" href="/<?= $summary->URI ?>/">
                 <?php
 
-                $image = $summary->image;
-                $filename = 'rw1280';
-                $imageURL = CBDataStore::flexpath($image->ID, "{$filename}.{$image->extension}", CBSitePreferences::siteURL());
+                $imageURL = CBImage::valueToFlexpath($summary, 'image', 'rw1280', cbsiteurl());
 
-                if (!empty($summary->image)) {
+                if ($imageURL !== false) {
+                    $image = $summary->image;
+
                     CBArtworkElement::render([
                         'height' => $image->height,
                         'maxWidth' => 640,
@@ -48,6 +46,7 @@ EOT;
                         'width' => $image->width,
                     ]);
                 }
+
                 ?>
 
                 <h2><?= $summary->titleHTML ?></h2>
