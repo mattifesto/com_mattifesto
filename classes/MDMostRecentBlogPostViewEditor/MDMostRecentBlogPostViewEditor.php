@@ -5,14 +5,14 @@ final class MDMostRecentBlogPostViewEditor {
     /**
      * @return [string]
      */
-    static function requiredClassNames() {
+    static function CBHTMLOutput_requiredClassNames() {
         return ['CBUI'];
     }
 
     /**
      * @return [string]
      */
-    static function requiredJavaScriptURLs() {
-        return [Colby::flexpath(__CLASS__, 'js', cbsiteurl())];
+    static function CBHTMLOutput_JavaScriptURLs() {
+        return [Colby::flexpath(__CLASS__, 'v97.js', cbsiteurl())];
     }
 }

@@ -1,24 +1,34 @@
-"use strict"; /* jshint strict: global */
+"use strict";
+/* jshint strict: global */
+/* exported MDMostRecentBlogPostViewEditor */
 /* globals
     CBUI */
 
 var MDMostRecentBlogPostViewEditor = {
 
     /**
-     * @param object spec
-     * @param function specChangedCallback
+     * @param object args
      *
      * @return Element
      */
-    createEditor : function (args) {
-        var section, item;
+    createEditor: function (args) {
         var element = document.createElement("div");
         element.className = "MDMostRecentBlogPostViewEditor";
 
-        element.appendChild(CBUI.createSectionHeader({
-            paragraphs: ["There are no editable properties."],
-        }));
+        element.appendChild(CBUI.createHalfSpace());
+
+        var section = CBUI.createSection();
+        var item = CBUI.createSectionItem3();
+        var part = CBUI.createMessageSectionItemPart({
+            message: "There are no editable properties.",
+        });
+
+        item.appendPart(part);
+        section.appendChild(item.element);
+        element.appendChild(section);
+
+        element.appendChild(CBUI.createHalfSpace());
 
         return element;
-    }
+    },
 };
