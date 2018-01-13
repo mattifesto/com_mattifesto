@@ -3,9 +3,9 @@
 final class MDBlogPostPageTemplate {
 
     /**
-     * @return stdClass
+     * @return object
      */
-    public static function model() {
+    static function CBModelTemplate_spec() {
         $spec = (object)[
             'className' => 'CBViewPage',
             'classNameForKind' => 'MDBlogPostPageKind',
@@ -37,7 +37,7 @@ final class MDBlogPostPageTemplate {
     /**
      * @return string
      */
-    public static function title() {
+    static function CBModelTemplate_title() {
         return 'Mattifesto Blog Post';
     }
 }
