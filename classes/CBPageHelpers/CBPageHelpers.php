@@ -20,14 +20,7 @@ final class CBPageHelpers {
     }
 
     /**
-     * @return [string]
-     */
-    static function classNamesForPageTemplates() {
-        return array_merge(['MDBlogPostPageTemplate'], CBPagesPreferences::defaultClassNamesForPageTemplates);
-    }
-
-    /**
-     * @param stdClass $properties
+     * @param object $properties
      *
      * @return null
      */
