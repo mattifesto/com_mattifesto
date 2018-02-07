@@ -49,8 +49,8 @@ EOT;
 
                 ?>
 
-                <h2><?= $summary->titleHTML ?></h2>
-                <div class="description"><?= $summary->descriptionHTML ?></div>
+                <h2><?= cbhtml($summary->title); ?></h2>
+                <div class="description"><?= cbhtml($summary->description) ?></div>
                 <div><span class="link">read more &gt;</span></div>
             </a>
 
