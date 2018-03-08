@@ -1,0 +1,7 @@
+html {
+    --MDOffsetBackgroundColor: hsl(0, 0%, 14%);
+}
+
+.CBDefaultPageHeaderView .CBMenuView {
+    background-color: var(--MDOffsetBackgroundColor);
+}
