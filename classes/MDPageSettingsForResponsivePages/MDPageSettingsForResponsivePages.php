@@ -3,58 +3,21 @@
 final class MDPageSettingsForResponsivePages {
 
     /**
-     * @return string
+     * @return [string]
      */
-    static function defaultThemeClassName() {
-        return 'CBDarkTheme';
-    }
-
-    /**
-     * @return  null
-     */
-    static function renderEndOfBodyContent() {
-
-    }
-
-    /**
-     * @return  null
-     */
-    static function renderHeadContent() { ?>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet'>
-        <style>
-            html {
-                font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-                font-size: 18px;
-            }
-        </style>
-    <?php }
-
-    /**
-     * @return  null
-     */
-    static function renderStartOfBodyContent() {
-        $googleTagManagerID = CBSitePreferences::googleTagManagerID();
-
-        if ($googleTagManagerID !== '') { ?>
-            <!-- Google Tag Manager -->
-            <noscript><iframe src="//www.googletagmanager.com/ns.html?id=<?= $googleTagManagerID ?>"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','<?= $googleTagManagerID ?>');</script>
-            <!-- End Google Tag Manager -->
-        <?php }
+    static function CBPageSettings_htmlElementClassNames(): array {
+        return ['CBDarkTheme', 'CBStyleSheet'];
     }
 
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_requiredHeadClassNames() {
-        return ['CBEqualize'];
+    static function CBPageSettings_requiredClassNames(): array {
+        return [
+            'CBEqualizePageSettingsPart',
+            'CBResponsiveViewportPageSettingsPart',
+            'CBGoogleTagManagerPageSettingsPart',
+            'CBFacebookPageSettingsPart',
+        ];
     }
 }
