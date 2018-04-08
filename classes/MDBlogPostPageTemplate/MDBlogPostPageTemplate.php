@@ -3,18 +3,27 @@
 final class MDBlogPostPageTemplate {
 
     /**
+     * @return void
+     */
+    static function CBInstall_install(): void {
+        CBModelTemplates::installTemplate(__CLASS__);
+    }
+
+    /**
+     * @return [string]
+     */
+    static function CBInstall_requiredClassNames(): array {
+        return ['CBModelTemplates'];
+    }
+
+    /**
      * @return object
      */
     static function CBModelTemplate_spec() {
         $spec = (object)[
             'className' => 'CBViewPage',
             'classNameForKind' => 'MDBlogPostPageKind',
-            'layout' => (object)[
-                'className' => 'CBPageLayout',
-                'CSSClassNames' => 'endContentWithWhiteSpace',
-                'customLayoutClassName' => 'MDBlogPostPageLayout',
-                'isArticle' => true,
-            ],
+            'frameClassName' => 'MDPageFrame',
         ];
 
         $spec->sections[] = (object)[
@@ -38,6 +47,6 @@ final class MDBlogPostPageTemplate {
      * @return string
      */
     static function CBModelTemplate_title() {
-        return 'Mattifesto Blog Post';
+        return 'Blog Post';
     }
 }
