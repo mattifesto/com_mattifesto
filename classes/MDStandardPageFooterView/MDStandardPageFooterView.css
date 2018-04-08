@@ -1,5 +1,13 @@
 .MDStandardPageFooterView {
     background-color: var(--MDOffsetBackgroundColor);
+
+    /**
+     * When this view is a child of a flexbox parent, an auto value for
+     * margin-top will allow it to move to the bottom of short pages. It will
+     * compute to 0 if the parent is not a flexbox.
+     */
+    margin-top: auto;
+
     padding: 10px 0 0;
 }
 

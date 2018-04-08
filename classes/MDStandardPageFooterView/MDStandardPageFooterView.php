@@ -6,21 +6,16 @@ final class MDStandardPageFooterView {
      * @return [string]
      */
     static function CBHTMLOutput_CSSURLs() {
-        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
+        return [Colby::flexpath(__CLASS__, 'v108.css', cbsiteurl())];
     }
 
     /**
-     * @param bool? $model->hideFlexboxFill
      * @param hex160? $model->themeID
      *
      * @return null
      */
     static function CBView_render(stdClass $model = null) {
         $year = gmdate('Y');
-
-        if (empty(CBModel::value($model, 'hideFlexboxFill'))) {
-            echo '<div class="MDStandardPageFooterViewFill" style="flex: 1 1 auto;"></div>';
-        }
 
         $sitePreferences = CBSitePreferences::model();
 
