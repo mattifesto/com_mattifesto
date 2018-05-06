@@ -6,14 +6,14 @@ final class MDBlogPostPageTemplate {
      * @return void
      */
     static function CBInstall_install(): void {
-        CBModelTemplates::installTemplate(__CLASS__);
+        CBModelTemplateCatalog::install(__CLASS__);
     }
 
     /**
      * @return [string]
      */
     static function CBInstall_requiredClassNames(): array {
-        return ['CBModelTemplates'];
+        return ['CBModelTemplateCatalog'];
     }
 
     /**
