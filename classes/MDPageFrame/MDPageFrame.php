@@ -13,14 +13,14 @@ final class MDPageFrame {
      * @return void
      */
     static function CBInstall_install(): void {
-        CBPageFrames::installFrame(__CLASS__);
+        CBPageFrameCatalog::install(__CLASS__);
     }
 
     /**
      * @return [string]
      */
     static function CBInstall_requiredClassNames(): array {
-        return ['CBPageFrames'];
+        return ['CBPageFrameCatalog'];
     }
 
     /**
