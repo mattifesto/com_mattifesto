@@ -29,23 +29,9 @@ final class MDPageFrame {
      * @return void
      */
     static function CBPageFrame_render(callable $renderContent): void {
-        $selectedMainMenuItemName = CBModel::valueToString(CBHTMLOutput::pageInformation(), 'selectedMainMenuItemName');
-
-        ?>
-
-        <header class="MDPageFrame_header CBDarkTheme">
-            <?php
-
-            CBView::render((object)[
-                'className' => 'CBMenuView',
-                'menuID' => CBWellKnownMenuForMain::ID(),
-                'selectedItemName' => $selectedMainMenuItemName,
-            ]);
-
-            ?>
-        </header>
-
-        <?php
+        CBView::render((object)[
+            'className' => 'MDPageHeaderView',
+        ]);
 
         $renderContent();
 
