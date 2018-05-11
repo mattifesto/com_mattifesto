@@ -22,22 +22,21 @@ final class MDBlogPostPageTemplate {
     static function CBModelTemplate_spec() {
         $spec = (object)[
             'className' => 'CBViewPage',
+            'classNameForSettings' => 'MDPageSettingsForResponsivePages',
             'classNameForKind' => 'MDBlogPostPageKind',
             'frameClassName' => 'MDPageFrame',
-        ];
-
-        $spec->sections[] = (object)[
-            'className' => 'CBPageTitleAndDescriptionView',
-            'showPublicationDate' => true,
-        ];
-
-        $spec->sections[] = (object)[
-            'className' => 'CBArtworkView',
-        ];
-
-        // text
-        $spec->sections[] = (object)[
-            'className' => 'CBMessageView',
+            'sections' => [
+                (object)[
+                    'className' => 'CBPageTitleAndDescriptionView',
+                    'showPublicationDate' => true,
+                ],
+                (object)[
+                    'className' => 'CBArtworkView',
+                ],
+                (object)[
+                    'className' => 'CBMessageView',
+                ],
+            ],
         ];
 
         return $spec;
