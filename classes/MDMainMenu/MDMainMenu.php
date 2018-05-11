@@ -5,7 +5,7 @@ final class MDMainMenu {
     /**
      * @return void
      */
-    static function CBInstall_configure(): void {
+    static function CBInstall_install(): void {
         $originalSpec = CBModels::fetchSpecByID(MDMainMenu::ID());
 
         if (empty($originalSpec)) {
@@ -27,6 +27,13 @@ final class MDMainMenu {
                 CBModels::save($spec);
             });
         }
+    }
+
+    /**
+     * @return [string]
+     */
+    static function CBInstall_requiredClassNames(): array {
+        return ['CBModels'];
     }
 
     /**
