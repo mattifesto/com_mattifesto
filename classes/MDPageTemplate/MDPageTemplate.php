@@ -22,20 +22,19 @@ final class MDPageTemplate {
     static function CBModelTemplate_spec() {
         $spec = (object)[
             'className' => 'CBViewPage',
+            'classNameForSettings' => 'MDPageSettingsForResponsivePages',
             'frameClassName' => 'MDPageFrame',
-        ];
-
-        $spec->sections[] = (object)[
-            'className' => 'CBPageTitleAndDescriptionView',
-        ];
-
-        $spec->sections[] = (object)[
-            'className' => 'CBArtworkView',
-        ];
-
-        // text
-        $spec->sections[] = (object)[
-            'className' => 'CBMessageView',
+            'sections' => [
+                (object)[
+                    'className' => 'CBPageTitleAndDescriptionView',
+                ],
+                (object)[
+                    'className' => 'CBArtworkView',
+                ],
+                (object)[
+                    'className' => 'CBMessageView',
+                ],
+            ],
         ];
 
         return $spec;
