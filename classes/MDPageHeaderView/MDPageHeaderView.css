@@ -1,0 +1,7 @@
+.MDPageHeaderView {
+    background-color: var(--MDOffsetBackgroundColor);
+}
+
+.MDPageHeaderView .CBMenuView {
+    background-color: inherit;
+}

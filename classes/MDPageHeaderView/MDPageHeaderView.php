@@ -3,6 +3,13 @@
 final class MDPageHeaderView {
 
     /**
+     * @return [string]
+     */
+    static function CBHTMLOutput_CSSURLs() {
+        return [Colby::flexpath(__CLASS__, 'v110.css', cbsiteurl())];
+    }
+
+    /**
      * @param model $model
      *
      * @return void
