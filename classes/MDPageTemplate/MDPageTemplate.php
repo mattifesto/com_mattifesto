@@ -7,6 +7,7 @@ final class MDPageTemplate {
      */
     static function CBInstall_install(): void {
         CBModelTemplateCatalog::install(__CLASS__);
+        CBModelTemplateCatalog::installLivePageTemplate(__CLASS__);
     }
 
     /**
