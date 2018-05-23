@@ -10,6 +10,16 @@ final class MDTopicPageUpdateTask {
     static function CBTasks2_run(string $topicID): void {
         $topic = CBModels::fetchModelByID($topicID);
         $URI = CBModel::valueToString($topic, 'URI');
+
+        if (empty($URI)) {
+            CBLog::log((object)[
+                'message' => 'The model URI is empty.',
+                'severity' => 4,
+            ]);
+
+            return;
+        }
+
         $pageIDs = CBPages::fetchPublishedPageIDsByURI($URI);
 
         if (empty($pageIDs)) {
@@ -29,9 +39,16 @@ final class MDTopicPageUpdateTask {
      */
     static function updatePage(string $pageID, stdClass $topic): void {
         $content = CBModel::valueToString($topic, 'content');
+        $redirectToURI = CBModel::valueToString($topic, 'redirectToURI');
         $title = CBModel::valueToString($topic, 'title');
         $URI = CBModel::valueToString($topic, 'URI');
         $originalPageSpec = CBModels::fetchSpecByID($pageID);
+
+        if (!empty($redirectToURI)) {
+            $className = 'CBRedirect';
+        } else {
+            $className = 'CBViewPage';
+        }
 
         if (empty($originalPageSpec)) {
             $pageSpec = (object)[
@@ -48,45 +65,50 @@ final class MDTopicPageUpdateTask {
         }
 
         CBModel::merge($pageSpec, (object)[
-            'className' => 'CBViewPage',
+            'className' => $className,
             'classNameForSettings' => 'MDPageSettingsForResponsivePages',
             'frameClassName' => 'MDPageFrame',
-            'isPublished' => true,
+            'isPublished' => empty($model->isHidden) || !empty($redirectToURI),
             'publicationTimeStamp' => $timestamp,
+            'redirectToURI' => $redirectToURI,
             'title' => $title,
             'URI' => $URI,
         ]);
 
-        $subviews = CBView::getSubviews($pageSpec);
+        /* views */
 
-        /* title view */
+        if ($className === 'CBViewPage') {
+            $subviews = CBView::getSubviews($pageSpec);
 
-        if (CBView::findSubview($pageSpec, 'className', 'CBPageTitleAndDescriptionView') === null) {
-            array_unshift($subviews, (object)[
-                'className' => 'CBPageTitleAndDescriptionView',
+            /* title view */
+
+            if (CBView::findSubview($pageSpec, 'className', 'CBPageTitleAndDescriptionView') === null) {
+                array_unshift($subviews, (object)[
+                    'className' => 'CBPageTitleAndDescriptionView',
+                ]);
+            }
+
+            /* content view */
+
+            $contentViewSpec = CBView::findSubview($pageSpec, 'isTopicContentView', true);
+
+            if (empty($contentViewSpec)) {
+                $contentViewSpec = (object)[
+                    'isTopicContentView' => true,
+                ];
+
+                array_push($subviews, $contentViewSpec);
+            }
+
+            CBModel::merge($contentViewSpec, (object)[
+                'className' => 'CBMessageView',
+                'markup' => $content,
             ]);
+
+            CBView::setSubviews($pageSpec, $subviews);
         }
-
-        /* content view */
-
-        $contentViewSpec = CBView::findSubview($pageSpec, 'isTopicContentView', true);
-
-        if (empty($contentViewSpec)) {
-            $contentViewSpec = (object)[
-                'isTopicContentView' => true,
-            ];
-
-            array_push($subviews, $contentViewSpec);
-        }
-
-        CBModel::merge($contentViewSpec, (object)[
-            'className' => 'CBMessageView',
-            'markup' => $content,
-        ]);
 
         /* save */
-
-        CBView::setSubviews($pageSpec, $subviews);
 
         if ($pageSpec != $originalPageSpec) {
             CBDB::transaction(function () use ($pageSpec) {
