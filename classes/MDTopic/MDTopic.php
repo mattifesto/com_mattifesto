@@ -11,17 +11,18 @@ final class MDTopic {
         return (object)[
             'content' => CBModel::valueToString($spec, 'content'),
             'description' => CBModel::valueToString($spec, 'description'),
-            'isHidden' => !empty($spec->isHidden),
-            'moniker' => trim(CBModel::valueToString($spec, 'content')),
+            'isHidden' => CBModel::valueToBool($spec, 'isHidden'),
+            'moniker' => trim(CBModel::valueToString($spec, 'moniker')),
+            'redirectToURI' => CBConvert::stringToURI(CBModel::valueToString($spec, 'redirectToURI')),
             'sort' => CBModel::valueAsInt($spec, 'sort'),
-            'URI' => CBModel::valueToString($spec, 'URI'),
+            'URI' => CBConvert::stringToURI(CBModel::valueToString($spec, 'URI')),
         ];
     }
 
     /**
      * @param model $spec
      *
-     * @return ?hex160
+     * @return ?ID
      */
     static function CBModel_toID(stdClass $spec): ?string {
         $moniker = trim(CBModel::valueToString($spec, 'moniker'));
