@@ -3,10 +3,28 @@
 final class MDPageSettingsForResponsivePages {
 
     /**
+     * @return void
+     */
+    static function CBInstall_install(): void {
+        CBPageSettingsCatalog::install(__CLASS__);
+    }
+
+    /**
+     * @return [string]
+     */
+    static function CBInstall_requiredClassNames(): array {
+        return ['CBPageSettingsCatalog'];
+    }
+
+    /**
      * @return [string]
      */
     static function CBPageSettings_htmlElementClassNames(): array {
-        return ['CBDarkTheme', 'CBStyleSheet', 'MDStyleSheet'];
+        return [
+            'CBDarkTheme',
+            'CBStyleSheet',
+            'MDStyleSheet'
+        ];
     }
 
     /**
