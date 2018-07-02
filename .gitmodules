@@ -4,3 +4,6 @@
 [submodule "swiftmailer"]
 	path = swiftmailer
 	url = git://github.com/swiftmailer/swiftmailer.git
+[submodule "documentation"]
+	path = documentation
+	url = mdgit@mattifesto.com:~/documentation.git
