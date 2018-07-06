@@ -1,1 +1,3 @@
 <?php
+
+Colby::loadLibrary('documentation');
