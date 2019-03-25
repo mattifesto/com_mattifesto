@@ -7,3 +7,6 @@
 [submodule "documentation"]
 	path = documentation
 	url = mdgit@mattifesto.com:~/documentation.git
+[submodule "SCShoppingCartLibrary"]
+	path = SCShoppingCartLibrary
+	url = mdgit@mattifesto.com:~/libraries/SCShoppingCartLibrary.git
