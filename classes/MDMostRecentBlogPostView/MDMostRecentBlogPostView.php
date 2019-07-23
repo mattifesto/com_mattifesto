@@ -58,6 +58,7 @@ EOT;
         }
     }
 
+
     /**
      * @return [string]
      */
@@ -65,14 +66,15 @@ EOT;
         return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
     }
 
+
     /**
-     * @param stdClass $spec
+     * @param object $spec
      *
-     * @return stdClass
+     * @return object
      */
-    static function CBModel_toModel(stdClass $spec) {
+    static function CBModel_build(stdClass $spec): stdClass {
         return (object)[
-            'className' => __CLASS__,
         ];
     }
+    /* CBModel_build() */
 }
