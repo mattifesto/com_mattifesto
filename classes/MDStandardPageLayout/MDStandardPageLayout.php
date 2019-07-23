@@ -45,23 +45,35 @@ final class MDStandardPageLayout {
         CBPageHelpers::renderDefaultPageFooter((object)[]);
     }
 
+
     /**
-     * @param stdClass $spec
+     * @param object $spec
      *
-     * @return stdClass
+     * @return object
      */
-    static function CBModel_toModel(stdClass $spec) {
+    static function CBModel_build(stdClass $spec): stdClass {
         $model = (object)[
-            'className' => __CLASS__,
-            'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
+            'hidePageTitleAndDescriptionView' => CBModel::valueToBool(
+                $spec,
+                'hidePageTitleAndDescriptionView'
+            ),
         ];
 
-        if (!empty($stylesTemplate = CBModel::value($spec, 'stylesTemplate', '', 'trim'))) {
+        $stylesTemplate = trim(
+            CBModel::valueToString($spec, 'stylesTemplate')
+        );
+
+        if (!empty($stylesTemplate)) {
             $model->stylesID = CBHex160::random();
             $localCSSClassName = "T{$model->stylesID}";
-            $model->stylesCSS = CBView::localCSSTemplateToLocalCSS($stylesTemplate, 'view', ".{$localCSSClassName}");
+            $model->stylesCSS = CBView::localCSSTemplateToLocalCSS(
+                $stylesTemplate,
+                'view',
+                ".{$localCSSClassName}"
+            );
         }
 
         return $model;
     }
+    /* CBModel_build() */
 }
