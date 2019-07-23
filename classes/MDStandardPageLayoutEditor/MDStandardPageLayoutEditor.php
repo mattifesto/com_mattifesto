@@ -5,24 +5,19 @@ final class MDStandardPageLayoutEditor {
     /**
      * @return [string]
      */
-    public static function requiredClassNames() {
-        return ['CBUI', 'CBUIBooleanEditor'];
+    static function CBHTMLOutput_requiredClassNames(): array {
+        return [
+            'CBUI',
+            'CBUIBooleanEditor'
+        ];
     }
 
     /**
      * @return [string]
      */
-    public static function requiredJavaScriptURLs() {
-        return [MDStandardPageLayoutEditor::URL('MDStandardPageLayoutEditor.js')];
-    }
-
-    /**
-     * @param string $filename
-     *
-     * @return string
-     */
-    public static function URL($filename) {
-        $className = __CLASS__;
-        return CBSitePreferences::siteURL() . "/classes/{$className}/{$filename}";
+    static function CBHTMLOutput_JavaScriptURLs(): array {
+        return [
+            Colby::flexpath(__CLASS__, 'js', cbsiteurl()),
+        ];
     }
 }
