@@ -5,16 +5,19 @@ final class MDStandardPageFooterView {
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_CSSURLs() {
-        return [Colby::flexpath(__CLASS__, 'v108.css', cbsiteurl())];
+    static function CBHTMLOutput_CSSURLs(): array {
+        return [
+            Colby::flexpath(__CLASS__, 'v108.css', cbsiteurl()),
+        ];
     }
 
+
     /**
-     * @param hex160? $model->themeID
+     * @param object $model
      *
-     * @return null
+     * @return void
      */
-    static function CBView_render(stdClass $model = null) {
+    static function CBView_render(stdClass $model): void {
         $year = gmdate('Y');
 
         $sitePreferences = CBSitePreferences::model();
@@ -25,7 +28,8 @@ final class MDStandardPageFooterView {
             <div class="container">
                 <div>
                     <div>
-                        Technology, Software Development, and Consulting for Websites
+                        Technology, Software Development, and Consulting for
+                        Websites
                     </div>
                 </div>
                 <div>
@@ -49,25 +53,31 @@ final class MDStandardPageFooterView {
                         14150 NE 20th Street<br>
                         F1-452<br>
                         Bellevue, WA 98007<br>
-                        <a href="mailto:matt@mattifesto.com">matt@mattifesto.com</a>
+                        <a href="mailto:matt@mattifesto.com"><?=
+                            'matt@mattifesto.com'
+                        ?></a>
                     </div>
                 </div>
             </div>
-            <div class="copyright">Copyright &copy; <?= gmdate('Y') ?> Mattifesto Design</div>
+            <div class="copyright">
+                Copyright &copy; <?= gmdate('Y') ?>
+                Mattifesto Design
+            </div>
         </footer>
 
         <?php
     }
 
+
     /**
-     * @param stdClass $spec
+     * @param object $spec
      *
-     * @return stdClass
+     * @return object
      */
-    static function CBModel_toModel(stdClass $spec) {
+    static function CBModel_build(stdClass $spec): stdClass {
         return (object)[
-            'className' => __CLASS__,
             'themeID' => CBModel::value($spec, 'themeID'),
         ];
     }
+    /* CBModel_build() */
 }
