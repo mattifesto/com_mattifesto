@@ -6,19 +6,24 @@ final class CBPageHelpers {
      * @return void
      */
     static function renderDefaultPageHeader(): void {
-        CBView::renderModelAsHTML((object)[
-            'className' => 'MDPageHeaderView',
-        ]);
+        CBView::render(
+            (object)[
+                'className' => 'MDPageHeaderView',
+            ]
+        );
     }
+
 
     /**
      * @param object $properties
      *
-     * @return null
+     * @return void
      */
-    static function renderDefaultPageFooter(stdClass $properties) {
-        CBView::renderModelAsHTML((object)[
-            'className' => 'MDStandardPageFooterView',
-        ]);
+    static function renderDefaultPageFooter(stdClass $properties): void {
+        CBView::render(
+            (object)[
+                'className' => 'MDStandardPageFooterView',
+            ]
+        );
     }
 }
