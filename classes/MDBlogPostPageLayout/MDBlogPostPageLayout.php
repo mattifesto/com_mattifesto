@@ -26,7 +26,10 @@ final class MDBlogPostPageLayout {
      *
      * @return null
      */
-    static function render(stdClass $layoutModel, callable $renderContentCallback) {
+    static function render(
+        stdClass $layoutModel,
+        callable $renderContentCallback
+    ) {
         $stylesID = CBModel::value($layoutModel, 'stylesID');
         $stylesCSS = CBModel::value($layoutModel, 'stylesCSS');
 
@@ -60,7 +63,9 @@ final class MDBlogPostPageLayout {
                     CBView::render((object)[
                         'className' => 'CBPageTitleAndDescriptionView',
                         'showPublicationDate' => true,
-                        'useLightTextColors' => !empty($layoutModel->useLightTextColors),
+                        'useLightTextColors' => !empty(
+                            $layoutModel->useLightTextColors
+                        ),
                     ]);
                 }
 
@@ -76,25 +81,43 @@ final class MDBlogPostPageLayout {
         CBPageHelpers::renderDefaultPageFooter((object)[]);
     }
 
+
     /**
-     * @param stdClass $spec
+     * @param object $spec
      *
-     * @return stdClass
+     * @return object
      */
-    static function CBModel_toModel(stdClass $spec) {
+    static function CBModel_build(stdClass $spec): stdClass {
         $model = (object)[
-            'className' => __CLASS__,
-            'addBottomPadding' => CBModel::value($spec, 'addBottomPadding', false, 'boolval'),
-            'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
-            'useLightTextColors' => CBModel::value($spec, 'useLightTextColors', false, 'boolval'),
+            'addBottomPadding' => CBModel::valueToBool(
+                $spec,
+                'addBottomPadding'
+            ),
+            'hidePageTitleAndDescriptionView' => CBModel::valueToBool(
+                $spec,
+                'hidePageTitleAndDescriptionView'
+            ),
+            'useLightTextColors' => CBModel::valueToBool(
+                $spec,
+                'useLightTextColors'
+            ),
         ];
 
-        if (!empty($stylesTemplate = CBModel::value($spec, 'stylesTemplate', '', 'trim'))) {
+        $stylesTemplate = trim(
+            CBModel::valueToString($spec, 'stylesTemplate')
+        );
+
+        if (!empty($stylesTemplate)) {
             $model->stylesID = CBHex160::random();
             $localCSSClassName = "T{$model->stylesID}";
-            $model->stylesCSS = CBView::localCSSTemplateToLocalCSS($stylesTemplate, 'view', ".{$localCSSClassName}");
+            $model->stylesCSS = CBView::localCSSTemplateToLocalCSS(
+                $stylesTemplate,
+                'view',
+                ".{$localCSSClassName}"
+            );
         }
 
         return $model;
     }
+    /* CBModel_build() */
 }
