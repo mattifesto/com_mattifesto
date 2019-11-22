@@ -108,7 +108,7 @@ final class MDBlogPostPageLayout {
         );
 
         if (!empty($stylesTemplate)) {
-            $model->stylesID = CBHex160::random();
+            $model->stylesID = CBID::generateRandomCBID();
             $localCSSClassName = "T{$model->stylesID}";
             $model->stylesCSS = CBView::localCSSTemplateToLocalCSS(
                 $stylesTemplate,

@@ -23,7 +23,7 @@ final class MDTopicPageUpdateTask {
         $pageIDs = CBPages::fetchPublishedPageIDsByURI($URI);
 
         if (empty($pageIDs)) {
-            $pageIDs = [CBHex160::random()];
+            $pageIDs = [CBID::generateRandomCBID()];
         }
 
         foreach ($pageIDs as $pageID) {
