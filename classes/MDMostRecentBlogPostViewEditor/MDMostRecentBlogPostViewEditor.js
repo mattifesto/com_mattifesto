@@ -2,16 +2,17 @@
 /* jshint strict: global */
 /* exported MDMostRecentBlogPostViewEditor */
 /* globals
-    CBUI */
+    CBUI,
+*/
+
+
 
 var MDMostRecentBlogPostViewEditor = {
 
     /**
-     * @param object args
-     *
      * @return Element
      */
-    createEditor: function (args) {
+    createEditor: function () {
         var element = document.createElement("div");
         element.className = "MDMostRecentBlogPostViewEditor";
 
@@ -19,9 +20,11 @@ var MDMostRecentBlogPostViewEditor = {
 
         var section = CBUI.createSection();
         var item = CBUI.createSectionItem3();
-        var part = CBUI.createMessageSectionItemPart({
-            message: "There are no editable properties.",
-        });
+        var part = CBUI.createMessageSectionItemPart(
+            {
+                message: "There are no editable properties.",
+            }
+        );
 
         item.appendPart(part);
         section.appendChild(item.element);
@@ -31,4 +34,6 @@ var MDMostRecentBlogPostViewEditor = {
 
         return element;
     },
+    /* createEditor() */
+
 };
