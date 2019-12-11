@@ -1,5 +1,13 @@
-"use strict"; /* jshint strict: global */
-/* globals CBUI, CBUIBooleanEditor, CBUIStringEditor */
+"use strict";
+/* jshint strict: global */
+/* exported MDBlogPostPageLayoutEditor */
+/* global
+    CBUI,
+    CBUIBooleanEditor,
+    CBUIStringEditor,
+*/
+
+
 
 var MDBlogPostPageLayoutEditor = {
 

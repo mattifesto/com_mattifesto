@@ -2,6 +2,10 @@
 
 final class MDBlogPostPageLayoutEditor {
 
+    /* -- CBHTMLOutput interfaces -- -- -- -- -- */
+
+
+
     /**
      * @return [string]
      */
@@ -14,12 +18,14 @@ final class MDBlogPostPageLayoutEditor {
     }
 
 
+
     /**
      * @return [string]
      */
     static function CBHTMLOutput_JavaScriptURLs() {
         return [
-            Colby::flexpath(__CLASS__, 'js', cbsiteurl()),
+            Colby::flexpath(__CLASS__, 'v130.js', cbsiteurl()),
         ];
     }
+
 }
