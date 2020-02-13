@@ -188,19 +188,13 @@ final class Installer {
 
         if (empty($copyFromDirectory)) {
             Installer::exec(
-                'git submodule add ' .
+                'git submodule add -b 5.x ' .
                 'https://github.com/swiftmailer/swiftmailer.git ' .
                 'swiftmailer'
             );
 
             Installer::exec(
                 'git submodule update --init --recursive'
-            );
-
-            chdir($websiteDirectory . '/swiftmailer');
-
-            Installer::exec(
-                'git checkout v5.4.12'
             );
         } else {
             Installer::exec(
