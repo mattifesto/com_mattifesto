@@ -2,6 +2,10 @@
 
 final class MDStandardPageFooterView {
 
+    /* -- CBHTMLOutput interfaces -- -- -- -- -- */
+
+
+
     /**
      * @return [string]
      */
@@ -12,12 +16,42 @@ final class MDStandardPageFooterView {
     }
 
 
+
+    /* -- CBModel interfaces -- -- -- -- -- */
+
+
+
+    /**
+     * @param object $spec
+     *
+     * @return object
+     */
+    static function CBModel_build(
+        stdClass $spec
+    ): stdClass {
+        return (object)[
+            'themeID' => CBModel::value(
+                $spec,
+                'themeID'
+            ),
+        ];
+    }
+    /* CBModel_build() */
+
+
+
+    /* -- CBView interfaces -- -- -- -- -- */
+
+
+
     /**
      * @param object $model
      *
      * @return void
      */
-    static function CBView_render(stdClass $model): void {
+    static function CBView_render(
+        stdClass $model
+    ): void {
         $year = gmdate('Y');
 
         $sitePreferences = CBSitePreferences::model();
@@ -34,6 +68,12 @@ final class MDStandardPageFooterView {
                 </div>
                 <div>
                     <ul>
+                        <li>
+                            <a href="/payment/">
+                                Make a Payment
+                            </a>
+                        </li>
+
                         <?php
 
                         if (!empty($URL = $sitePreferences->facebookURL)) {
@@ -45,6 +85,7 @@ final class MDStandardPageFooterView {
                         }
 
                         ?>
+
                     </ul>
                 </div>
                 <div>
@@ -67,17 +108,6 @@ final class MDStandardPageFooterView {
 
         <?php
     }
+    /* CBView_render() */
 
-
-    /**
-     * @param object $spec
-     *
-     * @return object
-     */
-    static function CBModel_build(stdClass $spec): stdClass {
-        return (object)[
-            'themeID' => CBModel::value($spec, 'themeID'),
-        ];
-    }
-    /* CBModel_build() */
 }
