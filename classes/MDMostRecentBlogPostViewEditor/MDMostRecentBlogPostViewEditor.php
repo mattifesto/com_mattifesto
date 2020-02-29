@@ -9,9 +9,9 @@ final class MDMostRecentBlogPostViewEditor {
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_requiredClassNames() {
+    static function CBHTMLOutput_JavaScriptURLs() {
         return [
-            'CBUI',
+            Colby::flexpath(__CLASS__, 'v137.js', cbsiteurl()),
         ];
     }
 
@@ -20,9 +20,9 @@ final class MDMostRecentBlogPostViewEditor {
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_JavaScriptURLs() {
+    static function CBHTMLOutput_requiredClassNames() {
         return [
-            Colby::flexpath(__CLASS__, 'v130.js', cbsiteurl()),
+            'CBUI',
         ];
     }
 

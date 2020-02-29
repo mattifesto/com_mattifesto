@@ -1,5 +1,6 @@
 "use strict";
 /* jshint strict: global */
+/* jshint esversion: 6 */
 /* exported MDMostRecentBlogPostViewEditor */
 /* globals
     CBUI,
@@ -12,28 +13,21 @@ var MDMostRecentBlogPostViewEditor = {
     /**
      * @return Element
      */
-    createEditor: function () {
-        var element = document.createElement("div");
-        element.className = "MDMostRecentBlogPostViewEditor";
-
-        element.appendChild(CBUI.createHalfSpace());
-
-        var section = CBUI.createSection();
-        var item = CBUI.createSectionItem3();
-        var part = CBUI.createMessageSectionItemPart(
-            {
-                message: "There are no editable properties.",
-            }
+    CBUISpecEditor_createEditorElement() {
+        let elements = CBUI.createElementTree(
+            "MDMostRecentBlogPostViewEditor",
+            "CBUI_sectionContainer",
+            "CBUI_section",
+            "CBUI_container_topAndBottom",
+            "MDMostRecentBlogPostViewEditor_text CBUI_textAlign_center"
         );
 
-        item.appendPart(part);
-        section.appendChild(item.element);
-        element.appendChild(section);
+        let element = elements[0];
 
-        element.appendChild(CBUI.createHalfSpace());
+        elements[4].textContent = "This view has no editable properties.";
 
         return element;
     },
-    /* createEditor() */
+    /* CBUISpecEditor_createEditorElement() */
 
 };
