@@ -9,11 +9,9 @@ final class MDBlogPostPageLayoutEditor {
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_requiredClassNames(): array {
+    static function CBHTMLOutput_JavaScriptURLs() {
         return [
-            'CBUI',
-            'CBUIBooleanEditor',
-            'CBUIStringEditor',
+            Colby::flexpath(__CLASS__, 'v137.js', cbsiteurl()),
         ];
     }
 
@@ -22,10 +20,13 @@ final class MDBlogPostPageLayoutEditor {
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_JavaScriptURLs() {
+    static function CBHTMLOutput_requiredClassNames(): array {
         return [
-            Colby::flexpath(__CLASS__, 'v130.js', cbsiteurl()),
+            'CBUI',
+            'CBUIBooleanEditor',
+            'CBUIStringEditor',
         ];
     }
+    /* CBHTMLOutput_requiredClassNames() */
 
 }

@@ -1,5 +1,6 @@
 "use strict";
 /* jshint strict: global */
+/* jshint esversion: 6 */
 /* exported MDBlogPostPageLayoutEditor */
 /* global
     CBUI,
@@ -11,57 +12,108 @@
 
 var MDBlogPostPageLayoutEditor = {
 
+    /* -- CBUISpecEditor interfaces -- -- -- -- -- */
+
+
+
     /**
+     * @param object args
      *
+     *      {
+     *          spec: object
+     *          specChangedCallback: function
+     *      }
+     *
+     * @return Element
      */
-    createEditor : function (args) {
-        var element = document.createElement("div");
-        element.className = "MDBlogPostPageLayoutEditor";
-        var section = CBUI.createSection();
-        var item = CBUI.createSectionItem();
+    CBUISpecEditor_createEditorElement(
+        args
+    ) {
+        let elements, sectionElement;
+        let spec = args.spec;
+        let specChangedCallback = args.specChangedCallback;
 
-        item.appendChild(CBUIBooleanEditor.create({
-            labelText : "Hide Page Title and Description View",
-            propertyName : "hidePageTitleAndDescriptionView",
-            spec : args.spec,
-            specChangedCallback : args.specChangedCallback,
-        }).element);
-        section.appendChild(item);
+        let element = CBUI.createElement(
+            "MDBlogPostPageLayoutEditor"
+        );
 
-        item = CBUI.createSectionItem();
-        item.appendChild(CBUIBooleanEditor.create({
-            labelText: "Use Light Text Colors",
-            propertyName: "useLightTextColors",
-            spec: args.spec,
-            specChangedCallback: args.specChangedCallback,
-        }).element);
-        section.appendChild(item);
 
-        item = CBUI.createSectionItem();
-        item.appendChild(CBUIBooleanEditor.create({
-            labelText: "Add Bottom Padding",
-            propertyName: "addBottomPadding",
-            spec: args.spec,
-            specChangedCallback: args.specChangedCallback,
-        }).element);
-        section.appendChild(item);
-        element.appendChild(section);
+        /* properties */
+
+        elements = CBUI.createElementTree(
+            "CBUI_sectionContainer",
+            "CBUI_section"
+        );
+
+        element.appendChild(
+            elements[0]
+        );
+
+        sectionElement = elements[1];
+
+
+        sectionElement.appendChild(
+            CBUIBooleanEditor.create(
+                {
+                    labelText: "Hide Page Title and Description View",
+                    propertyName: "hidePageTitleAndDescriptionView",
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
+                }
+            ).element
+        );
+
+
+        sectionElement.appendChild(
+            CBUIBooleanEditor.create(
+                {
+                    labelText: "Use Light Text Colors",
+                    propertyName: "useLightTextColors",
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
+                }
+            ).element
+        );
+
+
+        sectionElement.appendChild(
+            CBUIBooleanEditor.create(
+                {
+                    labelText: "Add Bottom Padding",
+                    propertyName: "addBottomPadding",
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
+                }
+            ).element
+        );
+
 
         /* local styles */
 
-        element.appendChild(CBUI.createHalfSpace());
+        elements = CBUI.createElementTree(
+            "CBUI_sectionContainer",
+            "CBUI_section"
+        );
 
-        section = CBUI.createSection();
-        item = CBUI.createSectionItem();
-        item.appendChild(CBUIStringEditor.createEditor({
-            labelText : "Styles Template",
-            propertyName : "stylesTemplate",
-            spec : args.spec,
-            specChangedCallback : args.specChangedCallback,
-        }).element);
-        section.appendChild(item);
-        element.appendChild(section);
+        element.appendChild(
+            elements[0]
+        );
+
+        sectionElement = elements[1];
+
+        sectionElement.appendChild(
+            CBUIStringEditor.createEditor(
+                {
+                    labelText: "Styles Template",
+                    propertyName: "stylesTemplate",
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
+                }
+            ).element
+        );
 
         return element;
     },
+    /* CBUISpecEditor_createEditorElement() */
+
 };
