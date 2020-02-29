@@ -1,5 +1,6 @@
 "use strict";
 /* jshint strict: global */
+/* jshint esversion: 6 */
 /* exported MDStandardPageLayoutEditor */
 /* globals
     CBUI,
@@ -11,56 +12,82 @@
 
 var MDStandardPageLayoutEditor = {
 
+    /* -- CBUISpecEditor interfaces -- -- -- -- -- */
+
+
+
     /**
      * @param object args
      *
+     *      {
+     *          spec: object
+     *          specChangedCallback: function
+     *      }
+     *
      * @return Element
      */
-    createEditor: function (args) {
-        var element = document.createElement("div");
-        element.className = "MDStandardPageLayoutEditor";
-        var section = CBUI.createSection();
-        var item = CBUI.createSectionItem();
+    CBUISpecEditor_createEditorElement(
+        args
+    ) {
+        let elements, sectionElement;
+        let spec = args.spec;
+        let specChangedCallback = args.specChangedCallback;
 
-        item.appendChild(
+        let element = CBUI.createElement(
+            "MDStandardPageLayoutEditor"
+        );
+
+        /* properties */
+
+        elements = CBUI.createElementTree(
+            "CBUI_sectionContainer",
+            "CBUI_section"
+        );
+
+        element.appendChild(
+            elements[0]
+        );
+
+        sectionElement = elements[1];
+
+        sectionElement.appendChild(
             CBUIBooleanEditor.create(
                 {
                     labelText: "Hide Page Title and Description View",
                     propertyName: "hidePageTitleAndDescriptionView",
-                    spec: args.spec,
-                    specChangedCallback: args.specChangedCallback,
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
                 }
             ).element
         );
 
-        section.appendChild(item);
-        element.appendChild(section);
 
         /* local styles */
 
-        element.appendChild(
-            CBUI.createHalfSpace()
+        elements = CBUI.createElementTree(
+            "CBUI_sectionContainer",
+            "CBUI_section"
         );
 
-        section = CBUI.createSection();
-        item = CBUI.createSectionItem();
+        element.appendChild(
+            elements[0]
+        );
 
-        item.appendChild(
+        sectionElement = elements[1];
+
+        sectionElement.appendChild(
             CBUIStringEditor.createEditor(
                 {
                     labelText: "Styles Template",
                     propertyName: "stylesTemplate",
-                    spec: args.spec,
-                    specChangedCallback: args.specChangedCallback,
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
                 }
             ).element
         );
 
-        section.appendChild(item);
-        element.appendChild(section);
-
         return element;
     },
-    /* createEditor() */
+    /* CBUISpecEditor_createEditorElement() */
 
 };
