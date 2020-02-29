@@ -22,6 +22,7 @@ final class MDBlogPostPageLayoutEditor {
      */
     static function CBHTMLOutput_requiredClassNames(): array {
         return [
+            'CBModel',
             'CBUI',
             'CBUIBooleanEditor',
             'CBUIStringEditor',

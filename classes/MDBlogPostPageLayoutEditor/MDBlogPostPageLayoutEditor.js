@@ -3,6 +3,7 @@
 /* jshint esversion: 6 */
 /* exported MDBlogPostPageLayoutEditor */
 /* global
+    CBModel,
     CBUI,
     CBUIBooleanEditor,
     CBUIStringEditor,
@@ -101,15 +102,21 @@ var MDBlogPostPageLayoutEditor = {
 
         sectionElement = elements[1];
 
+        let stylesTemplateEditor = CBUIStringEditor.create();
+        stylesTemplateEditor.title = "Styles Template";
+
+        stylesTemplateEditor.value = CBModel.valueToString(
+            spec,
+            "stylesTemplate"
+        );
+
+        stylesTemplateEditor.changed = function () {
+            spec.stylesTemplate = stylesTemplateEditor.value;
+            specChangedCallback();
+        };
+
         sectionElement.appendChild(
-            CBUIStringEditor.createEditor(
-                {
-                    labelText: "Styles Template",
-                    propertyName: "stylesTemplate",
-                    spec: spec,
-                    specChangedCallback: specChangedCallback,
-                }
-            ).element
+            stylesTemplateEditor.element
         );
 
         return element;
