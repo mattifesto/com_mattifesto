@@ -3,6 +3,7 @@
 /* jshint esversion: 6 */
 /* exported MDStandardPageLayoutEditor */
 /* globals
+    CBModel,
     CBUI,
     CBUIBooleanEditor,
     CBUIStringEditor,
@@ -75,15 +76,21 @@ var MDStandardPageLayoutEditor = {
 
         sectionElement = elements[1];
 
+        let stylesTemplateEditor = CBUIStringEditor.create();
+        stylesTemplateEditor.title = "Styles Template";
+
+        stylesTemplateEditor.value = CBModel.valueToString(
+            spec,
+            "stylesTemplate"
+        );
+
+        stylesTemplateEditor.changed = function () {
+            spec.stylesTemplate = stylesTemplateEditor.value;
+            specChangedCallback();
+        };
+
         sectionElement.appendChild(
-            CBUIStringEditor.createEditor(
-                {
-                    labelText: "Styles Template",
-                    propertyName: "stylesTemplate",
-                    spec: spec,
-                    specChangedCallback: specChangedCallback,
-                }
-            ).element
+            stylesTemplateEditor.element
         );
 
         return element;
