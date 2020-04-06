@@ -4,6 +4,3 @@
 [submodule "swiftmailer"]
 	path = swiftmailer
 	url = git://github.com/swiftmailer/swiftmailer.git
-[submodule "SCShoppingCartLibrary"]
-	path = SCShoppingCartLibrary
-	url = mdgit@mattifesto.com:~/libraries/SCShoppingCartLibrary.git
