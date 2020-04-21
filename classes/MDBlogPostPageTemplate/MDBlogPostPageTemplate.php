@@ -2,6 +2,10 @@
 
 final class MDBlogPostPageTemplate {
 
+    /* -- CBInstall interfaces -- -- -- -- -- */
+
+
+
     /**
      * @return void
      */
@@ -9,12 +13,22 @@ final class MDBlogPostPageTemplate {
         CBModelTemplateCatalog::install(__CLASS__);
     }
 
+
+
     /**
      * @return [string]
      */
     static function CBInstall_requiredClassNames(): array {
-        return ['CBModelTemplateCatalog'];
+        return [
+            'CBModelTemplateCatalog'
+        ];
     }
+
+
+
+    /* -- CBModelTemplate interfaces -- -- -- -- -- */
+
+
 
     /**
      * @return object
@@ -34,6 +48,9 @@ final class MDBlogPostPageTemplate {
                     'className' => 'CBArtworkView',
                 ],
                 (object)[
+                    'className' => 'CBYouTubeView',
+                ],
+                (object)[
                     'className' => 'CBMessageView',
                 ],
             ],
@@ -41,6 +58,9 @@ final class MDBlogPostPageTemplate {
 
         return $spec;
     }
+    /* CBModelTemplate_spec() */
+
+
 
     /**
      * @return string
@@ -48,4 +68,5 @@ final class MDBlogPostPageTemplate {
     static function CBModelTemplate_title() {
         return 'Blog Post';
     }
+
 }
