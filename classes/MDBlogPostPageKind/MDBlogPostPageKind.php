@@ -2,6 +2,10 @@
 
 final class MDBlogPostPageKind {
 
+    /* -- CBInstall interfaces -- -- -- -- -- */
+
+
+
     /**
      * @return void
      */
@@ -9,10 +13,15 @@ final class MDBlogPostPageKind {
         CBPageKindCatalog::install(__CLASS__);
     }
 
+
+
     /**
      * @return [string]
      */
     static function CBInstall_requiredClassNames(): array {
-        return ['CBPageKindCatalog'];
+        return [
+            'CBPageKindCatalog'
+        ];
     }
+
 }
