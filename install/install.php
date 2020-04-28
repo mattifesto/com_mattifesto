@@ -171,23 +171,6 @@ final class Installer {
 
         if (empty($copyFromDirectory)) {
             Installer::exec(
-                'git submodule add ' .
-                'mdgit@mattifesto.com:~/libraries/SCShoppingCartLibrary.git ' .
-                'libraries/SCShoppingCartLibrary'
-            );
-        } else {
-            Installer::exec(
-                "mkdir {$websiteDirectory}/libraries"
-            );
-
-            Installer::exec(
-                "cp -R {$copyFromDirectory}/SCShoppingCartLibrary " .
-                "{$websiteDirectory}/libraries"
-            );
-        }
-
-        if (empty($copyFromDirectory)) {
-            Installer::exec(
                 'git submodule add -b 5.x ' .
                 'https://github.com/swiftmailer/swiftmailer.git ' .
                 'swiftmailer'
