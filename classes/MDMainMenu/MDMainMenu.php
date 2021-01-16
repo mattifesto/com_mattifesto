@@ -2,11 +2,19 @@
 
 final class MDMainMenu {
 
+    /* -- CBInstall interfaces -- */
+
+
+
     /**
      * @return void
      */
-    static function CBInstall_install(): void {
-        $originalSpec = CBModels::fetchSpecByID(MDMainMenu::ID());
+    static function
+    CBInstall_install(
+    ): void {
+        $originalSpec = CBModels::fetchSpecByID(
+            MDMainMenu::ID()
+        );
 
         if (empty($originalSpec)) {
             $spec = (object)[
@@ -15,7 +23,9 @@ final class MDMainMenu {
                 'titleURI' => '/',
             ];
         } else {
-            $spec = CBModel::clone($originalSpec);
+            $spec = CBModel::clone(
+                $originalSpec
+            );
         }
 
         $spec->className = 'CBMenu';
@@ -23,23 +33,45 @@ final class MDMainMenu {
         /* save if modified */
 
         if ($spec != $originalSpec) {
-            CBDB::transaction(function () use ($spec) {
-                CBModels::save($spec);
-            });
+            CBDB::transaction(
+                function () use ($spec) {
+                    CBModels::save(
+                        $spec
+                    );
+                }
+            );
         }
     }
+    /* CBInstall_install() */
+
+
 
     /**
      * @return [string]
      */
-    static function CBInstall_requiredClassNames(): array {
-        return ['CBModels'];
+    static function
+    CBInstall_requiredClassNames(
+    ): array {
+        return [
+            'CBModels'
+        ];
     }
+    /* CBInstall_requiredClassNames() */
+
+
+
+    /* -- functions -- */
+
+
 
     /**
      * @return ID
      */
-    static function ID(): string {
+    static function
+    ID(
+    ): string {
         return '56dbb447cf11414e5c3df442edc7ca6c3967a9ca';
     }
+    /* ID() */
+
 }
