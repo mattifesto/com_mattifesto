@@ -12,35 +12,28 @@ final class MDMainMenu {
     static function
     CBInstall_install(
     ): void {
-        $originalSpec = CBModels::fetchSpecByID(
+        $updater = CBModelUpdater::fetchByCBID(
             MDMainMenu::ID()
         );
 
-        if (empty($originalSpec)) {
-            $spec = (object)[
-                'ID' => MDMainMenu::ID(),
-                'title' => 'Mattifesto',
-                'titleURI' => '/',
-            ];
-        } else {
-            $spec = CBModel::clone(
-                $originalSpec
-            );
-        }
+        $menuSpec = ($updater->CBModelUpdater_getSpec)();
 
-        $spec->className = 'CBMenu';
+        CBModel::setClassName(
+            $menuSpec,
+            'CBMenu'
+        );
 
-        /* save if modified */
+        CBMenu::setTitle(
+            $menuSpec,
+            'Mattifesto'
+        );
 
-        if ($spec != $originalSpec) {
-            CBDB::transaction(
-                function () use ($spec) {
-                    CBModels::save(
-                        $spec
-                    );
-                }
-            );
-        }
+        CBMenu::setTitleURL(
+            $menuSpec,
+            '/'
+        );
+
+        ($updater->CBModelUpdater_save)();
     }
     /* CBInstall_install() */
 
@@ -53,7 +46,7 @@ final class MDMainMenu {
     CBInstall_requiredClassNames(
     ): array {
         return [
-            'CBModels'
+            'CBModels',
         ];
     }
     /* CBInstall_requiredClassNames() */
