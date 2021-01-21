@@ -159,7 +159,7 @@ final class Installer {
         if (empty($copyFromDirectory)) {
             Installer::exec(
                 'git submodule add ' .
-                'mdgit@mattifesto.com:~/colby.git ' .
+                'git@github.com:mattifesto/colby.git ' .
                 'colby'
             );
         } else {
