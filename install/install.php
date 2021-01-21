@@ -95,17 +95,6 @@ final class Installer {
             }
         );
 
-        /* MySQL hostname */
-
-        echo <<<EOT
-
-        use new method? [y|n]:
-        EOT;
-
-        $useNewMethod = trim(
-            fgets(STDIN)
-        ) === 'y';
-
 
         /* website directory */
 
@@ -186,22 +175,10 @@ final class Installer {
             );
         }
 
-        if ($useNewMethod) {
-            include(
-                "{$websiteDirectory}/colby/classes/CBSetup/CBSetup.php"
-            );
-
-            CBSetup::bootstrap(
-                $websiteDirectory
-            );
-
-            echo "Go to your site's homepage to finish installing.\n\n";
-        } else {
-            echo (
-                "Go to your site's /colby/setup/ page " .
-                "to finish installing.\n\n"
-            );
-        }
+        echo (
+            "Go to your site's /colby/setup/ page " .
+            "to finish installing.\n\n"
+        );
 
         Installer::finish();
     }
