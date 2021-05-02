@@ -146,7 +146,7 @@ final class Installer {
         // @TODO check if website directory already EXISTS
 
         Installer::exec(
-            "git init {$websiteDirectory}"
+            "git init {$websiteDirectory} --initial-branch=main"
         );
 
         chdir($websiteDirectory);
