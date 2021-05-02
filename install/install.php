@@ -101,6 +101,45 @@ final class Installer {
             }
         );
 
+        $options = getopt(
+            '',
+            [
+                'copyfrom:'
+            ]
+        );
+
+
+
+        /* for Colby development only */
+
+        if (
+            isset(
+                $options['copyfrom']
+            )
+        ) {
+            $copyFromDirectory = $options['copyfrom'];
+
+            if (!is_dir($copyFromDirectory)) {
+                throw new Exception(
+                    "{$copyFromDirectory} does not exist"
+                );
+            }
+
+            echo <<<EOT
+
+                -- -- -- -- -- WARNING -- -- -- -- --
+
+                The --copyfrom option should only be used when developing Colby
+                installation code. It does not create a viable website.
+
+
+
+            EOT;
+        } else {
+            $copyFromDirectory = '';
+        }
+
+
 
         /* website directory */
 
@@ -120,27 +159,6 @@ final class Installer {
             )
         );
 
-
-        /* copy from directory */
-
-        echo <<<EOT
-
-        Enter the directory to copy from.
-
-        copy from directory:
-        EOT;
-
-        $copyFromDirectory = trim(
-            fgets(STDIN)
-        );
-
-        if (!empty($copyFromDirectory)) {
-            if (!is_dir($copyFromDirectory)) {
-                throw new Exception(
-                    "{$copyFromDirectory} does not exist"
-                );
-            }
-        }
 
 
         // @TODO check if website directory already EXISTS
