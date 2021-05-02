@@ -7,7 +7,8 @@ final class Installer {
      *
      * @return void
      */
-    static function exec(
+    static function
+    exec(
         string $command
     ): void {
         echo <<<EOT
@@ -52,7 +53,9 @@ final class Installer {
     /**
      * @return void
      */
-    static function finish(): void {
+    static function
+    finish(
+    ): void {
         unlink(__FILE__);
         exit;
     }
@@ -65,7 +68,8 @@ final class Installer {
      *
      * @return void
      */
-    static function handleError(
+    static function
+    handleError(
         Throwable $error
     ): void {
         $oneLineErrorReport = Installer::throwableToOneLineErrorReport(
@@ -88,7 +92,9 @@ final class Installer {
     /**
      * @return void
      */
-    static function install(): void {
+    static function
+    install(
+    ): void {
         set_exception_handler(
             function (Throwable $error) {
                 Installer::handleError($error);
@@ -193,7 +199,8 @@ final class Installer {
      *
      * @return string
      */
-    static function throwableToOneLineErrorReport(
+    static function
+    throwableToOneLineErrorReport(
         Throwable $throwable
     ): string {
         $message = $throwable->getMessage();
