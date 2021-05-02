@@ -3,6 +3,36 @@
 final class Installer {
 
     /**
+     * @param string $websiteDomain
+     *
+     * @return string
+     */
+    static function
+    convertDomainToAbsoluteDirectory(
+        string $websiteDomain
+    ): string {
+        $parts = explode(
+            '.',
+            $websiteDomain
+        );
+
+        $parts = array_reverse(
+            $parts
+        );
+
+
+        $directory = implode(
+            '_',
+            $parts
+        );
+
+        return __DIR__ . "/{$directory}";
+    }
+    /* convertDomainToAbsoluteDirectory() */
+
+
+
+    /**
      * @param string $command
      *
      * @return void
@@ -145,29 +175,40 @@ final class Installer {
 
         echo <<<EOT
 
-        Enter the directory for the website.
+        Enter the full domain for the website, for example
+        "mattifesto.ld17.mtfs.us"
 
-        directory:
+        website domain:
         EOT;
 
-        $websiteDirectory = (
-            __DIR__ .
-            '/' .
-            rtrim(
+        $websiteDomain = (
+            trim(
                 fgets(STDIN),
                 "\r\n"
             )
         );
 
+        // @TODO validate domain
 
-
-        // @TODO check if website directory already EXISTS
-
-        Installer::exec(
-            "git init {$websiteDirectory} --initial-branch=main"
+        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
+            $websiteDomain
         );
 
-        chdir($websiteDirectory);
+        Installer::exec(
+            "mkdir {$websiteDirectory}"
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}/logs"
+        );
+
+        $documentRootDirectory = "{$websiteDirectory}/document_root";
+
+        Installer::exec(
+            "git init {$documentRootDirectory} --initial-branch=main"
+        );
+
+        chdir($documentRootDirectory);
 
         if (empty($copyFromDirectory)) {
             Installer::exec(
