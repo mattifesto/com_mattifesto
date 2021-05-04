@@ -37,6 +37,63 @@ final class Installer {
 
 
     /**
+     * @return void
+     */
+    static function
+    doAction_Installer_actionName_brandNew(
+    ): void {
+        $websiteDomain = Installer::getWebsiteDomain();
+
+        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
+            $websiteDomain
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}"
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}/logs"
+        );
+
+        $documentRootDirectory = "{$websiteDirectory}/document_root";
+
+        Installer::exec(
+            "git init {$documentRootDirectory} --initial-branch=main"
+        );
+
+        chdir(
+            $documentRootDirectory
+        );
+
+        Installer::exec(
+            'git submodule add ' .
+            'https://github.com/mattifesto/colby.git ' .
+            'colby'
+        );
+
+        Installer::exec(
+            'git submodule add -b 5.x ' .
+            'https://github.com/swiftmailer/swiftmailer.git ' .
+            'swiftmailer'
+        );
+
+        Installer::exec(
+            'git submodule update --init --recursive'
+        );
+
+        echo <<<EOT
+
+            Go to your site's /colby/setup/ page finish installing.
+
+
+        EOT;
+    }
+    /* doAction_Installer_actionName_brandNew() */
+
+
+
+    /**
      * @param string $command
      *
      * @return void
