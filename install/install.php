@@ -161,6 +161,41 @@ final class Installer {
 
 
     /**
+     * @return void
+     */
+    static function
+    doAction_Installer_actionName_directories(
+    ): void {
+        $websiteDomain = Installer::getWebsiteDomain();
+
+        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
+            $websiteDomain
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}"
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}/logs"
+        );
+
+        $documentRootDirectory = "{$websiteDirectory}/document_root";
+
+        echo <<<EOT
+
+            Now you must create the {$documentRootDirectory} for your website.
+
+
+        EOT;
+
+
+    }
+    /* doAction_Installer_actionName_directories() */
+
+
+
+    /**
      * @param string $command
      *
      * @return void
