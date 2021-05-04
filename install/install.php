@@ -486,101 +486,18 @@ final class Installer {
         ) {
             $copyFromDirectory = $options['copyfrom'];
 
-            if (!is_dir($copyFromDirectory)) {
-                throw new Exception(
-                    "{$copyFromDirectory} does not exist"
-                );
-            }
-
-            echo <<<EOT
-
-                -- -- -- -- -- WARNING -- -- -- -- --
-
-                The --copyfrom option should only be used when developing Colby
-                installation code. It does not create a viable website.
-
-
-
-            EOT;
-        } else {
-            $copyFromDirectory = '';
-        }
-
-
-
-        /* website directory */
-
-        echo <<<EOT
-
-        Enter the full domain for the website, for example
-        "mattifesto.ld17.mtfs.us"
-
-        website domain:
-        EOT;
-
-        $websiteDomain = (
-            trim(
-                fgets(STDIN),
-                "\r\n"
-            )
-        );
-
-        // @TODO validate domain
-
-        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
-            $websiteDomain
-        );
-
-        Installer::exec(
-            "mkdir {$websiteDirectory}"
-        );
-
-        Installer::exec(
-            "mkdir {$websiteDirectory}/logs"
-        );
-
-        $documentRootDirectory = "{$websiteDirectory}/document_root";
-
-        Installer::exec(
-            "git init {$documentRootDirectory} --initial-branch=main"
-        );
-
-        chdir($documentRootDirectory);
-
-        if (empty($copyFromDirectory)) {
-            Installer::exec(
-                'git submodule add ' .
-                'https://github.com/mattifesto/colby.git ' .
-                'colby'
+            Installer::doAction_Installer_actionName_copyFrom(
+                $copyFromDirectory
             );
         } else {
-            Installer::exec(
-                "cp -R {$copyFromDirectory}/colby " .
-                "{$websiteDirectory}"
+            $actionIndex = Installer::getActionIndex();
+            $actionName = Installer::$actions[$actionIndex]->Installer_actionName;
+            $functionName = "Installer::doAction_{$actionName}";
+
+            call_user_func(
+                $functionName
             );
         }
-
-        if (empty($copyFromDirectory)) {
-            Installer::exec(
-                'git submodule add -b 5.x ' .
-                'https://github.com/swiftmailer/swiftmailer.git ' .
-                'swiftmailer'
-            );
-
-            Installer::exec(
-                'git submodule update --init --recursive'
-            );
-        } else {
-            Installer::exec(
-                "cp -R {$copyFromDirectory}/swiftmailer " .
-                "{$websiteDirectory}"
-            );
-        }
-
-        echo (
-            "Go to your site's /colby/setup/ page " .
-            "to finish installing.\n\n"
-        );
 
         Installer::finish();
     }
