@@ -296,6 +296,46 @@ final class Installer {
 
 
     /**
+     * @return int
+     */
+    static function
+    getActionIndex(
+    ): int {
+        while (true) {
+            echo "\nHow would you like to create a new website instance?\n\n";
+
+            for (
+                $index = 0;
+                $index < count(Installer::$actions);
+                $index += 1
+            ) {
+                $description = (
+                    Installer::$actions[$index]->Installer_actionDescription
+                );
+
+                echo "{$index}) {$description}\n";
+            }
+
+            echo "\nenter choice: ";
+
+            $actionIndex = Installer::valueAsInt(
+                fgets(STDIN),
+            );
+
+            if (
+                $actionIndex !== null &&
+                $actionIndex >= 0 &&
+                $actionIndex < count(Installer::$actions)
+            ) {
+                return $actionIndex;
+            }
+        }
+    }
+    /* getActionIndex() */
+
+
+
+    /**
      * @param Throwable $error
      *
      * @return void
