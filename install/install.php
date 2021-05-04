@@ -196,6 +196,45 @@ final class Installer {
 
 
     /**
+     * @return void
+     */
+    static function
+    doAction_Installer_actionName_existingRepository(
+    ): void {
+        $websiteDomain = Installer::getWebsiteDomain();
+
+        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
+            $websiteDomain
+        );
+
+        $existngGitRepositoryURL = Installer::getExistingGitRepositoryURL();
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}"
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}/logs"
+        );
+
+        $documentRootDirectory = "{$websiteDirectory}/document_root";
+
+        Installer::exec(
+            "git clone {$existngGitRepositoryURL} $documentRootDirectory"
+        );
+
+        echo <<<EOT
+
+            Go to your site's /colby/setup/ page finish installing.
+
+
+        EOT;
+    }
+    /* doAction_Installer_actionName_existingRepository() */
+
+
+
+    /**
      * @param string $command
      *
      * @return void
