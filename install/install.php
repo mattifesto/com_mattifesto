@@ -524,6 +524,35 @@ final class Installer {
     }
     /* throwableToOneLineErrorReport() */
 
+
+
+    /**
+     * Copied from CBConvert.php
+     *
+     * @oaram mixed $value
+     *
+     * @return int|null
+     */
+    static function
+    valueAsInt(
+        /* mixed */ $value
+    ): ?int {
+        if (is_string($value)) {
+            $value = trim($value);
+        }
+
+        if (is_numeric($value)) {
+            $intValue = intval($value);
+
+            if ($intValue == $value) {
+                return $intValue;
+            }
+        }
+
+        return null;
+    }
+    /* valueAsInt() */
+
 }
 
 Installer::install();
