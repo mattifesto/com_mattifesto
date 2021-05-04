@@ -94,6 +94,73 @@ final class Installer {
 
 
     /**
+     * @return void
+     */
+    static function
+    doAction_Installer_actionName_copyFrom(
+        string $copyFromDirectory
+    ): void {
+        if (!is_dir($copyFromDirectory)) {
+            throw new Exception(
+                "{$copyFromDirectory} does not exist"
+            );
+        }
+
+        echo <<<EOT
+
+            -- -- -- -- -- WARNING -- -- -- -- --
+
+            The --copyfrom option should only be used when developing Colby
+            installation code. It does not create a viable website.
+
+
+
+        EOT;
+
+        $websiteDomain = Installer::getWebsiteDomain();
+
+        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
+            $websiteDomain
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}"
+        );
+
+        Installer::exec(
+            "mkdir {$websiteDirectory}/logs"
+        );
+
+        $documentRootDirectory = "{$websiteDirectory}/document_root";
+
+        Installer::exec(
+            "git init {$documentRootDirectory} --initial-branch=main"
+        );
+
+        chdir(
+            $documentRootDirectory
+        );
+
+        Installer::exec(
+            "cp -R {$copyFromDirectory}/colby {$documentRootDirectory}"
+        );
+
+        Installer::exec(
+            "cp -R {$copyFromDirectory}/swiftmailer {$documentRootDirectory}"
+        );
+
+        echo <<<EOT
+
+            Go to your site's /colby/setup/ page finish installing.
+
+
+        EOT;
+    }
+    /* doAction_Installer_actionName_copyFrom() */
+
+
+
+    /**
      * @param string $command
      *
      * @return void
