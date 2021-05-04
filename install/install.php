@@ -372,6 +372,42 @@ final class Installer {
 
 
     /**
+     * @return string
+     */
+    static function
+    getWebsiteDomain(
+    ): string {
+        while (true) {
+            echo <<<EOT
+
+            Enter the full domain for the website, for example
+            "mattifesto.ld17.mtfs.us"
+
+            website domain:
+            EOT;
+
+            $websiteDomain = (
+                trim(
+                    fgets(STDIN),
+                )
+            );
+
+            $result = filter_var(
+                $websiteDomain,
+                FILTER_VALIDATE_DOMAIN,
+                FILTER_FLAG_HOSTNAME
+            );
+
+            if ($result !== false) {
+                return $websiteDomain;
+            }
+        }
+    }
+    /* getWebsiteDomain() */
+
+
+
+    /**
      * @param Throwable $error
      *
      * @return void
