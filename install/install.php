@@ -336,6 +336,42 @@ final class Installer {
 
 
     /**
+     * @return string
+     */
+    static function
+    getExistingGitRepositoryURL(
+    ): string {
+        while (true) {
+            echo <<<EOT
+
+            Enter the git URL to create an instance of an existing website or
+            press return to create a brand new website.
+
+            Existing Website Git URL:
+            EOT;
+
+            $existngGitRepositoryURL = (
+                trim(
+                    fgets(STDIN),
+                )
+            );
+
+            exec(
+                "git ls-remote {$existngGitRepositoryURL} 2>&1",
+                $output,
+                $exitCode
+            );
+
+            if ($exitCode === 0) {
+                return $existngGitRepositoryURL;
+            }
+        }
+    }
+    /* getExistingGitRepositoryURL() */
+
+
+
+    /**
      * @param Throwable $error
      *
      * @return void
