@@ -2,6 +2,10 @@
 
 final class Installer {
 
+    private static $actions = null;
+
+
+
     /**
      * @param string $websiteDomain
      *
@@ -138,9 +142,32 @@ final class Installer {
             ]
         );
 
-
-
-        /* for Colby development only */
+        Installer::$actions = [
+            (object)[
+                'Installer_actionName' => (
+                    'Installer_actionName_brandNew'
+                ),
+                'Installer_actionDescription' => (
+                    'create a brand new website'
+                ),
+            ],
+            (object)[
+                'Installer_actionDescription' => (
+                    'create a website using an existing Git repository'
+                ),
+                'Installer_actionName' => (
+                    'Installer_actionName_existingRepository'
+                ),
+            ],
+            (object)[
+                'Installer_actionDescription' => (
+                    'create directories for a website'
+                ),
+                'Installer_actionName' => (
+                    'Installer_actionName_directories'
+                ),
+            ],
+        ];
 
         if (
             isset(
