@@ -84,7 +84,7 @@ final class Installer {
 
         echo <<<EOT
 
-            Go to your site's /colby/setup/ page finish installing.
+            Go to https://{$websiteDomain}/colby/setup/ page finish installing.
 
 
         EOT;
@@ -151,7 +151,7 @@ final class Installer {
 
         echo <<<EOT
 
-            Go to your site's /colby/setup/ page finish installing.
+        Go to your site's /colby/setup/ page finish installing.
 
 
         EOT;
@@ -184,7 +184,7 @@ final class Installer {
 
         echo <<<EOT
 
-            Now you must create the {$documentRootDirectory} for your website.
+        Now you must create the {$documentRootDirectory} for your website.
 
 
         EOT;
@@ -223,9 +223,17 @@ final class Installer {
             "git clone {$existngGitRepositoryURL} $documentRootDirectory"
         );
 
+        chdir(
+            $documentRootDirectory
+        );
+
+        Installer::exec(
+            'git submodule update --init --recursive'
+        );
+
         echo <<<EOT
 
-            Go to your site's /colby/setup/ page finish installing.
+        Go to https://{$websiteDomain}/colby/setup/ page finish installing.
 
 
         EOT;
