@@ -1,6 +1,6 @@
 [submodule "colby"]
 	path = colby
-	url = git@github.com:mattifesto/colby.git
+	url = https://github.com/mattifesto/colby.git
 [submodule "swiftmailer"]
 	path = swiftmailer
-	url = git://github.com/swiftmailer/swiftmailer.git
+	url = https://github.com/swiftmailer/swiftmailer.git
