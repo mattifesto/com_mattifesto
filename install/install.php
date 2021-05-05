@@ -260,20 +260,10 @@ final class Installer {
         $output = [];
 
         exec(
-            "{$command} 2>&1",
+            "{$command}",
             $output,
             $exitCode
         );
-
-        if (!empty($exitCode)) {
-            echo <<<EOT
-
-                ! returned exit code: {$exitCode}
-
-            EOT;
-
-            Installer::finish();
-        }
 
         $output = implode(
             "\n",
@@ -285,6 +275,16 @@ final class Installer {
         {$output}
 
         EOT;
+
+        if (!empty($exitCode)) {
+            echo <<<EOT
+
+            ! returned exit code: {$exitCode}
+
+            EOT;
+
+            Installer::finish();
+        }
     }
     /* exec() */
 
