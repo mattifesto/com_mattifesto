@@ -182,14 +182,31 @@ final class Installer {
 
         $documentRootDirectory = "{$websiteDirectory}/document_root";
 
+        Installer::exec(
+            "mkdir {$documentRootDirectory}"
+        );
+
+        file_put_contents(
+            "{$documentRootDirectory}/index.php",
+            <<<EOT
+            <?php
+
+            echo 'This is the test index.php for http[s]://{$websiteDomain}';
+
+            EOT
+        );
+
         echo <<<EOT
 
-        Now you must create the {$documentRootDirectory} for your website.
+        A simple index.php file has been created
+
+        {$documentRootDirectory}/index.php
+
+        so that you can test your web server configuration. Once it is working
+        replace this with your actual website code.
 
 
         EOT;
-
-
     }
     /* doAction_Installer_actionName_directories() */
 
