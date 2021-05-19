@@ -279,6 +279,49 @@ final class Installer {
 
 
     /**
+     * @param object $websiteDataSpec
+     *
+     * @return string
+     */
+    static function
+    createDatabaseCreationSQL(
+        stdClass $websiteDataSpec
+    ): string {
+        $databaseName = CBWebsiteData::getDatabaseName(
+            $websiteDataSpec
+        );
+
+        $databaseUsername = CBWebsiteData::getDatabaseUsername(
+            $websiteDataSpec
+        );
+
+        $databasePassword = CBWebsiteData::getDatabasePassword(
+            $websiteDataSpec
+        );
+
+        return <<<EOT
+        create database
+        {$databaseName};
+
+        create user
+        {$databaseUsername}@localhost
+        identified with mysql_native_password by
+        '{$databasePassword}';
+
+        grant all on
+        {$databaseName}.*
+        to
+        {$databaseUsername}@localhost;
+
+        flush privileges;
+
+        EOT;
+    }
+    /* createDatabaseCreationSQL() */
+
+
+
+    /**
      * @param string $websiteDomain
      *
      * @return string
