@@ -897,6 +897,39 @@ InstallerUI {
 
 
 
+    /**
+     * This function presents no user interface, so the calling function should.
+     * It simply allows the user to enter a string.
+     *
+     * @return stdClass
+     *
+     *      {
+     *          value: string
+     *          isValidDomain: bool
+     *      }
+     */
+    static function
+    inputDomain(
+    ): stdClass {
+        $value = (
+            trim(
+                fgets(STDIN),
+            )
+        );
+
+        $result = filter_var(
+            $value,
+            FILTER_VALIDATE_DOMAIN,
+            FILTER_FLAG_HOSTNAME
+        );
+
+        return (object)[
+            'value' => $value,
+            'isValidDomain' => $result !== false,
+        ];
+    }
+    /* inputDomain() */
+
 }
 /* InstallerUI */
 
