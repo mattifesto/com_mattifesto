@@ -1,5 +1,14 @@
 <?php
 
+error_reporting(
+    E_ALL
+);
+
+
+
+/**
+ *
+ */
 final class Installer {
 
     private static $actions = null;
