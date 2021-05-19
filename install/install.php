@@ -898,6 +898,45 @@ InstallerUI {
 
 
     /**
+     * @return string
+     *
+     *      Returns the primary website domain or an empty string if the user
+     *      wants to use the server specific website domain as the primary
+     *      domain.
+     */
+    static function
+    askForPrimaryWebsiteDomain(
+    ): string {
+        echo <<<EOT
+
+            The primary website domain is the most preferred domain for a
+            website. For the Mattifesto production website it is
+            "mattifesto.com". Development and test websites most often just use
+            the server specific website domain as the primary website domain.
+
+            If this website instance does not have a primary website domain just
+            press return.
+
+        EOT;
+
+        while (true) {
+            echo "\nenter the primary website domain or press return: ";
+
+            $result = InstallerUI::inputDomain();
+
+            if (
+                $result->value === '' ||
+                $result->isValidDomain
+            ) {
+                return $result->value;
+            }
+        }
+    }
+    /* askForPrimaryWebsiteDomain() */
+
+
+
+    /**
      * This function presents no user interface, so the calling function should.
      * It simply allows the user to enter a string.
      *
