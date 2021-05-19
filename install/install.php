@@ -199,6 +199,40 @@ CBWebsiteData {
 
 
 
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getServerSpecificWebsiteDomain(
+        stdClass $websiteDataModel
+    ): string {
+        return $websiteDataModel->CBWebsiteData_serverSpecificWebsiteDomain;
+    }
+    /* getServerSpecificWebsiteDomain() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     * @param string $serverSpecificWebsiteDomain
+     *
+     * @return void
+     */
+    static function
+    setServerSpecificWebsiteDomain(
+        stdClass $websiteDataModel,
+        string $serverSpecificWebsiteDomain
+    ): void {
+        $websiteDataModel->CBWebsiteData_serverSpecificWebsiteDomain = (
+            $serverSpecificWebsiteDomain
+        );
+    }
+    /* setServerSpecificWebsiteDomain() */
+
+
+
 }
 /* CBWebsiteData */
 
