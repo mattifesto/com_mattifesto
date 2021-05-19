@@ -1070,6 +1070,20 @@ final class Installer {
      * @return string
      */
     static function
+    getColbyWebsitesDirectory(
+    ): string {
+        $userHomeDirectory = Installer::getUserHomeDirectory();
+
+        return "{$userHomeDirectory}/colby_websites";
+    }
+    /* getColbyWebsitesDirectory() */
+
+
+
+    /**
+     * @return string
+     */
+    static function
     getExistingGitRepositoryURL(
     ): string {
         while (true) {
