@@ -655,6 +655,56 @@ final class Installer {
 
 
     /**
+     * @param object $websiteDataModel
+     *
+     * @return void
+     */
+    static function
+    createWebsiteProjectDirectories(
+        stdClass $websiteDataModel
+    ): void {
+        $websiteDirectory = CBWebsiteData::getWebsiteProjectDirectory(
+            $websiteDataModel
+        );
+
+        if (
+            file_exists($websiteDirectory)
+        ) {
+            throw new Exception('website directory already exists');
+        }
+
+        $websitesDirectory = Installer::getColbyWebsitesDirectory(
+            $websiteDataModel
+        );
+
+        if (
+            !is_dir($websitesDirectory)
+        ) {
+            mkdir(
+                $websitesDirectory,
+                0700
+            );
+        }
+
+        mkdir(
+            $websiteDirectory,
+            0700
+        );
+
+        $logsDirectory = Installer::getLogsDirectory(
+            $websiteDataModel
+        );
+
+        mkdir(
+            $logsDirectory,
+            0700
+        );
+    }
+    /* createWebsiteProjectDirectories() */
+
+
+
+    /**
      * @return void
      */
     static function
