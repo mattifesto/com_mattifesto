@@ -547,6 +547,57 @@ final class Installer {
 
 
     /**
+     * @param string $domain
+     *
+     * @return string|null
+     */
+    static function
+    convertDomainToLocalServerDomain(
+        string $domain
+    ): ?string {
+        $domainParts = explode(
+            '.',
+            $domain
+        );
+
+        $domainPartsCount = count(
+            $domainParts
+        );
+
+        if (
+            $domainPartsCount < 4
+        ) {
+            return null;
+        }
+
+        $serverPart = $domainParts[
+            1
+        ];
+
+        if (
+            preg_match('/^l[dtp][0-9]+$/', $serverPart)
+        ) {
+            $localServerDomainParts = $domainParts;
+
+            array_shift(
+                $localServerDomainParts
+            );
+
+            $localServerDomain = implode(
+                '.',
+                $localServerDomainParts
+            );
+
+            return $localServerDomain;
+        }
+
+        return null;
+    }
+    /* convertDomainToLocalServerDomain() */
+
+
+
+    /**
      * @param string $websiteDomain
      *
      * @return string
