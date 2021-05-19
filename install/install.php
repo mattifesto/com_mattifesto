@@ -112,6 +112,40 @@ CBWebsiteData {
 
 
 
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getDatabaseUsername(
+        stdClass $websiteDataModel
+    ): string {
+        return $websiteDataModel->CBWebsiteData_databaseUsername;
+    }
+    /* getDatabaseUsername() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     * @param string $databaseUsername
+     *
+     * @return void
+     */
+    static function
+    setDatabaseUsername(
+        stdClass $websiteDataModel,
+        string $databaseUsername
+    ): void {
+        $websiteDataModel->CBWebsiteData_databaseUsername = (
+            $databaseUsername
+        );
+    }
+    /* setDatabaseUsername() */
+
+
+
 }
 /* CBWebsiteData */
 
