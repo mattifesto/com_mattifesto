@@ -752,21 +752,11 @@ final class Installer {
 
         EOT;
 
-        $websiteDomain = Installer::getWebsiteDomain();
+        $websiteDataSpec = Installer::createWebsiteProject();
 
-        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
-            $websiteDomain
+        $documentRootDirectory = CBWebsiteData::getDocumentRootDirectory(
+            $websiteDataSpec
         );
-
-        Installer::exec(
-            "mkdir {$websiteDirectory}"
-        );
-
-        Installer::exec(
-            "mkdir {$websiteDirectory}/logs"
-        );
-
-        $documentRootDirectory = "{$websiteDirectory}/document_root";
 
         Installer::exec(
             "git init {$documentRootDirectory} --initial-branch=main"
@@ -784,9 +774,16 @@ final class Installer {
             "cp -R {$copyFromDirectory}/swiftmailer {$documentRootDirectory}"
         );
 
+        $serverSpecificWebsiteDomain = (
+            CBWebsiteData::getServerSpecificWebsiteDomain(
+                $websiteDataSpec
+            )
+        );
+
         echo <<<EOT
 
-        Go to your site's /colby/setup/ page finish installing.
+        Go to https://{$serverSpecificWebsiteDomain}/colby/setup/ page
+        finish installing.
 
 
         EOT;
