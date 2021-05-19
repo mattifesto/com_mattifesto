@@ -680,21 +680,11 @@ final class Installer {
     static function
     doAction_Installer_actionName_brandNew(
     ): void {
-        $websiteDomain = Installer::getWebsiteDomain();
+        $websiteDataSpec = Installer::createWebsiteProject();
 
-        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
-            $websiteDomain
+        $documentRootDirectory = CBWebsiteData::getDocumentRootDirectory(
+            $websiteDataSpec
         );
-
-        Installer::exec(
-            "mkdir {$websiteDirectory}"
-        );
-
-        Installer::exec(
-            "mkdir {$websiteDirectory}/logs"
-        );
-
-        $documentRootDirectory = "{$websiteDirectory}/document_root";
 
         Installer::exec(
             "git init {$documentRootDirectory} --initial-branch=main"
@@ -720,9 +710,16 @@ final class Installer {
             'git submodule update --init --recursive'
         );
 
+        $serverSpecificWebsiteDomain = (
+            CBWebsiteData::getServerSpecificWebsiteDomain(
+                $websiteDataSpec
+            )
+        );
+
         echo <<<EOT
 
-            Go to https://{$websiteDomain}/colby/setup/ page finish installing.
+            Go to https://{$serverSpecificWebsiteDomain}/colby/setup/ page
+            finish installing.
 
 
         EOT;
