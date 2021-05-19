@@ -44,6 +44,40 @@ CBWebsiteData {
 
 
 
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getDatabaseName(
+        stdClass $websiteDataModel
+    ): string {
+        return $websiteDataModel->CBWebsiteData_databaseName;
+    }
+    /* getDatabaseName() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     * @param string $databaseName
+     *
+     * @return void
+     */
+    static function
+    setDatabaseName(
+        stdClass $websiteDataModel,
+        string $databaseName
+    ): void {
+        $websiteDataModel->CBWebsiteData_databaseName = (
+            $databaseName
+        );
+    }
+    /* setDatabaseName() */
+
+
+
 }
 /* CBWebsiteData */
 
