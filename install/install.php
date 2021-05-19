@@ -1117,6 +1117,25 @@ final class Installer {
 
 
     /**
+     * @param object $websiteDataSpec
+     *
+     * @return string
+     */
+    static function
+    getLogsDirectory(
+        stdClass $websiteDataSpec
+    ): string {
+        $websiteDirectory = CBWebsiteData::getWebsiteProjectDirectory(
+            $websiteDataSpec
+        );
+
+        return "{$websiteDirectory}/logs";
+    }
+    /* getLogsDirectory() */
+
+
+
+    /**
      * @return string
      */
     static function
