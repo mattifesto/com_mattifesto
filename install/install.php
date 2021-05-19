@@ -1139,6 +1139,24 @@ final class Installer {
      * @return string
      */
     static function
+    getUserHomeDirectory(
+    ): string {
+        $userInformation = posix_getpwuid(
+            posix_getuid()
+        );
+
+        $userHomeDirectory = $userInformation['dir'];
+
+        return $userHomeDirectory;
+    }
+    /* getUserHomeDirectory() */
+
+
+
+    /**
+     * @return string
+     */
+    static function
     getWebsiteDomain(
     ): string {
         while (true) {
