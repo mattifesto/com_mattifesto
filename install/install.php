@@ -603,36 +603,6 @@ final class Installer {
      * @return string
      */
     static function
-    convertDomainToAbsoluteDirectory(
-        string $websiteDomain
-    ): string {
-        $parts = explode(
-            '.',
-            $websiteDomain
-        );
-
-        $parts = array_reverse(
-            $parts
-        );
-
-
-        $directory = implode(
-            '_',
-            $parts
-        );
-
-        return __DIR__ . "/{$directory}";
-    }
-    /* convertDomainToAbsoluteDirectory() */
-
-
-
-    /**
-     * @param string $websiteDomain
-     *
-     * @return string
-     */
-    static function
     convertDomainToReverseDomain(
         string $websiteDomain
     ): string {
