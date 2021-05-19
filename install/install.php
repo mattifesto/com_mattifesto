@@ -11,6 +11,39 @@ error_reporting(
  */
 final class
 CBWebsiteData {
+
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getAdminEmailAddress(
+        stdClass $websiteDataModel
+    ): string {
+        return $websiteDataModel->CBWebsiteData_adminEmailAddress;
+    }
+    /* getAdminEmailAddress() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     * @param string $adminEmailAddress
+     *
+     * @return void
+     */
+    static function
+    setAdminEmailAddress(
+        stdClass $websiteDataModel,
+        string $adminEmailAddress
+    ): void {
+        $websiteDataModel->CBWebsiteData_adminEmailAddress = $adminEmailAddress;
+    }
+    /* setAdminEmailAddress() */
+
+
+
 }
 /* CBWebsiteData */
 
