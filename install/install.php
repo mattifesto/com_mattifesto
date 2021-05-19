@@ -146,6 +146,25 @@ CBWebsiteData {
 
 
 
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getDocumentRootDirectory(
+        stdClass $websiteDataModel
+    ): string {
+        $websiteDirectory = CBWebsiteData::getWebsiteProjectDirectory(
+            $websiteDataModel
+        );
+
+        return "{$websiteDirectory}/document_root";
+    }
+    /* getDocumentRootDirectory() */
+
+
+
 }
 /* CBWebsiteData */
 
