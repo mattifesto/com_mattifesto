@@ -798,24 +798,16 @@ final class Installer {
     static function
     doAction_Installer_actionName_directories(
     ): void {
-        $websiteDomain = Installer::getWebsiteDomain();
+        $websiteDataSpec = Installer::createWebsiteProject();
 
-        $websiteDirectory = Installer::convertDomainToAbsoluteDirectory(
-            $websiteDomain
+        $documentRootDirectory = CBWebsiteData::getDocumentRootDirectory(
+            $websiteDataSpec
         );
 
-        Installer::exec(
-            "mkdir {$websiteDirectory}"
-        );
-
-        Installer::exec(
-            "mkdir {$websiteDirectory}/logs"
-        );
-
-        $documentRootDirectory = "{$websiteDirectory}/document_root";
-
-        Installer::exec(
-            "mkdir {$documentRootDirectory}"
+        $serverSpecificWebsiteDomain = (
+            CBWebsiteData::getServerSpecificWebsiteDomain(
+                $websiteDataSpec
+            )
         );
 
         file_put_contents(
@@ -823,19 +815,24 @@ final class Installer {
             <<<EOT
             <?php
 
-            echo 'This is the test index.php for http[s]://{$websiteDomain}';
+            echo <<<END
+
+            This is the test index.php for
+            http[s]://{$serverSpecificWebsiteDomain}
+
+            END;
 
             EOT
         );
 
         echo <<<EOT
 
-        A simple index.php file has been created
+            A simple index.php file has been created:
 
-        {$documentRootDirectory}/index.php
+                {$documentRootDirectory}/index.php
 
-        so that you can test your web server configuration. Once it is working
-        replace this with your actual website code.
+            so that you can test your web server configuration. Once it is
+            working replace this with your actual website code.
 
 
         EOT;
