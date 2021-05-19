@@ -4,6 +4,8 @@ error_reporting(
     E_ALL
 );
 
+Installer::install();
+
 
 
 /**
@@ -272,7 +274,8 @@ CBWebsiteData {
 /**
  *
  */
-final class Installer {
+final class
+Installer {
 
     private static $actions = null;
 
@@ -1483,5 +1486,3 @@ InstallerUI {
 
 }
 /* InstallerUI */
-
-Installer::install();
