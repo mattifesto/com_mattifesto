@@ -9,6 +9,16 @@ error_reporting(
 /**
  *
  */
+final class
+CBWebsiteData {
+}
+/* CBWebsiteData */
+
+
+
+/**
+ *
+ */
 final class Installer {
 
     private static $actions = null;
