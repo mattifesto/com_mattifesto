@@ -860,6 +860,43 @@ final class Installer {
  */
 final class
 InstallerUI {
+
+    /**
+     * @return string
+     */
+    static function
+    askForAdminEmailAddress(
+    ): string {
+        echo <<<EOT
+
+        The admin email address will be used in the configuration files for the
+        Apache web server.
+
+        EOT;
+
+        while (true) {
+            echo "\n", 'enter admin email address: ';
+
+            $adminEmailAddress = (
+                trim(
+                    fgets(STDIN),
+                )
+            );
+
+            $result = filter_var(
+                $adminEmailAddress,
+                FILTER_VALIDATE_EMAIL
+            );
+
+            if ($result !== false) {
+                return $result;
+            }
+        }
+    }
+    /* askForAdminEmailAddress() */
+
+
+
 }
 /* InstallerUI */
 
