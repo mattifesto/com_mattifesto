@@ -78,6 +78,40 @@ CBWebsiteData {
 
 
 
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getDatabasePassword(
+        stdClass $websiteDataModel
+    ): string {
+        return $websiteDataModel->CBWebsiteData_databasePassword;
+    }
+    /* getDatabasePassword() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     * @param string $databasePassword
+     *
+     * @return void
+     */
+    static function
+    setDatabasePassword(
+        stdClass $websiteDataModel,
+        string $databasePassword
+    ): void {
+        $websiteDataModel->CBWebsiteData_databasePassword = (
+            $databasePassword
+        );
+    }
+    /* setDatabasePassword() */
+
+
+
 }
 /* CBWebsiteData */
 
