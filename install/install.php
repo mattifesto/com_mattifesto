@@ -165,6 +165,40 @@ CBWebsiteData {
 
 
 
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getPrimaryWebsiteDomain(
+        stdClass $websiteDataModel
+    ): string {
+        return $websiteDataModel->CBWebsiteData_primaryWebsiteDomain;
+    }
+    /* getPrimaryWebsiteDomain() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     * @param string $primaryWebsiteDomain
+     *
+     * @return void
+     */
+    static function
+    setPrimaryWebsiteDomain(
+        stdClass $websiteDataModel,
+        string $primaryWebsiteDomain
+    ): void {
+        $websiteDataModel->CBWebsiteData_primaryWebsiteDomain = (
+            $primaryWebsiteDomain
+        );
+    }
+    /* setPrimaryWebsiteDomain() */
+
+
+
 }
 /* CBWebsiteData */
 
