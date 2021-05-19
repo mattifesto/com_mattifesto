@@ -851,5 +851,16 @@ final class Installer {
     /* valueAsInt() */
 
 }
+/* Installer */
+
+
+
+/**
+ *
+ */
+final class
+InstallerUI {
+}
+/* InstallerUI */
 
 Installer::install();
