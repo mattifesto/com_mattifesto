@@ -628,6 +628,33 @@ final class Installer {
 
 
     /**
+     * @param string $websiteDomain
+     *
+     * @return string
+     */
+    static function
+    convertDomainToReverseDomain(
+        string $websiteDomain
+    ): string {
+        $parts = explode(
+            '.',
+            $websiteDomain
+        );
+
+        $parts = array_reverse(
+            $parts
+        );
+
+        return implode(
+            '_',
+            $parts
+        );
+    }
+    /* convertDomainToReverseDomain() */
+
+
+
+    /**
      * @return void
      */
     static function
