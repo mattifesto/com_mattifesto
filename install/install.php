@@ -456,6 +456,97 @@ final class Installer {
 
 
     /**
+     * @return object
+     */
+    static function
+    createWebsiteProject(
+    ): stdClass {
+        $websiteDataSpec = (object)[
+            'className' => 'CBWebsiteData',
+        ];
+
+        $serverSpecificWebsiteDomain = (
+            InstallerUI::askForServerSpecificWebsiteDomain()
+        );
+
+        CBWebsiteData::setServerSpecificWebsiteDomain(
+            $websiteDataSpec,
+            $serverSpecificWebsiteDomain
+        );
+
+        $primaryWebsiteDomain = InstallerUI::askForPrimaryWebsiteDomain();
+
+        if ($primaryWebsiteDomain === '') {
+            $primaryWebsiteDomain = $serverSpecificWebsiteDomain;
+        }
+
+        CBWebsiteData::setPrimaryWebsiteDomain(
+            $websiteDataSpec,
+            $primaryWebsiteDomain
+        );
+
+        // $secondaryWebsiteDomains = Installer::getSecondaryWebsiteDomains();
+
+        $serverSpecificWebsiteReverseDomain = (
+            Installer::convertDomainToReverseDomain(
+                $serverSpecificWebsiteDomain
+            )
+        );
+
+        CBWebsiteData::setDatabaseName(
+            $websiteDataSpec,
+            "{$serverSpecificWebsiteReverseDomain}_database"
+        );
+
+        CBWebsiteData::setDatabaseUserName(
+            $websiteDataSpec,
+            Installer::generateDatabaseUsername()
+        );
+
+        CBWebsiteData::setDatabasePassword(
+            $websiteDataSpec,
+            Installer::generateDatabasePassword()
+        );
+
+        CBWebsiteData::setAdminEmailAddress(
+            $websiteDataSpec,
+            InstallerUI::askForAdminEmailAddress()
+        );
+
+        /* create directories */
+
+        Installer::createWebsiteProjectDirectories(
+            $websiteDataSpec
+        );
+
+        $websiteDirectory = CBWebsiteData::getWebsiteProjectDirectory(
+            $websiteDataSpec
+        );
+
+        Installer::createApacheVirtualHostConfigurationFiles(
+            $websiteDataSpec
+        );
+
+        file_put_contents(
+            "{$websiteDirectory}/create_database.sql",
+            Installer::createDatabaseCreationSQL(
+                $websiteDataSpec
+            )
+        );
+
+        $documentRootDirectory = "{$websiteDirectory}/document_root";
+
+        Installer::exec(
+            "mkdir {$documentRootDirectory}"
+        );
+
+        return $websiteDataSpec;
+    }
+    /* createWebsiteProject() */
+
+
+
+    /**
      * @param string $websiteDomain
      *
      * @return string
