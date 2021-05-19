@@ -281,6 +281,140 @@ final class Installer {
     /**
      * @param object $websiteDataSpec
      *
+     * @return void
+     */
+    static function
+    createApacheVirtualHostConfigurationFiles(
+        stdClass $websiteDataSpec
+    ): void {
+        $serverSpecificWebsiteDomain = (
+            CBWebsiteData::getServerSpecificWebsiteDomain(
+                $websiteDataSpec
+            )
+        );
+
+        $websiteDirectory = CBWebsiteData::getWebsiteProjectDirectory(
+            $websiteDataSpec
+        );
+
+        $serverAdminEmailAddress = CBWebsiteData::getAdminEmailAddress(
+            $websiteDataSpec
+        );
+
+        $documentRootDirectory = CBWebsiteData::getDocumentRootDirectory(
+            $websiteDataSpec
+        );
+
+        $logsDirectory = Installer::getLogsDirectory(
+            $websiteDataSpec
+        );
+
+        $websiteDomains = [
+            $serverSpecificWebsiteDomain,
+        ];
+
+        $primaryWebsiteDomain = CBWebsiteData::getPrimaryWebsiteDomain(
+            $websiteDataSpec
+        );
+
+        if ($primaryWebsiteDomain !== $serverSpecificWebsiteDomain) {
+            array_push(
+                $websiteDomains,
+                $primaryWebsiteDomain
+            );
+        }
+
+        foreach ($websiteDomains as $websiteDomain) {
+            $vh1 = <<<EOT
+            <VirtualHost *:80>
+                ServerName      {$websiteDomain}
+                ServerAdmin     {$serverAdminEmailAddress}
+
+                DocumentRoot    {$documentRootDirectory}
+                ErrorLog        {$logsDirectory}/error.log
+                CustomLog       {$logsDirectory}/access.log combined
+
+                <Directory "{$documentRootDirectory}">
+                    AllowOverride   all
+                    Require         all granted
+                </Directory>
+            </VirtualHost>
+
+            EOT;
+
+            $reverseWebsiteDomain = Installer::convertDomainToReverseDomain(
+                $websiteDomain
+            );
+
+            $confFilename = (
+                "{$websiteDirectory}/{$reverseWebsiteDomain}.conf"
+            );
+
+            file_put_contents(
+                $confFilename,
+                $vh1
+            );
+
+            $localServerDomain = (
+                Installer::convertDomainToLocalServerDomain(
+                    $websiteDomain
+                )
+            );
+
+            if ($localServerDomain === null) {
+                continue;
+            }
+
+            $userHomeDirectory = Installer::getUserHomeDirectory();
+
+            $sslCertificateFile = (
+                "{$userHomeDirectory}/.acme.sh/" .
+                "{$localServerDomain}/fullchain.cer"
+            );
+
+            $sslCertificateKeyFile = (
+                "{$userHomeDirectory}/.acme.sh/" .
+                "{$localServerDomain}/{$localServerDomain}.key"
+            );
+
+            $vh2 = <<<EOT
+            <VirtualHost *:443>
+                ServerName      {$websiteDomain}
+                ServerAdmin     {$serverAdminEmailAddress}
+
+                DocumentRoot    {$documentRootDirectory}
+                ErrorLog        {$logsDirectory}/error.log
+                CustomLog       {$logsDirectory}/access.log combined
+
+                SSLEngine               on
+                SSLCertificateFile      {$sslCertificateFile}
+                SSLCertificateKeyFile   {$sslCertificateKeyFile}
+
+                <Directory "{$documentRootDirectory}">
+                    AllowOverride   all
+                    Require         all granted
+                </Directory>
+            </VirtualHost>
+
+            EOT;
+
+            $confFilename = (
+                "{$websiteDirectory}/{$reverseWebsiteDomain}_ssl.conf"
+            );
+
+            file_put_contents(
+                $confFilename,
+                $vh2
+            );
+        }
+    }
+    /* createApacheVirtualHostConfigurationFiles() */
+
+
+
+    /**
+     * @param object $websiteDataSpec
+     *
      * @return string
      */
     static function
