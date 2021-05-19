@@ -233,6 +233,37 @@ CBWebsiteData {
 
 
 
+    /**
+     * @param object $websiteDataModel
+     *
+     * @return string
+     */
+    static function
+    getWebsiteProjectDirectory(
+        stdClass $websiteDataModel
+    ): string {
+        $serverSpecificWebsiteDomain = (
+            CBWebsiteData::getServerSpecificWebsiteDomain(
+                $websiteDataModel
+            )
+        );
+
+        $serverSpecificWebsiteReverseDomain = (
+            Installer::convertDomainToReverseDomain(
+                $serverSpecificWebsiteDomain
+            )
+        );
+
+        $websitesDirectory = Installer::getColbyWebsitesDirectory();
+
+        $websiteDirectory = (
+            "{$websitesDirectory}/{$serverSpecificWebsiteReverseDomain}"
+        );
+
+        return $websiteDirectory;
+    }
+    /* getWebsiteProjectDirectory() */
+
 }
 /* CBWebsiteData */
 
