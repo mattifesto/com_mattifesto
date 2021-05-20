@@ -204,6 +204,40 @@ CBWebsiteData {
     /**
      * @param object $websiteDataModel
      *
+     * @return [string]
+     */
+    static function
+    getSecondaryWebsiteDomains(
+        stdClass $websiteDataModel
+    ): array {
+        return $websiteDataModel->CBWebsiteData_secondaryWebsiteDomains;
+    }
+    /* getSecondaryWebsiteDomains() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     * @param [string] $secondaryWebsiteDomains
+     *
+     * @return void
+     */
+    static function
+    setSecondaryWebsiteDomains(
+        stdClass $websiteDataModel,
+        array $secondaryWebsiteDomains
+    ): void {
+        $websiteDataModel->CBWebsiteData_secondaryWebsiteDomains = (
+            $secondaryWebsiteDomains
+        );
+    }
+    /* setSecondaryWebsiteDomains() */
+
+
+
+    /**
+     * @param object $websiteDataModel
+     *
      * @return string
      */
     static function
