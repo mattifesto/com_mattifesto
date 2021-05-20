@@ -361,6 +361,13 @@ Installer {
             );
         }
 
+        $websiteDomains = array_merge(
+            $websiteDomains,
+            CBWebsiteData::getSecondaryWebsiteDomains(
+                $websiteDataSpec,
+            )
+        );
+
         foreach ($websiteDomains as $websiteDomain) {
             $vh1 = <<<EOT
             <VirtualHost *:80>
@@ -522,7 +529,12 @@ Installer {
             $primaryWebsiteDomain
         );
 
-        // $secondaryWebsiteDomains = Installer::getSecondaryWebsiteDomains();
+        $secondaryWebsiteDomains = InstallerUI::askForSecondaryWebsiteDomains();
+
+        CBWebsiteData::setSecondaryWebsiteDomains(
+            $websiteDataSpec,
+            $secondaryWebsiteDomains
+        );
 
         $serverSpecificWebsiteReverseDomain = (
             Installer::convertDomainToReverseDomain(
