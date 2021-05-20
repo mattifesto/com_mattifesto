@@ -1410,6 +1410,42 @@ InstallerUI {
 
 
     /**
+     * @return [string]
+     */
+    static function
+    askForSecondaryWebsiteDomains(
+    ): array {
+        echo <<<EOT
+
+            Secondary website domains are domains that your website accepts and
+            are generally redirected to the primary domain. The most common
+            example of this is if "mattifesto.com" is your primary domian,
+            "www.mattifesto.com" will probably be a secondary domain. Or vice
+            versa if "www.mattifesto.com" is your primary domain.
+
+            If this website instance does not have any secondary website domains
+            just press return.
+
+        EOT;
+
+
+        while (true) {
+            echo "\nenter the secondary website domains or press return: ";
+
+            $result = InstallerUI::inputMultipleDomains();
+
+            if (
+                $result->firstInvalidDomainIndex === null
+            ) {
+                return $result->values;
+            }
+        }
+    }
+    /* askForSecondaryWebsiteDomains() */
+
+
+
+    /**
      * @return string
      */
     static function
