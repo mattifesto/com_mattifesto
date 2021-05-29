@@ -743,10 +743,18 @@ Installer {
             $documentRootDirectory
         );
 
+        $colbyRepositoryURL = getenv(
+            'COLBY_REPOSITORY_URL'
+        );
+
+        if ($colbyRepositoryURL === false) {
+            $colbyRepositoryURL = 'https://github.com/mattifesto/colby.git';            
+        }
+
         Installer::exec(
             'git submodule add ' .
-            'https://github.com/mattifesto/colby.git ' .
-            'colby'
+            $colbyRepositoryURL .
+            ' colby'
         );
 
         Installer::exec(
