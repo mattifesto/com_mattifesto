@@ -518,6 +518,28 @@ Installer {
 
         $websiteProjectDirectory = Installer::getWebsiteProjectDirectory();
 
+        if (
+            count(
+                array_diff(
+                    scandir(
+                        $websiteProjectDirectory
+                    ),
+                    [
+                        '..',
+                        '.',
+                        basename(__FILE__),
+                    ]
+                )
+            ) > 0
+        ) {
+            echo <<<EOT
+            You can only create a Colby website project in an empty directory.
+
+            EOT;
+
+            Installer::finish();
+        }
+
         echo "Creating a new website project in: {$websiteProjectDirectory}";
 
         $options = getopt(
