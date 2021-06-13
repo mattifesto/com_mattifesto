@@ -323,8 +323,18 @@ Installer {
     static function
     finish(
     ): void {
-        /* we would delete install.php here but need to make sure we don't
-        /* install a locally called one */
+        $websiteProjectDirectory = Installer::getWebsiteProjectDirectory();
+        $installScriptDirectory = __DIR__;
+
+        /**
+         * We only delete the install script if it's being run from the website
+         * project directory.
+         */
+
+        if ($websiteProjectDirectory === $installScriptDirectory) {
+            unlink(__FILE__);
+        }
+
         exit;
     }
     /* finish() */
