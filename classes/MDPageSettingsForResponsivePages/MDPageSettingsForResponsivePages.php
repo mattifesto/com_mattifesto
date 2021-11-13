@@ -1,6 +1,7 @@
 <?php
 
-final class MDPageSettingsForResponsivePages {
+final class
+MDPageSettingsForResponsivePages {
 
     /**
      * @return void
@@ -9,12 +10,16 @@ final class MDPageSettingsForResponsivePages {
         CBPageSettingsCatalog::install(__CLASS__);
     }
 
+
+
     /**
      * @return [string]
      */
     static function CBInstall_requiredClassNames(): array {
         return ['CBPageSettingsCatalog'];
     }
+
+
 
     /**
      * @return [string]
@@ -23,19 +28,26 @@ final class MDPageSettingsForResponsivePages {
         return [
             'CBDarkTheme',
             'CBStyleSheet',
-            'MDStyleSheet'
+            'MDStyleSheet',
         ];
     }
+
+
 
     /**
      * @return [string]
      */
-    static function CBPageSettings_requiredClassNames(): array {
+    static function
+    CBPageSettings_requiredClassNames(
+    ): array {
         return [
             'CBEqualizePageSettingsPart',
             'CBResponsiveViewportPageSettingsPart',
             'CBGoogleTagManagerPageSettingsPart',
             'CBFacebookPageSettingsPart',
+            'CB_CBPageSettingsPart_SitePreferences',
         ];
     }
+    /* CBPageSettings_requiredClassNames() */
+
 }
