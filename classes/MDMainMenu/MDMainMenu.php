@@ -1,6 +1,7 @@
 <?php
 
-final class MDMainMenu {
+final class
+MDMainMenu {
 
     /* -- CBInstall interfaces -- */
 
@@ -34,6 +35,10 @@ final class MDMainMenu {
         );
 
         ($updater->CBModelUpdater_save)();
+
+        CB_StandardPageFrame::setDefaultMainMenuModelCBID(
+            MDMainMenu::ID()
+        );
     }
     /* CBInstall_install() */
 
@@ -46,7 +51,10 @@ final class MDMainMenu {
     CBInstall_requiredClassNames(
     ): array {
         return [
-            'CBModels',
+            'CBMenu',
+            'CBModel',
+            'CBModelUpdater',
+            'CB_StandardPageFrame',
         ];
     }
     /* CBInstall_requiredClassNames() */
