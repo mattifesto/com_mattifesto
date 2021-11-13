@@ -1,6 +1,7 @@
 <?php
 
-final class MDBlogPostPageTemplate {
+final class
+MDBlogPostPageTemplate {
 
     /* -- CBInstall interfaces -- -- -- -- -- */
 
@@ -33,30 +34,34 @@ final class MDBlogPostPageTemplate {
     /**
      * @return object
      */
-    static function CBModelTemplate_spec() {
-        $spec = (object)[
-            'className' => 'CBViewPage',
-            'classNameForSettings' => 'MDPageSettingsForResponsivePages',
-            'classNameForKind' => 'MDBlogPostPageKind',
-            'frameClassName' => 'MDPageFrame',
-            'sections' => [
-                (object)[
-                    'className' => 'CBPageTitleAndDescriptionView',
-                    'showPublicationDate' => true,
-                ],
-                (object)[
-                    'className' => 'CBArtworkView',
-                ],
-                (object)[
-                    'className' => 'CBYouTubeView',
-                ],
-                (object)[
-                    'className' => 'CBMessageView',
-                ],
-            ],
-        ];
+    static function
+    CBModelTemplate_spec(
+    ): stdClass {
+        $pageSpec = CBViewPage::standardPageTemplate();
 
-        return $spec;
+        CBModel::merge(
+            $pageSpec,
+            (object)[
+                'classNameForKind' => 'MDBlogPostPageKind',
+                'sections' => [
+                    (object)[
+                        'className' => 'CBPageTitleAndDescriptionView',
+                        'showPublicationDate' => true,
+                    ],
+                    (object)[
+                        'className' => 'CBArtworkView',
+                    ],
+                    (object)[
+                        'className' => 'CBYouTubeView',
+                    ],
+                    (object)[
+                        'className' => 'CBMessageView',
+                    ],
+                ],
+            ]
+        );
+
+        return $pageSpec;
     }
     /* CBModelTemplate_spec() */
 
