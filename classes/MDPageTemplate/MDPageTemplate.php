@@ -1,6 +1,7 @@
 <?php
 
-final class MDPageTemplate {
+final class
+MDPageTemplate {
 
     /**
      * @return void
@@ -10,6 +11,8 @@ final class MDPageTemplate {
         CBModelTemplateCatalog::installLivePageTemplate(__CLASS__);
     }
 
+
+
     /**
      * @return [string]
      */
@@ -17,29 +20,38 @@ final class MDPageTemplate {
         return ['CBModelTemplateCatalog'];
     }
 
+
+
     /**
      * @return object
      */
-    static function CBModelTemplate_spec() {
-        $spec = (object)[
-            'className' => 'CBViewPage',
-            'classNameForSettings' => 'MDPageSettingsForResponsivePages',
-            'frameClassName' => 'MDPageFrame',
-            'sections' => [
-                (object)[
-                    'className' => 'CBPageTitleAndDescriptionView',
-                ],
-                (object)[
-                    'className' => 'CBArtworkView',
-                ],
-                (object)[
-                    'className' => 'CBMessageView',
-                ],
-            ],
-        ];
+    static function
+    CBModelTemplate_spec(
+    ): stdClass {
+        $pageSpec = CBViewPage::standardPageTemplate();
 
-        return $spec;
+        CBModel::merge(
+            $pageSpec,
+            (object)[
+                'sections' => [
+                    (object)[
+                        'className' => 'CBPageTitleAndDescriptionView',
+                    ],
+                    (object)[
+                        'className' => 'CBArtworkView',
+                    ],
+                    (object)[
+                        'className' => 'CBMessageView',
+                    ],
+                ],
+            ]
+        );
+
+        return $pageSpec;
     }
+    /* CBModelTemplate_spec() */
+
+
 
     /**
      * @return string
@@ -47,4 +59,5 @@ final class MDPageTemplate {
     static function CBModelTemplate_title() {
         return 'Page';
     }
+
 }
