@@ -1,6 +1,7 @@
 <?php
 
-final class MDPageFrame {
+final class
+MDPageFrame {
 
     /**
      * @return [string]
@@ -39,4 +40,17 @@ final class MDPageFrame {
             'className' => 'MDStandardPageFooterView',
         ]);
     }
+
+
+
+    /**
+     * @return string
+     */
+    static function
+    CBPageFrame_replacementPageFrameClassName(
+    ): string {
+        return 'CB_StandardPageFrame';
+    }
+    /* CBPageFrame_replacementPageFrameClassName() */
+
 }
