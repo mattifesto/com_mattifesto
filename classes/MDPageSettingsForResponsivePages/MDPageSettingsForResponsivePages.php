@@ -35,6 +35,18 @@ MDPageSettingsForResponsivePages {
 
 
     /**
+     * @return string
+     */
+    static function
+    CBHTMLOutput_replacementClassNameForPageSettings(
+    ): string {
+        return 'CB_StandardPageSettings';
+    }
+    /* CBHTMLOutput_replacementClassNameForPageSettings() */
+
+
+
+    /**
      * @return [string]
      */
     static function
