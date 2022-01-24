@@ -2,5 +2,5 @@
 
 define(
     'CBSiteVersionNumber', 
-    '675.7.1'
+    '675.8'
 );
