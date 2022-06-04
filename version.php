@@ -1,6 +1,6 @@
 <?php
 
 define(
-    'CBSiteVersionNumber', 
-    '675.13.1'
+    'CBSiteVersionNumber',
+    '2022_06_04_1654361000'
 );
