@@ -1,6 +1,0 @@
-[submodule "colby"]
-	path = colby
-	url = https://github.com/mattifesto/colby.git
-[submodule "swiftmailer"]
-	path = swiftmailer
-	url = https://github.com/swiftmailer/swiftmailer.git
