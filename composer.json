@@ -1,7 +1,6 @@
 {
     "require": {
         "aws/aws-sdk-php": "^3.258",
-        "mattifesto/colby": "^2023",
-        "erusev/parsedown": "^1.7"
+        "mattifesto/colby": "^2023"
     }
 }
