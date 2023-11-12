@@ -2,5 +2,5 @@
 
 define(
     'CBSiteVersionNumber',
-    '2023.0.2'
+    '2023.0.3'
 );
