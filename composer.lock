@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.285.4",
+            "version": "3.287.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c462af819d81cba49939949032b20799f5ef0fff"
+                "reference": "06978bfc63111fccd78b364238bf214b4ade8d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c462af819d81cba49939949032b20799f5ef0fff",
-                "reference": "c462af819d81cba49939949032b20799f5ef0fff",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/06978bfc63111fccd78b364238bf214b4ade8d18",
+                "reference": "06978bfc63111fccd78b364238bf214b4ade8d18",
                 "shasum": ""
             },
             "require": {
@@ -151,9 +151,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.285.4"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.287.0"
             },
-            "time": "2023-11-10T19:25:49+00:00"
+            "time": "2023-11-17T20:03:36+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -532,16 +532,16 @@
         },
         {
             "name": "mattifesto/colby",
-            "version": "v2023.2.2",
+            "version": "v2023.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mattifesto/colby.git",
-                "reference": "0180acb80f50c62d28faf3f1dff6eaab30c10e6d"
+                "reference": "b574f8b8da2524fa18668fbf0d8c8c7fcb4a2add"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mattifesto/colby/zipball/0180acb80f50c62d28faf3f1dff6eaab30c10e6d",
-                "reference": "0180acb80f50c62d28faf3f1dff6eaab30c10e6d",
+                "url": "https://api.github.com/repos/mattifesto/colby/zipball/b574f8b8da2524fa18668fbf0d8c8c7fcb4a2add",
+                "reference": "b574f8b8da2524fa18668fbf0d8c8c7fcb4a2add",
                 "shasum": ""
             },
             "require": {
@@ -572,9 +572,9 @@
             "description": "content management system",
             "support": {
                 "issues": "https://github.com/mattifesto/colby/issues",
-                "source": "https://github.com/mattifesto/colby/tree/v2023.2.2"
+                "source": "https://github.com/mattifesto/colby/tree/v2023.2.5"
             },
-            "time": "2023-11-12T03:20:37+00:00"
+            "time": "2023-11-20T01:19:43+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
