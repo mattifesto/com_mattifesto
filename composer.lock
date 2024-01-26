@@ -532,16 +532,16 @@
         },
         {
             "name": "mattifesto/colby",
-            "version": "v2023.4.0",
+            "version": "v2023.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mattifesto/colby.git",
-                "reference": "dbe08db6485d02f72f71f620829b80272364853b"
+                "reference": "e7408ae563da49bbafdb7764b66ba01015d6b37e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mattifesto/colby/zipball/dbe08db6485d02f72f71f620829b80272364853b",
-                "reference": "dbe08db6485d02f72f71f620829b80272364853b",
+                "url": "https://api.github.com/repos/mattifesto/colby/zipball/e7408ae563da49bbafdb7764b66ba01015d6b37e",
+                "reference": "e7408ae563da49bbafdb7764b66ba01015d6b37e",
                 "shasum": ""
             },
             "require": {
@@ -572,9 +572,9 @@
             "description": "content management system",
             "support": {
                 "issues": "https://github.com/mattifesto/colby/issues",
-                "source": "https://github.com/mattifesto/colby/tree/v2023.4.0"
+                "source": "https://github.com/mattifesto/colby/tree/v2023.5.0"
             },
-            "time": "2024-01-25T20:31:10+00:00"
+            "time": "2024-01-26T14:57:03+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
